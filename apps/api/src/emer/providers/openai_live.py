@@ -104,7 +104,7 @@ class OpenAILive:
             result = await self._client.post(
                 f"https://api.openai.com/v1/live/sessions/{quote(session_id, safe='')}/hangup",
                 headers={"Authorization": f"Bearer {self._key}"},
-                timeout=5,
+                timeout=10,
             )
             if result.status_code in {200, 204}:
                 return True
