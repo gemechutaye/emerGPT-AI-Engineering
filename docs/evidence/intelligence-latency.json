@@ -1,0 +1,216 @@
+{
+  "classification": "Selected recorded trials, not a statistical latency benchmark or complete acceptance suite.",
+  "selected_generator": "google/gemini-3.8-flash",
+  "reasoning": "low",
+  "verifier": "openai/gpt-5.5",
+  "rows": [
+    {
+      "experiment": "gemini-high-complete-repair-core-04",
+      "case": "H14.T1",
+      "status": "completed",
+      "answer_status": "answered",
+      "latency_ms": 245926,
+      "error": null,
+      "problems": [],
+      "known_cost": 0.26531055
+    },
+    {
+      "experiment": "gemini-high-complete-repair-core-04",
+      "case": "H15.T1",
+      "status": "completed",
+      "answer_status": "answered",
+      "latency_ms": 63246,
+      "error": null,
+      "problems": [],
+      "known_cost": 0.14663533
+    },
+    {
+      "experiment": "gemini-high-complete-repair-compound-04",
+      "case": "ARH-002.T1",
+      "status": "completed",
+      "answer_status": "partial",
+      "latency_ms": 134989,
+      "error": null,
+      "problems": [],
+      "known_cost": 0.36760932
+    },
+    {
+      "experiment": "gemini-high-context-replay-05",
+      "case": "ARH-017.T2",
+      "status": "completed",
+      "answer_status": "answered",
+      "latency_ms": 113161,
+      "error": null,
+      "problems": [],
+      "known_cost": 0.23152041
+    },
+    {
+      "experiment": "flash-low-mini-core-01",
+      "case": "H11.T1",
+      "status": "failed",
+      "answer_status": null,
+      "latency_ms": 2751,
+      "error": "The provider returned HTTP 404. No answer was published.",
+      "problems": [],
+      "known_cost": 0.00061098
+    },
+    {
+      "experiment": "flash-low-mini-core-01",
+      "case": "H15.T1",
+      "status": "failed",
+      "answer_status": null,
+      "latency_ms": 2758,
+      "error": "The provider returned HTTP 404. No answer was published.",
+      "problems": [],
+      "known_cost": 0.00058933
+    },
+    {
+      "experiment": "flash-low-mini-core-02",
+      "case": "H11.T1",
+      "status": "completed",
+      "answer_status": "answered",
+      "latency_ms": 14826,
+      "error": null,
+      "problems": [],
+      "known_cost": 0.01133553
+    },
+    {
+      "experiment": "flash-low-mini-core-02",
+      "case": "H15.T1",
+      "status": "failed",
+      "answer_status": null,
+      "latency_ms": 34036,
+      "error": "Supported requested facts remain missing after the bounded repair.",
+      "problems": [
+        "coverage part-1: Missing source context or qualification: SYNTHETIC TRAINING RECORD - NOT A REAL PATIENT. (Patient record states assistant must not infer any facts not explicitly stated, limiting additional conclusions.)",
+        "coverage part-1: Missing source context or qualification: The AI assistant must not infer facts that are not stated in this record. (Instruction to not infer facts restricts unsupported assumptions.)",
+        "coverage part-1: Missing source context or qualification: The assistant must not infer surgical candidacy or recommend device settings. (Avoidance of inference of surgical candidacy consistent with assistant instructions.)"
+      ],
+      "known_cost": 0.02318128
+    },
+    {
+      "experiment": "flash-low-mini-compound-02",
+      "case": "ARH-002.T1",
+      "status": "failed",
+      "answer_status": null,
+      "latency_ms": 6037,
+      "error": "The inventory must include every question part exactly once.",
+      "problems": [],
+      "known_cost": 0.00454577
+    },
+    {
+      "experiment": "flash-low-54mini-core-03",
+      "case": "H14.T1",
+      "status": "completed",
+      "answer_status": "answered",
+      "latency_ms": 16398,
+      "error": null,
+      "problems": [],
+      "known_cost": 0.02192145
+    },
+    {
+      "experiment": "flash-low-54mini-core-03",
+      "case": "H11.T1",
+      "status": "completed",
+      "answer_status": "answered",
+      "latency_ms": 22436,
+      "error": null,
+      "problems": [],
+      "known_cost": 0.01867848
+    },
+    {
+      "experiment": "flash-low-54mini-core-03",
+      "case": "H15.T1",
+      "status": "completed",
+      "answer_status": "answered",
+      "latency_ms": 19928,
+      "error": null,
+      "problems": [],
+      "known_cost": 0.01879333
+    },
+    {
+      "experiment": "flash-low-54mini-compound-03",
+      "case": "ARH-002.T1",
+      "status": "failed",
+      "answer_status": null,
+      "latency_ms": 46554,
+      "error": "Supported requested facts remain missing after the bounded repair.",
+      "problems": [
+        "coverage part-3: Missing source context or qualification: Fictional training values only. (The answer omits that the pricing reference is fictional training values only.)",
+        "coverage part-3: Missing source context or qualification: These are not EMER Medical's real prices. (The answer omits that these are not EMER Medical's real prices.)"
+      ],
+      "known_cost": 0.07796434
+    },
+    {
+      "experiment": "flash-low-54mini-context-03",
+      "case": "ARH-017.T2",
+      "status": "completed",
+      "answer_status": "answered",
+      "latency_ms": 14932,
+      "error": null,
+      "problems": [],
+      "known_cost": 0.024785110000000003
+    },
+    {
+      "experiment": "flash-low-gpt55-core-04",
+      "case": "H15.T1",
+      "status": "failed",
+      "answer_status": null,
+      "latency_ms": 47608,
+      "error": "Supported requested facts remain missing after the bounded repair.",
+      "problems": [
+        "coverage part-1: Include inventoried fact part-1-fact-7: Unfinished consultations should remain in an exception queue until required documentation is complete.",
+        "coverage part-1: Missing source context or qualification: Unfinished consultations should appear in an exception queue until required documentation is complete. (The exception-queue rule for unfinished consultations is relevant context but appears only in unsupported statement 5.)"
+      ],
+      "known_cost": 0.21205258
+    },
+    {
+      "experiment": "flash-low-gpt55-compound-04",
+      "case": "ARH-002.T1",
+      "status": "failed",
+      "answer_status": null,
+      "latency_ms": 57822,
+      "error": "Supported requested facts remain missing after the bounded repair.",
+      "problems": [
+        "coverage part-3: The surviving statement preserves that procedure pricing is intentionally omitted and that unlisted procedure prices should not be invented, but it does not provide the requested concrete listed procedure prices for RF microneedling or biostimulatory injectables because the evidence does not contain them. The proposed gaps overstate absence from retrieved evidence and are not accepted as written. Address the missing requested information from permitted sources, or explain its precise absence in a gap. Do not add unasked requirements.",
+        "coverage part-2: Missing source context or qualification: Biostimulatory injectables are used in selected aesthetic treatment plans to support gradual tissue remodeling or collagen-related goals. (It gives the relevant meaning of biostimulatory effects/goals as gradual tissue remodeling or collagen-related goals, which qualifies the immediacy answer.)"
+      ],
+      "known_cost": 0.32989879
+    },
+    {
+      "experiment": "flash-low-gpt55-context-04",
+      "case": "ARH-017.T2",
+      "status": "completed",
+      "answer_status": "answered",
+      "latency_ms": 20935,
+      "error": null,
+      "problems": [],
+      "known_cost": 0.10092986000000001
+    },
+    {
+      "experiment": "flash-balanced-gpt55-core-05",
+      "case": "H15.T1",
+      "status": "failed",
+      "answer_status": null,
+      "latency_ms": 74218,
+      "error": "Supported requested facts remain missing after the bounded repair.",
+      "problems": [
+        "coverage part-1: The surviving answer identifies PT-007\u2019s completed items and pending provider assessment, and gives relevant workflow/body-contouring context. However, it omits the supported operational qualification that unfinished consultations should appear in an exception queue until required documentation is complete after the submitted exception-queue sentence is rejected for overstatement. Missing supported facts: Unfinished consultations should appear in an exception queue until required documentation is complete.. Address the missing requested information from permitted sources, or explain its precise absence in a gap. Do not add unasked requirements.",
+        "coverage part-1: Missing source context or qualification: Unfinished consultations should appear in an exception queue until required documentation is complete. (The answer\u2019s exception-queue sentence is unsupported as worded, leaving this relevant unfinished-consultation handling unrepresented.)"
+      ],
+      "known_cost": 0.22683308
+    },
+    {
+      "experiment": "flash-balanced-gpt55-compound-05",
+      "case": "ARH-002.T1",
+      "status": "failed",
+      "answer_status": null,
+      "latency_ms": 90713,
+      "error": "Supported requested facts remain missing after the bounded repair.",
+      "problems": [
+        "coverage part-2: Missing source context or qualification: Biostimulatory injectables are used in selected aesthetic treatment plans to support gradual tissue remodeling or collagen-related goals. (The requested immediacy answer concerns biostimulatory effects; the prose omits the supported context that these treatments support gradual tissue remodeling or collagen-related goals.)"
+      ],
+      "known_cost": 0.29138632
+    }
+  ]
+}

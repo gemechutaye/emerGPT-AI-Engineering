@@ -145,7 +145,7 @@ async def memory_db(monkeypatch):
         monkeypatch.setattr(module, "Session", session)
     monkeypatch.setattr(settings, "openrouter_api_key", "fixture-key")
     monkeypatch.setattr(settings, "conversation_metadata_model", "openai/gpt-4.1-nano")
-    monkeypatch.setattr(settings, "openrouter_model", "openai/gpt-5.6-luna")
+    monkeypatch.setattr(settings, "verifier_model", "openai/gpt-5.6-luna")
     queued = []
     monkeypatch.setattr(memory, "dispatch", queued.append)
     async with session.begin() as db:
@@ -568,7 +568,7 @@ async def test_pre_check_policy_cache_is_not_reused_by_an_explicit_request(memor
 
 @pytest.mark.parametrize("setting,model", [
     ("conversation_metadata_model", "openai/gpt-5.6-luna"),
-    ("openrouter_model", "openai/gpt-4.1-nano"),
+    ("verifier_model", "openai/gpt-4.1-nano"),
 ])
 async def test_changing_either_model_requires_a_fresh_checked_recap(memory_db, monkeypatch, setting, model):
     f = memory_db
@@ -581,7 +581,7 @@ async def test_changing_either_model_requires_a_fresh_checked_recap(memory_db, m
     assert current.summary_status == "ready" and len(f.calls) == 4
     assert current.summary_input_hash != previous.summary_input_hash
     assert f.calls[2]["model"] == settings.conversation_metadata_model
-    assert f.calls[3]["model"] == settings.openrouter_model
+    assert f.calls[3]["model"] == settings.verifier_model
     assert json.loads(f.calls[2]["messages"][1]["content"]) == json.loads(f.calls[0]["messages"][1]["content"])
     await request_and_execute(f)
     assert (await stored(f)).summary_input_hash == current.summary_input_hash
@@ -664,15 +664,15 @@ async def test_automatic_first_title_and_no_historic_bulk_or_manual_title_overwr
     assert row.title == "My manual title" and row.title_origin == "manual" and row.summary_status == "ready"
 
 
-async def test_gemini_metadata_uses_bounded_high_reasoning_and_private_vertex_route(memory_db, monkeypatch):
+async def test_gemini_metadata_uses_configured_reasoning_and_private_vertex_route(memory_db, monkeypatch):
     f = memory_db
     monkeypatch.setattr(settings, "conversation_metadata_model", "google/gemini-3.8-flash")
     await request_and_execute(f)
     assert (await stored(f)).summary_status == "ready"
     body = f.calls[0]
     assert body["model"] == "google/gemini-3.8-flash"
-    assert body["max_tokens"] == 4096
-    assert body["reasoning"] == {"effort": "high", "exclude": True}
+    assert body["max_tokens"] == 4096 + settings.generator_operation_reasoning["conversation_metadata"][1]
+    assert body["reasoning"] == {"effort": settings.generator_operation_reasoning["conversation_metadata"][0], "exclude": True}
     assert body["provider"]["only"] == ["google-vertex/global"]
     assert body["provider"]["data_collection"] == "deny"
     assert body["provider"]["zdr"] is True

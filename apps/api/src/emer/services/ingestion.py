@@ -109,7 +109,7 @@ class Bundle:
             connection.close()
         bundle = cls(metadata["id"], checksum, data, docs, metadata["corpus_checksum"], config, chunks)
         if config.get("embedding"):
-            read_embeddings(bundle)
+            read_embeddings(bundle, compact=True)
         return bundle
 
 
@@ -254,7 +254,7 @@ def _vector_checksum(rows: list[tuple[str, bytes]]) -> str:
     return digest.hexdigest()
 
 
-def read_embeddings(bundle: Bundle) -> dict[str, list[float]]:
+def read_embeddings(bundle: Bundle, *, compact: bool = False) -> dict[str, list[float] | np.ndarray]:
     """Validate compact current vectors and historical JSON document spaces alike."""
     metadata = bundle.config.get("embedding")
     if not metadata:
@@ -275,7 +275,9 @@ def read_embeddings(bundle: Bundle) -> dict[str, list[float]]:
             ):
                 raise IngestionError("Embedding cache dimensions or storage format are invalid")
             digest = _vector_checksum(rows)
-            vectors = {key: np.frombuffer(value, dtype="<f4").tolist() for key, value in rows}
+            vectors = {key: np.frombuffer(value, dtype="<f4") for key, value in rows}
+            if not compact:
+                vectors = {key: value.tolist() for key, value in vectors.items()}
         else:
             vectors = {
                 key: json.loads(value)
@@ -286,8 +288,8 @@ def read_embeddings(bundle: Bundle) -> dict[str, list[float]]:
             raise IngestionError("Embedding cache integrity failed")
         if any(
             len(vector) != metadata["dimensions"]
-            or not all(math.isfinite(v) for v in vector)
-            or not any(vector)
+            or not np.isfinite(vector).all()
+            or not np.any(vector)
             for vector in vectors.values()
         ):
             raise IngestionError("Embedding cache dimensions or numeric values are invalid")

@@ -1,6 +1,6 @@
 """Bounded asynchronous OpenRouter requests. No model fallback; no retry of uncertain attempts.
 
-The only automatic retry is a short backoff after a rate-limit rejection, which is a certain,
+Automatic retries are bounded to two short backoffs after a rate-limit rejection, a certain,
 unbilled failure with no completion; timeouts and other uncertain outcomes are never repeated.
 """
 
@@ -64,12 +64,18 @@ class OpenRouterClient:
         provider_order: list[str] | None = None,
         client: httpx.AsyncClient | None = None,
         reasoning_effort: str | None = None,
+        max_input_tokens: int | None = None,
+        reasoning_token_reserve: int = 0,
+        operation_reasoning: dict[str, tuple[str, int]] | None = None,
     ):
         self.api_key = api_key
         self.model = model
         self.provider_order = provider_order
         self.client = client
         self.reasoning_effort = reasoning_effort
+        self.max_input_tokens = max_input_tokens
+        self.reasoning_token_reserve = reasoning_token_reserve
+        self.operation_reasoning = dict(operation_reasoning or {})
 
     def _routing(self, model: str | None = None) -> dict[str, Any]:
         routing: dict[str, Any] = {
@@ -98,7 +104,7 @@ class OpenRouterClient:
         }
         started = time.perf_counter()
         owned = self.client is None
-        client = self.client or httpx.AsyncClient(timeout=httpx.Timeout(75, connect=10))
+        client = self.client or httpx.AsyncClient(timeout=httpx.Timeout(180 if self.reasoning_token_reserve else 75, connect=10))
         try:
             response = await client.post("https://openrouter.ai/api/v1/" + path, headers=headers, json=body)
         except httpx.TimeoutException as exc:
@@ -236,6 +242,12 @@ class OpenRouterClient:
         operation: str = "generation",
         max_tokens: int = 4500,
     ) -> StructuredResult:
+        # Provider output limits include internal reasoning. Reserve bounded room for
+        # high-thinking models without changing the requested visible JSON schema.
+        effort, reserve = self.operation_reasoning.get(
+            operation, (self.reasoning_effort, self.reasoning_token_reserve)
+        )
+        completion_limit = min(min(max_tokens, 6000) + reserve, 32768)
         body = {
             "model": self.model,
             "messages": [
@@ -251,18 +263,35 @@ class OpenRouterClient:
                 },
             },
             ROUTE_CONFIG["routes"].get(self.model, {}).get("token_parameter", "max_tokens"): min(
-                max_tokens, 6000
+                completion_limit, 32768
             ),
             "stream": False,
             "provider": self._routing(),
         }
-        if self.reasoning_effort is not None:
-            body["reasoning"] = {"effort": self.reasoning_effort, "exclude": True}
+        if effort not in {None, "none"}:
+            body["reasoning"] = {"effort": effort, "exclude": True}
+        if self.max_input_tokens is not None:
+            from emer.domain.chunking import count_tokens
+
+            # Bound the complete serialized input, including schemas and repeated audit
+            # material, separately from retrieval's evidence budget. This is a local
+            # tokenizer estimate, not the provider's billed token count. Never truncate.
+            input_tokens = count_tokens(json.dumps(
+                {"messages": body["messages"], "response_format": body["response_format"]},
+                ensure_ascii=False, separators=(",", ":"),
+            )) + 256
+            if input_tokens > self.max_input_tokens:
+                failure = ProviderError("model_context_budget", "The model input exceeds the configured context budget.")
+                failure.response_diagnostics = {
+                    "estimated_input_tokens": input_tokens, "input_token_budget": self.max_input_tokens,
+                    "token_encoding": "cl100k_base",
+                }
+                raise failure
         data, usage, retries = await self._post_checked("chat/completions", body, operation, self.model)
         diagnostic = {
             "schema": schema.__name__,
             "response_id": data.get("id"),
-            "max_completion_tokens": min(max_tokens, 6000),
+            "max_completion_tokens": completion_limit,
         }
         try:
             choice = data["choices"][0]

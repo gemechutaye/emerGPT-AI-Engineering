@@ -7,7 +7,13 @@ import re
 from datetime import date, timedelta
 from itertools import pairwise
 
-from emer.domain.dialogue_state import TOPIC_RESET, DialogueState, ReferenceBinding, ReferenceResolution
+from emer.domain.dialogue_state import (
+    TOPIC_RESET,
+    CurrentQuestionReferences,
+    DialogueState,
+    ReferenceBinding,
+    ReferenceResolution,
+)
 from emer.domain.scope import (
     ISO_RE,
     MONTH_RE,
@@ -748,7 +754,7 @@ async def _resolve_dialogue_intent(
     try:
         async with asyncio.timeout(INTENT_TIMEOUT_SECONDS):
             result = await provider.structured(
-                REFERENCE_INSTRUCTIONS, payload, ReferenceResolution,
+                REFERENCE_INSTRUCTIONS, payload, ReferenceResolution if correction else CurrentQuestionReferences,
                 operation="text_intent_resolution", max_tokens=1600,
             )
     except TimeoutError as exc:

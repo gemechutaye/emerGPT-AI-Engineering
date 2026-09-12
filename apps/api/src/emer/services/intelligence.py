@@ -40,6 +40,8 @@ class IntelligenceService:
                 or verifier.model == getattr(generator, "model", None)):
             raise ProviderError("independent_verifier_required", "Configure a distinct semantic verifier.")
         self.generator, self.verifier, self.settings = generator, verifier, settings
+        for provider in (generator, verifier):
+            provider.max_input_tokens = getattr(settings, "model_input_token_budget", None)
         self.packet = None
 
     async def answer(self, bundle, question, *, patient_id=None, as_of=None, on_evidence=None):

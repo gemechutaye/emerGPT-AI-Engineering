@@ -16,7 +16,7 @@ from emer.contracts.knowledge import QuestionPlan
 from emer.domain.policy import apply_policies
 from emer.providers.reranker import get_reranker
 from emer.services.ingestion import IngestionError, read_embeddings
-from emer.services.retrieval import RetrievalService, reciprocal_rank_fusion
+from emer.services.retrieval import exact_title_source_ids, explicit_source_ids, reciprocal_rank_fusion
 
 ENCODING = tiktoken.get_encoding("cl100k_base")
 _indexes: OrderedDict[str, ChunkIndex] = OrderedDict()
@@ -36,18 +36,22 @@ class ChunkIndex:
         self.bundle = bundle
         self.documents = {doc.doc_id: doc for doc in bundle.documents}
         self.chunks = {chunk.chunk_id: chunk for chunk in bundle.chunks}
-        self.doc_chunks = {
-            doc_id: [chunk for chunk in bundle.chunks if chunk.doc_id == doc_id]
-            for doc_id in self.documents
-        }
+        self.doc_chunks = {doc_id: [] for doc_id in self.documents}
+        for chunk in bundle.chunks:
+            self.doc_chunks[chunk.doc_id].append(chunk)
+        self.family_docs = {}
+        rows = (bundle.config.get("source_catalog") or {}).get("sources", bundle.config.get("policies", []))
+        for row in rows:
+            self.family_docs.setdefault(row["family"], set()).add(row["doc_id"])
         self.ids = sorted(self.chunks)
-        vectors = read_embeddings(bundle) if bundle.config.get("embedding") else {}
+        vectors = read_embeddings(bundle, compact=True) if bundle.config.get("embedding") else {}
         self.matrix = None
         if vectors:
             if bundle.config["embedding"].get("unit") != "chunk" or set(vectors) != set(self.ids):
                 raise IngestionError("Current retrieval requires one vector per source chunk.")
             matrix = np.asarray([vectors[key] for key in self.ids], dtype=np.float32)
-            self.matrix = matrix / np.linalg.norm(matrix, axis=1)[:, None]
+            matrix /= np.linalg.norm(matrix, axis=1)[:, None]
+            self.matrix = matrix
             self.matrix.flags.writeable = False
         self.connection = sqlite3.connect(":memory:", check_same_thread=False)
         self.connection.deserialize(bundle.data)
@@ -112,9 +116,6 @@ class KnowledgeSearch:
         self.index = get_chunk_index(bundle)
         self.bundle = bundle
         self.reranker = reranker
-        # Exact source addressing does not need to deserialize the vector matrix.
-        self.addresses = object.__new__(RetrievalService)
-        self.addresses.documents = self.index.documents
 
     def candidates(self, part, vector, model, mode, candidate_k, top_k) -> PartCandidates:
         scope = part.scope
@@ -133,7 +134,7 @@ class KnowledgeSearch:
         semantic = self.index.semantic(vector, model) if mode in {"hybrid", "semantic"} else []
         ranked = reciprocal_rank_fusion(lexical, semantic) if mode == "hybrid" else semantic if mode == "semantic" else lexical
         ranked = [(key, value) for key, value in ranked if self.index.chunks[key].doc_id in permitted]
-        direct = self.addresses.explicit_source_ids(part.query) + self.addresses.exact_title_source_ids(part.query)
+        direct = explicit_source_ids(part.query, self.index.documents) + exact_title_source_ids(part.query, self.index.documents.values())
         mandatory_docs = set(direct) & permitted
         if not scope.patient_discovery:
             mandatory_docs.update(scope.patient_ids)
@@ -147,9 +148,8 @@ class KnowledgeSearch:
         if catalog:
             rows = catalog["sources"]
             families = {row["family"] for row in rows if row["doc_id"] in selected_docs}
-            family_docs = {row["doc_id"] for row in rows if row["family"] in families and sum(
-                other["family"] == row["family"] for other in rows
-            ) > 1} & permitted
+            family_docs = {doc_id for family in families if len(self.index.family_docs[family]) > 1
+                           for doc_id in self.index.family_docs[family]} & permitted
         else:
             families = {row["family"] for row in policies if row["doc_id"] in selected_docs}
             family_docs = {row["doc_id"] for row in policies if row["family"] in families}

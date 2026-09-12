@@ -24,14 +24,15 @@ class Generator:
         self.calls.append((operation, payload))
         if operation == "query_planning":
             return response(schema, {"parts": [{"scope_id": payload["scopes"][0]["part_id"],
-                "query": "calibration", "requested_information": ["calibration status", "shipping fee"]}]})
+                "request_text": payload["scopes"][0]["question"], "context_texts": []}]})
         facts = payload["evidence"]["assessment"]["parts"][0]["facts"]
         statements = [{"part_id": "part-1", "text": fact["text"], "citations": fact["citations"]}
                       for fact in facts if not self.omit or fact["fact_id"] != "fee"]
         draft = {"statements": statements, "next_steps": [], "gaps": []}
         if operation == "repair":
-            draft = {"statements": [], "next_steps": [], "gaps": []}
-            return response(schema, {"additions": draft})
+            assert schema.__name__ == "ProviderDraft"
+            assert "rejected_indices" not in payload["repair"]
+            assert "complete corrected ProviderDraft" in payload["repair"]["instruction"]
         return response(schema, draft)
 
 
@@ -44,15 +45,15 @@ class Verifier:
     async def structured(self, system, payload, schema, operation, **options):
         self.calls.append((operation, payload))
         if operation == "evidence_assessment":
-            has_fee = any(p["doc_id"] == "SHIP" for p in payload["evidence"]["passages"])
-            facts = [{"fact_id": "cal", "text": "Calibration is complete.",
-                      "citations": [{"doc_id": "CAL", "quote": "Calibration is complete."}]}]
-            if has_fee:
-                facts.append({"fact_id": "fee", "text": "The shipping fee is twenty credits.",
-                              "citations": [{"doc_id": "SHIP", "quote": "The shipping fee is twenty credits."}]})
-            return response(schema, {"parts": [{"part_id": "part-1", "status": "sufficient" if has_fee else "partial",
-                "facts": facts, "missing_requests": [] if has_fee else ["shipping fee"],
-                "search_query": None if has_fee else "shipping fee"}], "unassigned_requests": []})
+            available = {p["doc_id"] for p in payload["evidence"]["passages"]}
+            candidates = [("CAL", "cal", "Calibration is complete.", "calibration status"),
+                          ("SHIP", "fee", "The shipping fee is twenty credits.", "shipping fee")]
+            facts = [{"fact_id": fact_id, "text": text, "citations": [{"doc_id": doc_id, "quote": text}]}
+                     for doc_id, fact_id, text, _ in candidates if doc_id in available]
+            missing = [query for doc_id, _, _, query in candidates if doc_id not in available]
+            return response(schema, {"parts": [{"part_id": "part-1", "status": "partial" if missing else "sufficient",
+                "facts": facts, "missing_requests": missing,
+                "search_query": missing[0] if missing else None}], "unassigned_requests": []})
         items = payload["items"]
         facts = payload["evidence"]["assessment"]["parts"][0]["facts"]
         fact_coverage = []

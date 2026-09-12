@@ -89,6 +89,12 @@ class ReferenceResolution(StateModel):
     topic_anchor: str | None = Field(default=None, min_length=3, max_length=200)
 
 
+class CurrentQuestionReferences(ReferenceResolution):
+    """Ordinary follow-ups can bind references but cannot replace the current task."""
+
+    base_reference_id: None
+
+
 def _get(row: Any, field: str, default: Any = None) -> Any:
     return row.get(field, default) if isinstance(row, dict) else getattr(row, field, default)
 

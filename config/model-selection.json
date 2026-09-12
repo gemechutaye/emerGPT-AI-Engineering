@@ -1,14 +1,14 @@
 {
-  "decided_at": "2026-09-11",
+  "decided_at": "2026-09-12",
   "decision_type": "explicit_user_selection",
-  "model": "openai/gpt-5.6-luna",
+  "model": "google/gemini-3.8-flash",
   "operations": [
     "answer_generation",
     "intent_resolution"
   ],
   "retrieval": "hybrid_chunk_search",
   "corpus_documents": 35,
-  "reason": "The user selected Luna for the current implementation. Historical model comparisons are retained; this decision is not a claim that Luna won every quality comparison.",
+  "reason": "User prioritized faster chat and voice after High reasoning produced excessive latency. Gemini Flash Low handles planning, references, and generation; GPT5.5 Low remains the distinct verifier. Mini verifier candidates were rejected after missing-part and coverage failures.",
   "final_validation": {
     "scenario_count": 20,
     "trials_per_scenario": 3,
@@ -25,12 +25,16 @@
     "complete_original_240_job_retrieval_comparison",
     "two_distinct_final_models"
   ],
-  "verifier_model": "google/gemini-3.8-flash",
+  "verifier_model": "openai/gpt-5.5",
   "retrieval_configuration": "emer.settings.Settings",
-  "verification_status": "candidate_under_evaluation",
+  "verification_status": "latency_correction_targeted_validation",
   "reranker_decision": {
     "enabled_by_default": false,
     "reason": "Measured cross-encoder reranking reduced required-source recall; opt in only with end-to-end evidence",
     "report": "artifacts/verification/architecture-20260912/retrieval-development/report.json"
-  }
+  },
+  "verifier_reasoning_effort": "low",
+  "verifier_selection_note": "Retained GPT5.5 for independent verification; faster mini candidates did not meet compound-evidence contracts.",
+  "quality_gate": "OPEN: source-grounded complex cases can fail bounded semantic coverage/repair; strict full fact coverage has not passed.",
+  "reasoning_effort": "low"
 }

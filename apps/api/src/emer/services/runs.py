@@ -296,6 +296,10 @@ async def execute(run_id: str):
             run_id=run.id,
             run_fence=fence,
             run_owner=OWNER,
+            reasoning_effort=settings.openrouter_reasoning_effort,
+            reasoning_token_reserve=settings.openrouter_reasoning_token_reserve,
+                         operation_reasoning=settings.generator_operation_reasoning,
+            max_input_tokens=settings.model_input_token_budget,
         )
         bundle = await load_bundle(run.index_id)
         intent = await resolve_text_intent(
@@ -343,6 +347,7 @@ async def execute(run_id: str):
             settings.openrouter_api_key, settings.verifier_model, run.session_id,
             run_id=run.id, run_fence=fence, run_owner=OWNER,
             reasoning_effort=settings.verifier_reasoning_effort,
+            max_input_tokens=settings.model_input_token_budget,
         )
         intelligence = IntelligenceService(provider, verifier, settings)
 

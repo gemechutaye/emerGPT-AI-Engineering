@@ -20,7 +20,7 @@ T = TypeVar("T", bound=BaseModel)
 NO_RECEIPT_FAILURES = {
     "provider_unconfigured", "model_unconfigured", "provider_authentication",
     "provider_capacity_exhausted", "provider_forbidden", "provider_model_unavailable",
-    "provider_rate_limited", "provider_request_invalid",
+    "provider_rate_limited", "provider_request_invalid", "model_context_budget",
 }
 _pending_receipts: set[asyncio.Task] = set()
 
@@ -60,8 +60,13 @@ class TrackedOpenRouterClient(OpenRouterClient):
         live_revision: int | None = None, live_context_version: int | None = None,
         live_fence: int | None = None,
         reasoning_effort: str | None = None,
+        max_input_tokens: int | None = None,
+        reasoning_token_reserve: int = 0,
+        operation_reasoning: dict[str, tuple[str, int]] | None = None,
     ):
-        super().__init__(api_key, model, provider_order=provider_order, client=client, reasoning_effort=reasoning_effort)
+        super().__init__(api_key, model, provider_order=provider_order, client=client,
+                         reasoning_effort=reasoning_effort, max_input_tokens=max_input_tokens,
+                         reasoning_token_reserve=reasoning_token_reserve, operation_reasoning=operation_reasoning)
         self.session_id = session_id
         self.run_id = run_id
         self.draft_id = draft_id

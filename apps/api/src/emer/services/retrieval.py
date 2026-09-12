@@ -13,6 +13,20 @@ from emer.domain.policy import apply_policies
 from emer.domain.scope import canonicalize_patient_mentions, resolve_scopes
 from emer.services.ingestion import Bundle, IngestionError, canonical, read_embeddings
 
+
+def explicit_source_ids(question: str, identifiers) -> list[str]:
+    """Direct source addresses match catalog identifiers, never inferred answer content."""
+    normalized = canonicalize_patient_mentions(question)
+    return [identifier for identifier in identifiers
+            if re.search(r"(?<![\w-])" + re.escape(identifier) + r"(?![\w-])", normalized, re.IGNORECASE)]
+
+
+def exact_title_source_ids(question: str, documents) -> list[str]:
+    normalized = " " + " ".join(re.findall(r"\w+", question.lower())) + " "
+    return [doc.doc_id for doc in documents
+            if " " + " ".join(re.findall(r"\w+", doc.title.lower())) + " " in normalized]
+
+
 # Grammatical words add BM25 noise but no topic evidence. Preserve negation, quantities,
 # dates, patient identifiers and domain terms; ranking is never answerability confidence.
 _STOPWORDS = frozenset(
@@ -225,21 +239,10 @@ class RetrievalService:
         )
 
     def explicit_source_ids(self, question: str) -> list[str]:
-        """Direct record addresses are exact metadata matches, including historical bundles."""
-        normalized = canonicalize_patient_mentions(question)
-        return [
-            identifier
-            for identifier in self.documents
-            if re.search(r"(?<![\w-])" + re.escape(identifier) + r"(?![\w-])", normalized, re.IGNORECASE)
-        ]
+        return explicit_source_ids(question, self.documents)
 
     def exact_title_source_ids(self, question: str) -> list[str]:
-        normalized = " " + " ".join(re.findall(r"\w+", question.lower())) + " "
-        return [
-            doc.doc_id
-            for doc in self.documents.values()
-            if " " + " ".join(re.findall(r"\w+", doc.title.lower())) + " " in normalized
-        ]
+        return exact_title_source_ids(question, self.documents.values())
 
     def lexical(self, question: str, limit: int = 12) -> list[tuple[str, float]]:
         # Spoken identifiers ("patient seven") must match the record's PT-007 tokens.

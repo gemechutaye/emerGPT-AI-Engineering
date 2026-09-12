@@ -40,6 +40,20 @@
         "azure"
       ],
       "verification": "HTTP200 complete35-document and40-query embedding batches; returned provider alias preserved in usage"
+    },
+    "openai/gpt-4.1-mini": {
+      "endpoints": [
+        "azure"
+      ],
+      "token_parameter": "max_completion_tokens",
+      "verification": "HTTP200 structured assessment and support check viaAzure; compound inventory omitted parts, not promoted."
+    },
+    "openai/gpt-5.4-mini": {
+      "endpoints": [
+        "azure"
+      ],
+      "token_parameter": "max_completion_tokens",
+      "verification": "Public endpoint capability metadata checked2026-09-12; bounded structured assessment/verification trial pending."
     }
   }
 }

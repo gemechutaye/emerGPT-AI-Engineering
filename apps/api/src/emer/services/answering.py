@@ -648,6 +648,21 @@ class AnsweringService:
                     coverage_problems.extend(inventory_problems)
                     coverage_problems.extend(source_coverage_problems(packet, draft, review))
                     if (problems or coverage_problems) and attempt == 0:
+                        if independent:
+                            # Every item is independently checked again. Legacy locked-item
+                            # patches prevent repairing a qualification inside an accepted
+                            # sentence and make models reconstruct a needless edit protocol.
+                            verified_units = {}
+                            payload["repair"] = {
+                                "draft": draft.model_dump(),
+                                "problems": [*problems, *coverage_problems],
+                                "instruction": "Return one complete corrected ProviderDraft. All items may be revised "
+                                "and every item will be independently rechecked. Preserve supported information, "
+                                "repair the listed qualifications and omissions using permitted sources, and do not "
+                                "add new requests or invent missing values.",
+                            }
+                            repair_count = 1
+                            continue
                         repair_base = draft.model_copy(deep=True)
                         verified_units = {} if independent else {
                             support_identity(kind, item): next(

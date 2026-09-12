@@ -15,7 +15,12 @@ from emer.contracts.answer import (
     SourceDocument,
 )
 from emer.domain.chunking import count_tokens
-from emer.domain.dialogue_state import ReferenceBinding, ReferenceResolution, build_dialogue_state
+from emer.domain.dialogue_state import (
+    CurrentQuestionReferences,
+    ReferenceBinding,
+    ReferenceResolution,
+    build_dialogue_state,
+)
 from emer.services.text_intent import resolve_text_intent
 
 
@@ -57,7 +62,7 @@ class Resolver:
 
     async def structured(self, instructions, payload, schema, **options):
         self.calls.append((instructions, payload, schema, options))
-        assert schema is ReferenceResolution
+        assert schema is (ReferenceResolution if payload["allow_prior_user_base"] else CurrentQuestionReferences)
         return SimpleNamespace(value=self.result)
 
 
@@ -73,6 +78,22 @@ async def test_assistant_only_referent_uses_exact_cited_original_and_preserves_n
     assert reference["citations"][0]["index_id"] == "frozen-index"
     assert reference["citations"][0]["source_sha256"] == state.turns[0].assistant_references[0].citations[0].source_sha256
     assert "sources" not in payload  # Navigation references do not become an EvidencePacket.
+
+
+def test_ordinary_followup_wire_contract_excludes_prior_task_templates():
+    from pydantic import ValidationError
+
+    assert CurrentQuestionReferences.model_json_schema()["properties"]["base_reference_id"]["type"] == "null"
+    with pytest.raises(ValidationError):
+        CurrentQuestionReferences(status="resolved", base_reference_id="run-1:user", bindings=[])
+
+
+async def test_ordinary_followup_rejects_old_base_even_if_provider_bypasses_schema():
+    result = await resolve_text_intent(
+        Resolver(base="run-1:user"), "How long does that procedure take?", [], None, None,
+        dialogue_state=build_dialogue_state([saved_turn()]),
+    )
+    assert result.clarification and not result.question
 
 
 @pytest.mark.parametrize("mutation", ["quote", "hash", "bytes", "version", "index", "checksum", "scope", "uncited"])

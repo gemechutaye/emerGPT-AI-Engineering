@@ -188,8 +188,8 @@ async def test_http_question_retrieval_provider_citation_history_and_receipts(in
     async def declared_provider(self, system, payload, schema, operation="generation", max_tokens=4500):
         payloads.append((operation, payload))
         if operation == "query_planning":
-            value = {"parts": [{"scope_id": payload["scopes"][0]["part_id"], "query": payload["question"],
-                                "requested_information": ["completed and pending consultation work"]}]}
+            value = {"parts": [{"scope_id": payload["scopes"][0]["part_id"], "request_text": payload["scopes"][0]["question"],
+                                "context_texts": []}]}
         elif operation == "evidence_assessment":
             value = {"parts": [{"part_id": "part-1", "status": "sufficient", "missing_requests": [],
                                "search_query": None, "facts": [{"fact_id": "work-status",

@@ -53,7 +53,7 @@ async def build_embeddings(
         and old_meta.get("input") in {"title-section-path-chunk-v1", "title-newline-text-v1"}
     ):
         previous_inputs = dict(embedding_inputs(previous))
-        previous_vectors = await asyncio.to_thread(read_embeddings, previous)
+        previous_vectors = await asyncio.to_thread(read_embeddings, previous, compact=True)
         # Exact input equality allows short unchanged historical documents to be reused
         # under their new chunk IDs. Source identity alone would miss changed titles.
         vectors_by_input = {

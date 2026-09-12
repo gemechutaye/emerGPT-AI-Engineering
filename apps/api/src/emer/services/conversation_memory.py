@@ -259,7 +259,7 @@ def fingerprint(content: dict) -> str:
     return RECAP_FINGERPRINT_PREFIX + sha256(json.dumps({
         "policy": METADATA_POLICY,
         "generation_model": settings.conversation_metadata_model,
-        "fidelity_model": settings.openrouter_model,
+        "fidelity_model": settings.verifier_model,
         "conversation": content,
     }, sort_keys=True, ensure_ascii=False).encode()).hexdigest()[:60]
 
@@ -352,7 +352,12 @@ class MetadataClient(TrackedOpenRouterClient):
         super().__init__(settings.openrouter_api_key, model,
                          row.session_id, client=client,
                          provider_order=["google-vertex/global"]
-                         if model == "google/gemini-3.8-flash" else None)
+                         if model == "google/gemini-3.8-flash" else None,
+                         reasoning_effort=settings.openrouter_reasoning_effort if model == "google/gemini-3.8-flash"
+                         else settings.verifier_reasoning_effort if model == settings.verifier_model else None,
+                         reasoning_token_reserve=settings.openrouter_reasoning_token_reserve if model == "google/gemini-3.8-flash" else 0,
+                         operation_reasoning=settings.generator_operation_reasoning if model == settings.openrouter_model else {},
+                         max_input_tokens=settings.model_input_token_budget)
         self.conversation_id = row.id
         self.fence, self.job_id = row.summary_fence, row.summary_job_id
         self.activity_version = activity_version
@@ -360,7 +365,7 @@ class MetadataClient(TrackedOpenRouterClient):
     async def _post(self, path: str, body: dict[str, Any]) -> tuple[dict[str, Any], float]:
         if self.model == "google/gemini-3.8-flash":
             body = {
-                **body, "reasoning": {"effort": "high", "exclude": True},
+                **body,
                 "provider": {**body["provider"], "zdr": True},
             }
         return await super()._post(path, body)
@@ -470,7 +475,7 @@ async def execute(conversation_id: str) -> None:
                 include_title = bool(latest and latest.title_origin == "auto" and not latest.title_generated
                                      and latest.title_revision == title_revision)
             candidate = rendered.model_dump(exclude=set() if include_title else {"title"})
-            checker = MetadataClient(row, activity_version=activity_version, model=settings.openrouter_model)
+            checker = MetadataClient(row, activity_version=activity_version, model=settings.verifier_model)
             checked = await checker.structured(
                 FIDELITY_INSTRUCTIONS,
                 {"conversation": presented_content, "candidate": candidate},

@@ -105,8 +105,9 @@ and filtered by patient, date and source applicability before retrieval. The def
 32 candidates and a 6,000-token evidence budget. Optional reranking is disabled
 because the recorded development comparison reduced required-source recall.
 
-Luna proposes the answer; a distinct Gemini model checks evidence, coverage and
-support. Deterministic checks enforce entity/date permissions and exact original
+Gemini 3.8 Flash with Low reasoning proposes the answer; GPT-5.5 with Low reasoning
+independently checks evidence, coverage and support. Planning and conversational
+reference extraction have separate bounded reasoning budgets. Deterministic checks enforce entity/date permissions and exact original
 quotes. Recovery and repair are bounded. Saved conversation references guide a
 fresh retrieval; generated answers never become knowledge. Direct OpenAI Live
 delegates factual questions through the same backend pipeline.
@@ -117,7 +118,8 @@ history and immutable index bundles; the API can reconstruct its local search
 cache after a restart. The small corpus fits this design. Production would need a managed search index,
 durable workers, access controls, retention rules and evaluation on broader data.
 
-See [architecture](docs/ASSIGNMENT_ARCHITECTURE.md),
+See the [current intelligence and latency checkpoint](docs/INTELLIGENCE_RELEASE.md),
+[architecture](docs/ASSIGNMENT_ARCHITECTURE.md),
 [Live implementation](docs/LIVE_IMPLEMENTATION.md) and [evaluations](evals/README.md).
 Model checks can still miss unsupported or incomplete claims. Automated tests
 and synthetic audio fixtures do not establish physical microphone quality or

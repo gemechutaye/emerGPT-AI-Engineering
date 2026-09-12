@@ -320,8 +320,8 @@ async def test_planner_rejects_invented_details_in_requested_attributes(tmp_path
         [
             {
                 "scope_id": "part-1",
-                "query": "What is the consultation cost?",
-                "requested_information": [attribute],
+                "request_text": "What is the consultation cost?",
+                "context_texts": [attribute],
             }
         ]
     )
@@ -341,13 +341,13 @@ async def test_planner_rejects_numeric_detail_borrowed_from_another_patient_scop
         [
             {
                 "scope_id": "part-1",
-                "query": "Does PT-451 have a 6-week review?",
-                "requested_information": ["Review interval"],
+                "request_text": "PT-451: is a 2-week review recorded?",
+                "context_texts": ["6-week"],
             },
             {
                 "scope_id": "part-2",
-                "query": "Does PT-452 have a 6-week review?",
-                "requested_information": ["Review interval"],
+                "request_text": "PT-452: is a 6-week review recorded?",
+                "context_texts": [],
             },
         ]
     )
@@ -367,3 +367,36 @@ def test_budget_accounting_counts_unicode_and_original_source_metadata(tmp_path)
             "passages": [passage.model_dump(mode="json")],
         }
     )
+
+
+async def test_extractive_plan_preserves_distinct_subjects_and_shared_request(tmp_path):
+    bundle = index_for(tmp_path, [document('A', 'Original guidance.')])
+    question = 'Describe Aster laser and whether Birch serum acts immediately, then give the price for each.'
+    pieces = ['Describe Aster laser', 'and whether Birch serum acts immediately,', 'then give the price for each.']
+    provider = PlannerProvider([{'scope_id': 'part-1', 'request_text': text,
+        'context_texts': ['Aster laser', 'Birch serum'] if index == 2 else []}
+        for index, text in enumerate(pieces)])
+    plan = await plan_question(provider, question, bundle, as_of='2026-09-01')
+    assert len(plan.parts) == 3
+    assert plan.parts[1].query == pieces[1]
+    assert 'Aster laser' not in plan.parts[1].query
+    assert plan.parts[2].query == pieces[2] + '\nAster laser\nBirch serum'
+    assert all(part.scope.question[part.request_start:part.request_end] == part.requested_information[0]
+               for part in plan.parts)
+
+
+async def test_extractive_plan_cannot_drop_secondary_request_even_when_scope_is_covered(tmp_path):
+    bundle = index_for(tmp_path, [document('A', 'Original guidance.')])
+    question = 'Describe Aster laser and give both prices.'
+    provider = PlannerProvider([{'scope_id': 'part-1', 'request_text': 'Describe Aster laser', 'context_texts': []}])
+    with pytest.raises(ProviderError, match='omitted words'):
+        await plan_question(provider, question, bundle, as_of='2026-09-01')
+
+
+async def test_extractive_plan_rejects_invented_relationship_without_new_numbers(tmp_path):
+    bundle = index_for(tmp_path, [document('A', 'Original guidance.')])
+    question = 'Describe Aster laser and whether Birch serum acts immediately.'
+    provider = PlannerProvider([{'scope_id': 'part-1',
+        'request_text': 'Does Aster laser produce immediate Birch serum effects?', 'context_texts': []}])
+    with pytest.raises(ProviderError, match='copy requests'):
+        await plan_question(provider, question, bundle, as_of='2026-09-01')
