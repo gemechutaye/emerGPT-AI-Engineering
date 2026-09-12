@@ -316,10 +316,10 @@ Raw run, citation, history and evidence JSON is retained in the private local ev
 
 ## Reproduction and evidence
 
-- [Frozen evaluator suite](/Users/gemechutaye/Downloads/emerGPT-AI-Engineering/evals/evaluator-sample-20260912.json)
-- [Structured report](/Users/gemechutaye/Downloads/emerGPT-AI-Engineering/.local/evaluator-sample-20260912/report.json)
-- [Retrieval audit](/Users/gemechutaye/Downloads/emerGPT-AI-Engineering/.local/evaluator-sample-20260912/retrieval-audit.json)
-- [Provider ledger](/Users/gemechutaye/Downloads/emerGPT-AI-Engineering/.local/evaluator-sample-20260912/provider-ledger.json)
-- [Browser observations](/Users/gemechutaye/Downloads/emerGPT-AI-Engineering/.local/evaluator-sample-20260912/ui-observations.json)
+- [Frozen evaluator suite](../evals/evaluator-sample-20260912.json)
+- Structured report: `report.json` (retained in the private local evaluation archive).
+- Retrieval audit: `retrieval-audit.json` (retained in the private local evaluation archive).
+- Provider ledger: `provider-ledger.json` (retained in the private local evaluation archive).
+- Browser observations: `ui-observations.json` (retained in the private local evaluation archive).
 
 The original corpus and supplied data README were not changed. Evaluation material is outside the corpus manifest and was not ingested.
