@@ -193,7 +193,7 @@ def render_recap(selection: RecapSelection, content: dict) -> RenderedRecap:
             points.append(f"{label}: “{value}”")
     return RenderedRecap(
         title=selection.title,
-        introduction="Selected exact excerpts from this conversation. Read the full answers for their sources and complete context.",
+        introduction="Selected exact excerpts from this conversation. Read the original messages for complete context.",
         points=points,
     )
 

@@ -363,3 +363,17 @@ def test_speech_chunks_preserve_words_and_obey_utf8_byte_bound():
     assert " ".join(chunks) == text.strip()
     assert all(len(chunk.encode()) <= 450 for chunk in chunks)
     assert all(len(chunk.encode()) <= 450 for chunk in speech_chunks("é" * 900))
+
+
+@pytest.mark.parametrize('status,body,expected', [
+    (200, {}, True), (204, None, True),
+    (404, {'error': {'code': 'session_id_not_found'}}, True),
+    (404, {'error': {'code': 'route_not_found'}}, False),
+    (401, {'error': {'code': 'session_id_not_found'}}, False),
+    (503, {}, False), (404, None, False),
+])
+async def test_hangup_reconciles_only_confirmed_session_absence(status, body, expected):
+    async def handle(request):
+        return httpx.Response(status, json=body) if body is not None else httpx.Response(status)
+    async with httpx.AsyncClient(transport=httpx.MockTransport(handle)) as client:
+        assert await OpenAILive('test-only', client=client).hangup('live-known') is expected

@@ -89,6 +89,8 @@ def test_voice_excerpts_keep_their_original_speaker_without_promoting_an_offer_t
     rendered = memory.render_recap(memory.RecapSelection(title="Voice Discussion", unit_ids=["voice:1:hash"]), content)
     assert rendered.points == [f"{label}, voice turn 1: “ I'll check.”"]
     assert "completed" not in rendered.summary
+    assert "full answers" not in rendered.introduction
+    assert "original messages" in rendered.introduction
 
 
 async def test_capture_accounts_for_every_complete_answer_unit_and_original_identity(memory_db):

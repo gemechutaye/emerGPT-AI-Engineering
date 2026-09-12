@@ -106,7 +106,17 @@ class OpenAILive:
                 headers={"Authorization": f"Bearer {self._key}"},
                 timeout=5,
             )
-            return result.status_code == 200
+            if result.status_code in {200, 204}:
+                return True
+            if result.status_code == 404:
+                # A known session that the provider confirms no longer exists is closed.
+                # Generic proxy/authentication failures must never release admission.
+                try:
+                    error = result.json().get("error", {})
+                    return isinstance(error, dict) and error.get("code") == "session_id_not_found"
+                except (ValueError, AttributeError):
+                    return False
+            return False
         except httpx.RequestError:
             return False
 

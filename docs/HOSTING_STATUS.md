@@ -3,6 +3,10 @@
 September 12, 2026. The application is live at
 [emergpt-ai-engineering.vercel.app](https://emergpt-ai-engineering.vercel.app).
 
+## Voice recovery correction
+
+The reported Live lockout came from a known session whose provider hangup returned HTTP 404 with `session_id_not_found`. Cleanup treated it as unconfirmed and retained admission indefinitely. Hangup now accepts successful 200/204 responses and that exact provider absence code; generic 404, authentication failures and outages still fail closed. The recap introduction now refers to original messages, avoiding a false claim that voice-only conversations contain full answers. Focused voice lifecycle, Postgres admission and recap tests: 80 passed; lint passed.
+
 ## Live deployment
 
 - Vercel production deployment `dpl_BdeGcriAQBYEFLGPwXZQp4DaZAsV` completed. The public domain loads without a Vercel login and proxies the real API.
