@@ -1,81 +1,81 @@
-# Hosting preparation status
+# Release and hosting status
 
-September 12, 2026. Release preparation and hosted acceptance are separate.
+September 12, 2026. The clean repository is published; the hosted application is
+not live because its managed database and backend origin are not connected.
 
-| Component | Verified | Remaining |
-| --- | --- | --- |
-| GitHub | Clean source snapshot integrated; personal Git identity configured for the requested private repository. | `main` pushed; corrected GitHub CI passes at `9963480`. |
-| Vercel | `emergpt-ai-engineering` exists and is connected to the requested GitHub repo on `main`; Vite, `apps/web`, Node 22 and build settings are configured. Local Vercel build, generated types, 196 frontend tests and production build pass. | Real Modal origin and hosted integration. |
-| Modal | Personal CLI profile authenticated; persistent Server and separate initialization App import under Modal 1.5.5. | Runtime Secret, managed database initialization and hosted acceptance. Corrected image `im-MnkUOl9HeudTdpqCGlZWgl` built successfully on Modal. |
-| Database | Actual EMER history is in local Postgres `emer` at port 55432: 224 conversations and 263 runs at the pre-release checkpoint. A private application backup succeeded. | Move preserved history and index bundles into an authorized managed database and verify the connection from Modal. |
-| Packaging | Nine startup/index checks, shell syntax and offline tokenizer cache pass. Existing local Postgres is reused without creating another cluster. | Shared-history container passes 27 checks; hosted checks still require the remote database. |
+## Verified release
 
-No existing Supabase project was paused, deleted or changed. The accessible
-`practice-assistant-demo` has an older, different application's `pa_*` tables;
-it does not hold this app's history. A new Free project was rejected because the
-account already has two active Free projects. No paid resource was purchased.
-Setting a cloud environment variable to `localhost` cannot connect Modal to this Mac.
+- Repository: [gemechutaye/emerGPT-AI-Engineering](https://github.com/gemechutaye/emerGPT-AI-Engineering), private, branch `main`.
+- Tested code: `ae3605cde60dc22d40348fb254b9f7d8ff6b79f9`.
+- Personal commit identity: `GemechuTaye <geme.t07@gmail.com>`.
+- [Final GitHub CI](https://github.com/gemechutaye/emerGPT-AI-Engineering/actions/runs/34710408186): **passed**. 1,496 backend tests, 196 frontend tests, nine packaging checks, generated types, lint and production builds.
+- Six recorded mutation fixtures validate without provider calls; their frozen expectations are unchanged.
+- All 354 tracked release files were checked against actual runtime credentials: zero matches. Original corpus and supplied README hashes match.
+- Local container acceptance: **27/27 shared-history checks and 28/28 browser-ownership checks**. All disposable resources were removed.
+- Corrected Modal image built: `im-MnkUOl9HeudTdpqCGlZWgl`. The initialization/build App exists with zero running tasks; no public API server is running.
 
-Provider, database and CLI credentials stay outside Git. The original workspace,
-corpus, raw evidence and history remain intact. Backup size: 2,586,213 bytes;
-SHA-256: `852ab626739f1d38f483256ad015fbe06918c17eeaae9c9b449aa6ab83bbe809`.
-The dump is private and is deliberately excluded from the release.
+The container checks use the actual image, HTTP server and isolated Postgres.
+They cover all 35 sources/eight patients, compiled assets, conversation persistence
+across restart, a real database outage returning retryable 503, readiness/liveness,
+reconnection without app restart, sharing/reset semantics and cleanup. Shared-mode
+startup/restart measured 17.486/17.652 seconds in local amd64 emulation; these are
+not Modal latency measurements. The fixtures explicitly use lexical retrieval
+without model keys and do not establish hybrid/LLM or physical audio quality.
 
-The personal Vercel workspace already uses Pro. No subscription or add-on was
-purchased. Git commit email remains `geme.t07@gmail.com` regardless of the
-Vercel login email. Local configuration compilation used a nonresolving test
-origin only; that origin was never configured remotely or deployed. Generated
-static assets contained none of the actual build credential.
+## What failed and changed
 
-The initial combined backend regression run passed 1,484 tests and failed 12.
-The failures were older QA fixtures using the superseded repair/voice contracts,
-browser-ownership tests inheriting shared-demo mode, and an old selected-patient
-expectation for explicit discovery. Fixtures now exercise current contracts and
-retain the original rejection, ownership and cancellation assertions. The focused
-21-case QA suite passes. The full rerun passes **1,496/1,496 tests** in 153.35 seconds. All six relocated mutation fixtures also validate with zero provider calls. No answer-generation or retrieval implementation was
-changed for release preparation. Frozen evaluation expectations remain unchanged.
+1. Initial combined regression run: 1,484 passed, 12 failed. Older QA fixtures used
+   superseded repair and voice-reference contracts, inherited shared-demo mode in
+   browser-isolation tests, and expected a selected patient to restrict explicit
+   discovery. Updated fixtures retain rejection, ownership and cancellation
+   assertions. The full rerun passed all 1,496 tests.
+2. Initial GitHub API job: 1,495 passed, one failed because the actual share-page
+   HTTP test required compiled frontend assets. CI now builds them before API tests.
+3. Initial Vercel deployment rejected a dynamic proxy expression during config
+   parsing. Routes now use an explicit deployment environment reference, with
+   origin validation inside the build. Compiled routes and seven validation cases
+   pass; Vercel now reaches the build and reports the missing backend origin clearly.
+4. Docker Desktop smoke attempts timed out; their resources were removed. The
+   runner now names and tracks its initializer so client timeouts cannot leave
+   untracked containers. Tests continued in the isolated Docker context.
+5. The real container rejected fresh ingestion because its index checker removed
+   `embedding` from only one side of the comparison. Both sides are now normalized;
+   source, policy, chunk and embedding-space validation remain enforced. The test
+   fixture now includes the real ingestion shape, including `embedding: null`.
+6. The smoke client incorrectly decoded binary assets as UTF-8. It now respects
+   content type. Both complete container scenarios subsequently passed.
 
-Historical intelligence scores are candidate-specific. They do not establish
-hosted acceptance for this release. Final acceptance must exercise the real
-Vercel proxy → Modal → managed Postgres → provider path, streamed answers, exact
-citations, refresh/history, source reconstruction, Live and sanitized failures.
-Physical microphone/listening acceptance remains separate from synthetic fixtures.
+## Database and hosting boundary
 
-See [deployment instructions](../deployment/README.md) and
-[Vercel setup](VERCEL_SETUP.md) for configuration and lifecycle requirements.
+The app's actual history is in **local Postgres `emer`, port 55432**: 224
+conversations and 263 runs at the pre-release backup checkpoint. A private
+2,586,213-byte application backup was created with SHA-256
+`852ab626739f1d38f483256ad015fbe06918c17eeaae9c9b449aa6ab83bbe809`.
+The original workspace, corpus, history and raw evidence remain intact. They were
+not deleted, reset or used as disposable test databases.
 
-Initial GitHub CI passed all 196 frontend tests and failed one of 1,496 backend
-tests because its backend job had not built the frontend needed by the real
-share-page HTTP test. The workflow now builds those assets before API tests.
-Vercel detected the GitHub push automatically but rejected the initial dynamic
-proxy expression during configuration parsing. Routing now uses an explicit
-deployment environment reference; origin validation runs inside the build.
-The corrected local Vercel build and seven origin-validation cases pass. A real
-`EMER_BACKEND_ORIGIN` is still required; no placeholder origin is deployed.
+The accessible Supabase `practice-assistant-demo` contains another application's
+`pa_*` tables; it does not contain this app's history. New Free project creation
+was rejected because both active Free slots are occupied. No Supabase project was
+paused, deleted, upgraded or modified. A managed database target must be approved
+before transferring the backed-up history and index bundles.
 
-The local amd64 image built successfully (258,068,855 bytes). Two smoke attempts
-on Docker Desktop timed out during initialization; their temporary databases and
-networks were removed. The smoke runner now names and tracks its initializer so
-a client timeout cannot leave an untracked container. An isolated Docker context
-is being used for the repeat; the timeout is not reported as a pass.
+Vercel project `emergpt-ai-engineering` is connected to this repository on `main`,
+using `apps/web`, Vite and Node 22. Automatic deployment from Git is proven.
+Its verified domain is `emergpt-ai-engineering.vercel.app`. The current build
+intentionally fails on missing `EMER_BACKEND_ORIGIN`; no placeholder origin is
+configured or deployed. The existing Vercel plan is Pro; no plan or add-on was
+purchased.
 
-The corrected GitHub CI run [34710078553](https://github.com/gemechutaye/emerGPT-AI-Engineering/actions/runs/34710078553)
-passes: 1,496 backend tests, 196 frontend tests, nine packaging tests and both
-production builds. Vercel now accepts routing and runs Node 22.23.2; its build
-stops at the explicit missing `EMER_BACKEND_ORIGIN` gate. The verified intended
-frontend domain is `emergpt-ai-engineering.vercel.app`; it is not a working app yet.
+The private Modal deployment environment is prepared outside Git with mode 0600.
+It contains provider configuration and the verified frontend origin, but still
+requires the managed `DATABASE_URL`. Setting it to localhost cannot connect Modal
+to this Mac. After migration, initialize/check the index, create the Modal Secret,
+start the API, configure its public origin on Vercel, and verify the real hosted
+path. No account reset or credits purchase was performed.
 
-The actual container test then exposed an index-checker bug: unembedded ingestion
-includes `embedding: null`, but the checker stripped that field from only one
-side of the comparison. Both configurations are now normalized consistently;
-source, policy, chunk and embedding-space checks remain enforced. Nine regression
-checks and real fresh ingestion pass. The smoke client was also corrected to
-handle binary assets without decoding them as UTF-8.
-
-The corrected image passes all **27 shared-history container checks**, including
-all 35 sources/eight patients, compiled assets, persisted conversations across
-restart, retryable 503/readiness failure during a real database outage, reconnect
-recovery, sharing/reset semantics and complete cleanup of its own test resources.
-The test uses declared lexical fixtures without model credentials; it does not
-certify hybrid/LLM quality or hosted voice. Original history and other apps were
-never used by these disposable container tests.
+Historical intelligence scores remain candidate-specific. Hosted retrieval,
+provider calls, streaming, source/citation lookup, saved history and Live still
+require end-to-end acceptance. Physical microphone/listening checks remain distinct
+from synthetic audio fixtures. See [deployment instructions](../deployment/README.md)
+and [Vercel setup](VERCEL_SETUP.md).
