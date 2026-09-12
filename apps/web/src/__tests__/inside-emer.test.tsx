@@ -145,7 +145,11 @@ describe("Single-page dataset", () => {
     expect(
       screen.getByText(/may be subject to a cancellation fee unless waived/),
     ).toBeTruthy();
-    expect(screen.getByText(/in advance when possible/)).toBeTruthy();
+    expect(
+      within(
+        screen.getByRole("region", { name: "Cancellation policy: 2 versions" }),
+      ).getByText(/in advance when possible/),
+    ).toBeTruthy();
   });
   it("opens original full records from the pinned index and restores focus", async () => {
     const { fetcher } = setup();

@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { api, type Source } from "./api";
 import { Dialog } from "./Dialog";
 import { Icon } from "./Icon";
+import { EngineeringWalkthrough } from "./EngineeringWalkthrough";
 
 type SourceSummary = Omit<Source, "text">;
 type Collection = { index_id: string; count: number; sources: SourceSummary[] };
@@ -327,6 +328,19 @@ export function InsideEmer({
             Patient records, treatment information and practice policies for the
             fictional EMER Aesthetic &amp; Dermatology Center.
           </p>
+          {collection.data && (
+            <button
+              className="engineering-jump"
+              type="button"
+              onClick={() =>
+                document
+                  .getElementById("engineering-walkthrough")
+                  ?.scrollIntoView({ behavior: "smooth", block: "start" })
+              }
+            >
+              Engineering presentation <Icon name="arrow-right" size={14} />
+            </button>
+          )}
         </header>
         {collection.isPending && (
           <p className="dataset-loading" role="status">
@@ -515,6 +529,7 @@ export function InsideEmer({
                 No records are available in this dataset.
               </p>
             )}
+            <EngineeringWalkthrough />
             <footer className="dataset-footer">
               Fictional training data. No real patient information. Not for
               clinical care.
