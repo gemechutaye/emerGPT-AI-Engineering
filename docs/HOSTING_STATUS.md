@@ -4,11 +4,11 @@ September 12, 2026. Release preparation and hosted acceptance are separate.
 
 | Component | Verified | Remaining |
 | --- | --- | --- |
-| GitHub | Clean source snapshot integrated; personal Git identity configured for the requested private repository. | `main` pushed as `220fcc9`; remote CI corrections are being verified. |
+| GitHub | Clean source snapshot integrated; personal Git identity configured for the requested private repository. | `main` pushed; corrected GitHub CI passes at `9963480`. |
 | Vercel | `emergpt-ai-engineering` exists and is connected to the requested GitHub repo on `main`; Vite, `apps/web`, Node 22 and build settings are configured. Local Vercel build, generated types, 196 frontend tests and production build pass. | Real Modal origin and hosted integration. |
-| Modal | Personal CLI profile authenticated; persistent Server and separate initialization App import under Modal 1.5.5. | Runtime Secret, managed database initialization and hosted acceptance. Image `im-iBdusowEsCNtOH7PKm38Xn` built successfully on Modal. |
+| Modal | Personal CLI profile authenticated; persistent Server and separate initialization App import under Modal 1.5.5. | Runtime Secret, managed database initialization and hosted acceptance. Corrected image `im-MnkUOl9HeudTdpqCGlZWgl` built successfully on Modal. |
 | Database | Actual EMER history is in local Postgres `emer` at port 55432: 224 conversations and 263 runs at the pre-release checkpoint. A private application backup succeeded. | Move preserved history and index bundles into an authorized managed database and verify the connection from Modal. |
-| Packaging | Nine startup/index checks, shell syntax and offline tokenizer cache pass. Existing local Postgres is reused without creating another cluster. | Final container and hosted checks. |
+| Packaging | Nine startup/index checks, shell syntax and offline tokenizer cache pass. Existing local Postgres is reused without creating another cluster. | Shared-history container passes 27 checks; hosted checks still require the remote database. |
 
 No existing Supabase project was paused, deleted or changed. The accessible
 `practice-assistant-demo` has an older, different application's `pa_*` tables;
@@ -58,3 +58,24 @@ on Docker Desktop timed out during initialization; their temporary databases and
 networks were removed. The smoke runner now names and tracks its initializer so
 a client timeout cannot leave an untracked container. An isolated Docker context
 is being used for the repeat; the timeout is not reported as a pass.
+
+The corrected GitHub CI run [34710078553](https://github.com/gemechutaye/emerGPT-AI-Engineering/actions/runs/34710078553)
+passes: 1,496 backend tests, 196 frontend tests, nine packaging tests and both
+production builds. Vercel now accepts routing and runs Node 22.23.2; its build
+stops at the explicit missing `EMER_BACKEND_ORIGIN` gate. The verified intended
+frontend domain is `emergpt-ai-engineering.vercel.app`; it is not a working app yet.
+
+The actual container test then exposed an index-checker bug: unembedded ingestion
+includes `embedding: null`, but the checker stripped that field from only one
+side of the comparison. Both configurations are now normalized consistently;
+source, policy, chunk and embedding-space checks remain enforced. Nine regression
+checks and real fresh ingestion pass. The smoke client was also corrected to
+handle binary assets without decoding them as UTF-8.
+
+The corrected image passes all **27 shared-history container checks**, including
+all 35 sources/eight patients, compiled assets, persisted conversations across
+restart, retryable 503/readiness failure during a real database outage, reconnect
+recovery, sharing/reset semantics and complete cleanup of its own test resources.
+The test uses declared lexical fixtures without model credentials; it does not
+certify hybrid/LLM quality or hosted voice. Original history and other apps were
+never used by these disposable container tests.

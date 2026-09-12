@@ -69,10 +69,11 @@ def main():
             response = error
         with response:
             body = response.read()
+            content_type = response.headers.get("Content-Type", "")
             parsed = (
                 json.loads(body)
-                if "application/json" in response.headers.get("Content-Type", "")
-                else body.decode()
+                if "application/json" in content_type
+                else body.decode() if content_type.startswith("text/") else body
             )
             return response.status, parsed, response.headers
 

@@ -13,7 +13,8 @@ def validate_index(bundle, source, retrieval_mode: str, embedding_model: str) ->
     if bundle.corpus_checksum != source.corpus_checksum:
         raise IndexConfigurationError("The active index belongs to a different source corpus.")
     source_configuration = {key: value for key, value in bundle.config.items() if key != "embedding"}
-    if source_configuration != source.config:
+    expected_configuration = {key: value for key, value in source.config.items() if key != "embedding"}
+    if source_configuration != expected_configuration:
         raise IndexConfigurationError(
             "The active source metadata or chunk/index configuration differs from this release. "
             "Rebuild the index explicitly before starting."

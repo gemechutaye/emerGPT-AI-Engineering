@@ -11,7 +11,8 @@ class CheckIndexTests(unittest.TestCase):
     def setUp(self):
         self.source = SimpleNamespace(
             corpus_checksum="source-hash",
-            config={"index_version": "test-format", "policies": [{"family": "test"}]},
+            # Real unembedded ingestion includes this key with a null value.
+            config={"index_version": "test-format", "policies": [{"family": "test"}], "embedding": None},
             documents=[SimpleNamespace(doc_id="source-one", text="Original text")],
         )
         self.bundle = deepcopy(self.source)
