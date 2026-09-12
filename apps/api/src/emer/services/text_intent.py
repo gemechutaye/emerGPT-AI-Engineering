@@ -7,7 +7,7 @@ import re
 from datetime import date, timedelta
 from itertools import pairwise
 
-from emer.domain.dialogue_state import TOPIC_RESET, DialogueState, ReferenceResolution
+from emer.domain.dialogue_state import TOPIC_RESET, DialogueState, ReferenceBinding, ReferenceResolution
 from emer.domain.scope import (
     ISO_RE,
     MONTH_RE,
@@ -695,6 +695,40 @@ async def _resolve_dialogue_intent(
     if not state.turns:
         # Existing first-question rules distinguish locally bound pronouns from missing referents.
         return await resolve_text_intent(provider, current, [], patient_id, as_of)
+
+    # An immediate, single-patient subject does not need a probabilistic referent decision.
+    # Carry only its identifier; the new task still performs a fresh evidence lookup.
+    latest = state.turns[-1]
+    subject = re.match(
+        r"^(?:have|has|did|do|does|can|could|would|should|are|is|were|was|will)\s+(they|he|she)\b",
+        canonical, re.IGNORECASE,
+    )
+    prior = latest.user_intent.text
+    prior_ids = set(patient_ids(prior))
+    competing_person = re.search(
+        r"\b(?:providers?|clinicians?|staff|callers?|doctors?|nurses?|partners?|spouses?|"
+        r"mothers?|fathers?|parents?|friends?|wives|wife|husbands?|children|sons?|daughters?)\b",
+        prior, re.IGNORECASE,
+    )
+    if (
+        subject and len(prior_ids) == 1 and not competing_person
+        and latest.topic_epoch == state.active_topic_epoch
+        and not patient_ids(canonical) and not _AMBIGUOUS_TOPIC.search(canonical)
+        and not _AMBIGUOUS_TOPIC.search(prior)
+        and len(_PERSON_PRONOUN.findall(canonical)) == 1
+        and (patient_id is None or normalize_patient(patient_id) in prior_ids)
+    ):
+        target = next(iter(prior_ids))
+        start, end = subject.span(1)
+        resolution = ReferenceResolution(
+            status="resolved", base_reference_id=None,
+            bindings=[ReferenceBinding(mention=subject.group(1), target=target,
+                                       reference_id=latest.user_intent.reference_id)],
+        )
+        return ResolvedTextIntent(
+            question=canonical[:start] + target + canonical[end:], clarification=None,
+            reference_resolution=resolution,
+        )
 
     references = state.references()
     reference_turns = {

@@ -1,7 +1,23 @@
 # Release and hosting status
 
-September 12, 2026. The clean repository is published; the hosted application is
-not live because its managed database and backend origin are not connected.
+September 12, 2026. The application is live at
+[emergpt-ai-engineering.vercel.app](https://emergpt-ai-engineering.vercel.app).
+
+## Live deployment
+
+- Vercel production deployment `dpl_BdeGcriAQBYEFLGPwXZQp4DaZAsV` completed. The public domain loads without a Vercel login and proxies the real API.
+- Modal API: `https://gemechutaye--emer-gpt-api.us-west.modal.direct`. Readiness through Vercel returns HTTP 200, hybrid top-8 retrieval, all 35 records and 3,072-dimensional embeddings. Index: `8e2680137c814b43bd0acd70`.
+- Supabase: isolated `emer_gpt` schema in the approved existing project, dedicated `emer_backend` role and TLS session pooler. Existing public application tables were preserved.
+- Migrated 227 conversations, 269 runs, 23 Live sessions and three index bundles in one transaction. Every copied table was checked against the source using ordered UTC COPY checksums. Pending local recap jobs were not replayed; saved messages were retained.
+- All 35 public source lookup responses match the original record text, SHA256 and metadata. Saved conversations were recovered through the UI after refresh and the Modal replacement.
+- Public UI check: PT-006 educational consultation answered correctly; citation opened the exact original record, version 1.0, effective September 1, 2026.
+- The initial pronoun follow-up unnecessarily requested clarification. The same saved context resolved correctly on replay, identifying model variability at the reference-resolution boundary. Immediate single-patient subject pronouns now bind directly to the latest explicit user identifier; fresh retrieval still supplies all answer evidence. Context regression: 69 passed, including seven new cases covering pronouns, multiple patients and competing people. Full API regression after the fix: 1,482 passed in 146.18 seconds.
+- One hosted policy comparison was withheld after an incomplete provider response during evidence assessment. This was a real provider failure, not a database or routing failure; it remains part of the acceptance record.
+- Explicit Vercel upload ignores exclude local environments, caches, logs and private runtime artifacts. No provider key or database credential is configured in frontend assets.
+
+This is a working demo, not a production-readiness certification. Physical microphone/listening acceptance on the hosted URL remains unverified. Modal and model calls require remaining account credit; no upgrade or credits purchase was made. The existing `emer backup` helper targets the local public schema; do not use it for this managed schema without adapting it. Managed exports must explicitly select `emer_gpt`.
+
+The entries below preserve the release verification and earlier failures. Database/origin blockers described in the historical hosting section have been resolved.
 
 ## Verified release
 
@@ -12,7 +28,7 @@ not live because its managed database and backend origin are not connected.
 - Six recorded mutation fixtures validate without provider calls; their frozen expectations are unchanged.
 - All 354 tracked release files were checked against actual runtime credentials: zero matches. Original corpus and supplied README hashes match.
 - Local container acceptance: **27/27 shared-history checks and 28/28 browser-ownership checks**. All disposable resources were removed.
-- Corrected Modal image built: `im-MnkUOl9HeudTdpqCGlZWgl`. The initialization/build App exists with zero running tasks; no public API server is running.
+- Corrected Modal image built: `im-MnkUOl9HeudTdpqCGlZWgl`. The persistent API was subsequently deployed as recorded above.
 
 The container checks use the actual image, HTTP server and isolated Postgres.
 They cover all 35 sources/eight patients, compiled assets, conversation persistence
@@ -45,7 +61,7 @@ without model keys and do not establish hybrid/LLM or physical audio quality.
 6. The smoke client incorrectly decoded binary assets as UTF-8. It now respects
    content type. Both complete container scenarios subsequently passed.
 
-## Database and hosting boundary
+## Earlier database and hosting checkpoint
 
 The app's actual history is in **local Postgres `emer`, port 55432**: 224
 conversations and 263 runs at the pre-release backup checkpoint. A private

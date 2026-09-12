@@ -1,0 +1,16 @@
+.git/
+.local/
+.venv/
+.pytest_cache/
+.ruff_cache/
+**/__pycache__/
+**/node_modules/
+**/dist/
+**/.env
+**/.env.*
+**/*.log
+**/*.pyc
+**/*.onnx
+artifacts/
+test-results/
+playwright-report/

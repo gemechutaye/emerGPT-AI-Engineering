@@ -50,10 +50,11 @@ Follow [Vercel setup](docs/VERCEL_SETUP.md) and
 [backend initialization and deployment](deployment/README.md). Provider keys and
 database credentials belong only in the backend's private runtime environment.
 
-**Demo URL (not live yet):** [emergpt-ai-engineering.vercel.app](https://emergpt-ai-engineering.vercel.app).
-Vercel is connected to GitHub and the Modal image builds. The API still needs a
-managed database connection and migration of the existing local history before
-the demo works. See [hosting status](docs/HOSTING_STATUS.md).
+**Live demo:** [emergpt-ai-engineering.vercel.app](https://emergpt-ai-engineering.vercel.app).
+Vercel is connected to this repository. The deployed Modal API uses the isolated
+`emer_gpt` schema in Supabase, with the existing conversations and index bundles
+migrated and verified. See [hosting status](docs/HOSTING_STATUS.md) for checks and
+remaining limits. Hosting and model access depend on available provider credit.
 
 ## Run locally
 

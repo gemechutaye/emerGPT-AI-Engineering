@@ -256,3 +256,28 @@ async def test_current_explicit_numeric_detail_cannot_be_replaced_by_a_memory_nu
         dialogue_state=state,
     )
     assert result.clarification and not result.question
+
+
+@pytest.mark.parametrize('question', ['Have they decided to proceed?', 'Did she request pricing?', 'Can he proceed yet?'])
+async def test_immediate_single_patient_subject_does_not_depend_on_model(question):
+    state = build_dialogue_state([saved_turn(question='What has PT-417 completed?')])
+    resolver = Resolver(status='ambiguous')
+    result = await resolve_text_intent(resolver, question, [], None, None, dialogue_state=state)
+    assert result.clarification is None
+    assert 'PT-417' in result.question
+    assert result.reference_resolution.bindings[0].reference_id == 'run-1:user'
+    assert not resolver.calls
+
+
+@pytest.mark.parametrize('previous', [
+    'Compare PT-417 and PT-418.',
+    'What did the provider tell PT-417?',
+    'Did PT-417 bring their mother?',
+    'What is the cancellation policy?',
+])
+async def test_patient_subject_shortcut_does_not_guess_competing_or_missing_identity(previous):
+    state = build_dialogue_state([saved_turn(question=previous)])
+    resolver = Resolver(status='ambiguous')
+    result = await resolve_text_intent(resolver, 'Have they decided to proceed?', [], None, None, dialogue_state=state)
+    assert result.clarification
+    assert resolver.calls
