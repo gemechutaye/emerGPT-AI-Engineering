@@ -1,0 +1,21 @@
+{
+  "artifact": "evals/intelligence-final-blind-20260912.json",
+  "artifact_sha256": "0097737c9c15fa29fc0a4feba276b24b914f534fa74e7ecfb370b4929d07a2e3",
+  "authoring_timestamp_utc": "2026-09-12T13:28:27+00:00",
+  "frozen_before_application_execution": true,
+  "source_files": [
+    {
+      "path": "EMER_AI_TakeHome_Knowledge_Corpus.jsonl",
+      "sha256": "b66264c95a383b2169650083ca85bd9f50cf3929b838ac7790ff6b6049a6901a",
+      "record_count": 35
+    },
+    {
+      "path": "EMER_AI_TakeHome_Data_README.txt",
+      "sha256": "047014e72061e448e9cdc3de5264cca5ab6ffa0a09bed17fa2fadd0aaee78ca4"
+    }
+  ],
+  "case_count": 8,
+  "standalone_case_count": 6,
+  "conversation_case_count": 2,
+  "turn_count": 10
+}

@@ -1,0 +1,66 @@
+{
+  "schema_version": 2,
+  "corpus": {
+    "path": "../EMER_AI_TakeHome_Knowledge_Corpus.jsonl",
+    "sha256": "b66264c95a383b2169650083ca85bd9f50cf3929b838ac7790ff6b6049a6901a",
+    "bytes": 28792,
+    "records": 35
+  },
+  "preserve": [
+    {
+      "path": "../EMER_AI_TakeHome_Data_README.txt",
+      "sha256": "047014e72061e448e9cdc3de5264cca5ab6ffa0a09bed17fa2fadd0aaee78ca4",
+      "bytes": 761
+    }
+  ],
+  "source_metadata": [
+    {
+      "doc_id": "OPS-306-V1",
+      "logical_id": "appointment-cancellation-rule",
+      "family": "appointment-cancellation",
+      "date_semantics": "effective",
+      "effective_from": "2026-01-01",
+      "effective_until": "2026-06-30",
+      "supersedes": [],
+      "authority_domain": "practice-policy",
+      "provenance": [
+        {
+          "field": "effective_from",
+          "quote": "Superseded policy, effective January 1, 2026 through June 30, 2026."
+        },
+        {
+          "field": "effective_until",
+          "quote": "Superseded policy, effective January 1, 2026 through June 30, 2026."
+        }
+      ]
+    },
+    {
+      "doc_id": "OPS-306-V2",
+      "logical_id": "appointment-cancellation-rule",
+      "family": "appointment-cancellation",
+      "date_semantics": "effective",
+      "effective_from": "2026-07-01",
+      "effective_until": null,
+      "supersedes": [
+        "OPS-306-V1"
+      ],
+      "authority_domain": "practice-policy",
+      "provenance": [
+        {
+          "field": "effective_from",
+          "quote": "Current policy, effective July 1, 2026."
+        },
+        {
+          "field": "supersedes",
+          "quote": "This version supersedes OPS-306-V1."
+        }
+      ]
+    }
+  ],
+  "authority": {
+    "practice-policy": {
+      "Current Policy": 10,
+      "Superseded Policy": 10
+    }
+  }
+}

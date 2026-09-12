@@ -1,0 +1,555 @@
+{
+  "schema_version": "1.0",
+  "author_role": "Source-derived evaluation author agent; not human review.",
+  "created_at_utc": "2026-09-12T11:22:38.552301+00:00",
+  "set_purpose": "Targeted paraphrase stress/regression set after observed main-set failures; not new independent holdout quality evidence.",
+  "author_context": "Author knows baseline/candidate failure classes. New wording and expectations derive from original corpus, without implementation or sealed confirmation inspection.",
+  "knowledge_sources": {
+    "EMER_AI_TakeHome_Knowledge_Corpus.jsonl": {
+      "sha256": "b66264c95a383b2169650083ca85bd9f50cf3929b838ac7790ff6b6049a6901a",
+      "bytes": 28792
+    },
+    "EMER_AI_TakeHome_Data_README.txt": {
+      "sha256": "047014e72061e448e9cdc3de5264cca5ab6ffa0a09bed17fa2fadd0aaee78ca4",
+      "bytes": 761
+    }
+  },
+  "source_inventory": [
+    "PRACTICE-001",
+    "PRACTICE-002",
+    "PROC-101",
+    "PROC-102",
+    "PROC-103",
+    "PROC-104",
+    "PROC-105",
+    "PROC-106",
+    "PROC-107",
+    "PROC-108",
+    "PROC-109",
+    "PROC-110",
+    "CARE-201",
+    "CARE-202",
+    "OPS-301",
+    "OPS-302",
+    "OPS-303",
+    "OPS-304",
+    "OPS-305",
+    "OPS-306-V1",
+    "OPS-306-V2",
+    "OPS-307",
+    "IT-401",
+    "IT-402",
+    "IT-403",
+    "PT-001",
+    "PT-002",
+    "PT-003",
+    "PT-004",
+    "PT-005",
+    "PT-006",
+    "PT-007",
+    "PT-008",
+    "BIZ-501",
+    "BIZ-502"
+  ],
+  "semantics": {
+    "expected_behavior": {
+      "answered": "The question can be satisfied by source-supported facts or a source-supported correction of its premise.",
+      "partial": "At least one substantive requested component is supported and at least one requested component is unavailable or outside the source boundary.",
+      "unknown": "The requested substantive detail is absent; source-supported explanation of the absence is allowed.",
+      "clarify": "A missing or ambiguous identity prevents selecting the intended patient in the current conversation."
+    },
+    "labels": "Behavior labels are semantic expectations; a clear, correct refusal or partial answer should be judged by actual content rather than incidental output field names.",
+    "required_facts": "Minimum question-specific meaning units. Equivalent natural wording passes. An annotation may explicitly permit a representative subset. Do not add facts from support quotes to the requirements.",
+    "expected_sources": "Minimum necessary source IDs for the requested facts, not an exact citation count or an exact retrieval set. Each declared acceptable replacement can replace its listed subset. Extra relevant direct sources are permitted; extra sources are not automatically a failure.",
+    "acceptable_source_alternatives": "Explicit replacement sets for genuinely equivalent support; an empty list means no alternative was identified, not that the evaluator must reject an independently verified valid equivalent source.",
+    "acceptable_additional_sources": "Known relevant optional IDs. This is advisory, not an exhaustive whitelist.",
+    "support": "Exact full original text-field quotations, one per supporting source, retained to make the rubric auditable. Metadata claims may additionally be verified against the original record metadata. Absence claims reflect author inspection of the full corpus; a quoted anchor alone does not prove corpus-wide absence.",
+    "forbidden_claims": "Material unsupported assertions. A response that mentions a forbidden claim only to negate, question, or correct it does not violate this field.",
+    "turns": "If present, execute and assess every user turn in order in one fresh conversation. Each turn carries its own expectations. The case-level question and expectations duplicate the FINAL turn; do not append it a second time. Generate actual assistant responses between turns rather than inserting ideal answers.",
+    "clarification": "A first-turn ambiguous patient description warrants clarification; a later unique patient identifier or distinguishing detail should resolve it without repeated clarification.",
+    "scope": "All data are synthetic. This evaluates corpus grounding, not real clinical advice, human safety review, voice acoustics, UI behavior, or deployed correctness."
+  },
+  "freeze_policy": "Freeze before provider calls. Preserve this expected-answer artifact; report repairs and repeated attempts as targeted stress/regression evidence.",
+  "case_count": 10,
+  "sequence_count": 3,
+  "cases": [
+    {
+      "id": "IPS-001",
+      "family": "generic_patient_collision",
+      "question": "For someone considering filler, describe the usual selection factors and explain whether this material lets the assistant pick their product.",
+      "expected_behavior": "answered",
+      "required_facts": [
+        "Filler selection considers anatomy, tissue characteristics, treatment history, and patient goals.",
+        "The assistant should not recommend a product for an individual patient."
+      ],
+      "expected_sources": [
+        "PROC-105"
+      ],
+      "acceptable_source_alternatives": [],
+      "acceptable_additional_sources": [],
+      "support": [
+        {
+          "doc_id": "PROC-105",
+          "quote": "Dermal fillers may be used to restore volume, refine contours, or address other provider-selected aesthetic goals. Product selection and placement depend on anatomy, tissue characteristics, treatment history, and patient goals.\n\nThe practice uses a consultation process that includes prior filler history, relevant medical history, treatment goals, photographs when appropriate, and discussion of expected benefits, limitations, alternatives, and complications.\n\nSwelling, tenderness, bruising, and temporary asymmetry can occur after treatment. Urgent concerns are escalated to the treating provider according to practice policy.\n\nThe assistant may summarize general filler information but must not recommend injection sites, volumes, or products for a specific patient."
+        }
+      ],
+      "forbidden_claims": [
+        "Treating the unnamed person as an identified corpus patient.",
+        "Selecting a specific filler product."
+      ],
+      "annotation_note": "At least three selection factors suffice. No patient was identified; general education should not silently anchor the request to PT-005 or another record."
+    },
+    {
+      "id": "IPS-002",
+      "family": "generic_patient_collision",
+      "question": "How would a skincare consultation address sensitive skin and difficulty keeping up with long routines? Explain the general approach rather than opening an individual record.",
+      "expected_behavior": "answered",
+      "required_facts": [
+        "Review tolerance, sensitivities, and adherence to the current routine.",
+        "Aim for a simple routine that can be followed consistently.",
+        "Clearly document morning and evening routines."
+      ],
+      "expected_sources": [
+        "PROC-110"
+      ],
+      "acceptable_source_alternatives": [],
+      "acceptable_additional_sources": [],
+      "support": [
+        {
+          "doc_id": "PROC-110",
+          "quote": "Skincare consultations review the patient's current routine, treatment goals, tolerance, sensitivities, recent procedures, and adherence. The aim is to create a simple routine the patient can follow consistently and to coordinate products with in-office procedures.\n\nThe practice favors clearly documented morning and evening routines, notes on product purpose, and follow-up when tolerance or goals change. Product selection is individualized by the treating team.\n\nThe assistant may explain the structure of a skincare plan but should avoid inventing product recommendations that are not present in the source data."
+        }
+      ],
+      "forbidden_claims": [
+        "Assuming the unnamed person is PT-008.",
+        "Inventing a prescribed brand or active ingredient."
+      ]
+    },
+    {
+      "id": "IPS-003",
+      "family": "policy_comparison_scope",
+      "question": "For two staff-training examples, explain the applicable notice rule and fee certainty: an April 15, 2026 appointment canceled 18 hours ahead, and an August 15, 2026 appointment canceled 36 hours ahead.",
+      "expected_behavior": "answered",
+      "required_facts": [
+        "In April, 18 hours is less than the V1 24-hour threshold, so a fee may apply unless management waives it.",
+        "In August, 36 hours is below the V2 request for at least 48 hours notice when possible.",
+        "V2 leaves late-cancellation handling to current scheduling policy and permits authorized-staff waiver; it does not establish an automatic fee."
+      ],
+      "expected_sources": [
+        "OPS-306-V1",
+        "OPS-306-V2"
+      ],
+      "acceptable_source_alternatives": [],
+      "acceptable_additional_sources": [],
+      "support": [
+        {
+          "doc_id": "OPS-306-V1",
+          "quote": "Superseded policy, effective January 1, 2026 through June 30, 2026.\n\nRoutine appointments canceled with less than 24 hours' notice may be subject to a cancellation fee unless waived by management. This version is retained only to test version-aware retrieval."
+        },
+        {
+          "doc_id": "OPS-306-V2",
+          "quote": "Current policy, effective July 1, 2026.\n\nRoutine appointments should be canceled or rescheduled at least 48 hours in advance when possible. Late-cancellation or no-show handling is determined by the current scheduling policy and may be waived by authorized staff. This version supersedes OPS-306-V1.\n\nWhen asked about the cancellation window, the assistant should use this version and may mention that an older 24-hour policy was superseded."
+        }
+      ],
+      "forbidden_claims": [
+        "Applying the 48-hour policy to April.",
+        "Applying the 24-hour policy to August.",
+        "Claiming either example necessarily incurs a fee.",
+        "Claiming a requested period is unavailable merely because it is outside the other period’s internal scope."
+      ]
+    },
+    {
+      "id": "IPS-004",
+      "family": "policy_comparison_scope",
+      "question": "A training chart has one row dated June 29, 2026 and another dated July 2, 2026. Fill in the cancellation notice guidance for both rows.",
+      "expected_behavior": "answered",
+      "required_facts": [
+        "For June 29, V1 says less than 24 hours notice may incur a fee unless management waives it.",
+        "For July 2, V2 requests cancellation or rescheduling at least 48 hours ahead when possible."
+      ],
+      "expected_sources": [
+        "OPS-306-V1",
+        "OPS-306-V2"
+      ],
+      "acceptable_source_alternatives": [],
+      "acceptable_additional_sources": [],
+      "support": [
+        {
+          "doc_id": "OPS-306-V1",
+          "quote": "Superseded policy, effective January 1, 2026 through June 30, 2026.\n\nRoutine appointments canceled with less than 24 hours' notice may be subject to a cancellation fee unless waived by management. This version is retained only to test version-aware retrieval."
+        },
+        {
+          "doc_id": "OPS-306-V2",
+          "quote": "Current policy, effective July 1, 2026.\n\nRoutine appointments should be canceled or rescheduled at least 48 hours in advance when possible. Late-cancellation or no-show handling is determined by the current scheduling policy and may be waived by authorized staff. This version supersedes OPS-306-V1.\n\nWhen asked about the cancellation window, the assistant should use this version and may mention that an older 24-hour policy was superseded."
+        }
+      ],
+      "forbidden_claims": [
+        "Using one policy for both rows.",
+        "Calling the other row’s requested policy unavailable because of date-scoping."
+      ],
+      "annotation_note": "No requirement to add a supersession date or every V2 administrative detail; the question asks for the notice guidance at the two dates."
+    },
+    {
+      "id": "IPS-005",
+      "family": "answer_and_unknown_components",
+      "question": "For an estimate worksheet, enter the fictional skincare consultation fee, the RF microneedling procedure price, and the required deposit.",
+      "expected_behavior": "partial",
+      "required_facts": [
+        "The fictional skincare consultation fee is $150.",
+        "RF microneedling procedure pricing is not supplied.",
+        "Deposit rules are intentionally omitted."
+      ],
+      "expected_sources": [
+        "BIZ-501"
+      ],
+      "acceptable_source_alternatives": [],
+      "acceptable_additional_sources": [],
+      "support": [
+        {
+          "doc_id": "BIZ-501",
+          "quote": "Fictional training values only. These are not EMER Medical's real prices.\n\nNew-patient aesthetic consultation: $250.\nSkincare consultation: $150.\nDeposit rules and procedure pricing are intentionally omitted from the corpus.\n\nIf the user asks for a procedure price not listed here, the assistant should say the corpus does not contain that price rather than inventing one."
+        }
+      ],
+      "forbidden_claims": [
+        "Using $150 or $250 as the RF procedure price.",
+        "Inventing a deposit amount or claiming no deposit is required."
+      ],
+      "annotation_note": "Provide a source-grounded text answer; no actual worksheet creation or financial transaction is requested."
+    },
+    {
+      "id": "IPS-006",
+      "family": "answer_and_unknown_components",
+      "question": "For a staff note, give the standard weekday coverage with its timezone and the exact acknowledgment timeout for the primary IT contact.",
+      "expected_behavior": "partial",
+      "required_facts": [
+        "Standard weekday coverage is Monday through Friday, 8 AM to 6 PM Pacific Time.",
+        "The exact duration of the IT acknowledgment/escalation window is not specified."
+      ],
+      "expected_sources": [
+        "OPS-307"
+      ],
+      "acceptable_source_alternatives": [],
+      "acceptable_additional_sources": [],
+      "support": [
+        {
+          "doc_id": "OPS-307",
+          "quote": "Fictional standard office coverage is Monday through Friday, 8:00 AM to 6:00 PM Pacific Time, with limited Saturday coverage for selected appointments.\n\nOperational emergencies outside normal coverage should follow the on-call escalation path. For technology incidents, the primary IT contact is alerted first, followed by the backup support pod if the incident is not acknowledged within the defined escalation window.\n\nThe assistant should distinguish clinical escalation from IT escalation and should not route a clinical concern to IT."
+        }
+      ],
+      "forbidden_claims": [
+        "Inventing a numeric timeout.",
+        "Withholding known office hours because the timeout is absent."
+      ]
+    },
+    {
+      "id": "IPS-007",
+      "family": "nonpatient_pricing_reference",
+      "question": "How much money must be put down to reserve that?",
+      "expected_behavior": "unknown",
+      "required_facts": [
+        "The corpus does not specify deposit rules or an amount for the skincare consultation."
+      ],
+      "expected_sources": [
+        "BIZ-501"
+      ],
+      "acceptable_source_alternatives": [],
+      "acceptable_additional_sources": [],
+      "support": [
+        {
+          "doc_id": "BIZ-501",
+          "quote": "Fictional training values only. These are not EMER Medical's real prices.\n\nNew-patient aesthetic consultation: $250.\nSkincare consultation: $150.\nDeposit rules and procedure pricing are intentionally omitted from the corpus.\n\nIf the user asks for a procedure price not listed here, the assistant should say the corpus does not contain that price rather than inventing one."
+        }
+      ],
+      "forbidden_claims": [
+        "Treating the $150 consultation fee as the deposit.",
+        "Requiring a patient ID to explain the missing deposit rule."
+      ],
+      "turns": [
+        {
+          "id": "",
+          "family": "conversation_turn",
+          "question": "What amount is listed for an aesthetic consultation for a new patient?",
+          "expected_behavior": "answered",
+          "required_facts": [
+            "The fictional new-patient aesthetic consultation is $250."
+          ],
+          "expected_sources": [
+            "BIZ-501"
+          ],
+          "acceptable_source_alternatives": [],
+          "acceptable_additional_sources": [],
+          "support": [
+            {
+              "doc_id": "BIZ-501",
+              "quote": "Fictional training values only. These are not EMER Medical's real prices.\n\nNew-patient aesthetic consultation: $250.\nSkincare consultation: $150.\nDeposit rules and procedure pricing are intentionally omitted from the corpus.\n\nIf the user asks for a procedure price not listed here, the assistant should say the corpus does not contain that price rather than inventing one."
+            }
+          ],
+          "forbidden_claims": []
+        },
+        {
+          "id": "",
+          "family": "conversation_turn",
+          "question": "Switch that entry to a skincare consult instead.",
+          "expected_behavior": "answered",
+          "required_facts": [
+            "The fictional skincare consultation is $150."
+          ],
+          "expected_sources": [
+            "BIZ-501"
+          ],
+          "acceptable_source_alternatives": [],
+          "acceptable_additional_sources": [],
+          "support": [
+            {
+              "doc_id": "BIZ-501",
+              "quote": "Fictional training values only. These are not EMER Medical's real prices.\n\nNew-patient aesthetic consultation: $250.\nSkincare consultation: $150.\nDeposit rules and procedure pricing are intentionally omitted from the corpus.\n\nIf the user asks for a procedure price not listed here, the assistant should say the corpus does not contain that price rather than inventing one."
+            }
+          ],
+          "forbidden_claims": [
+            "Inventing a distinct new-patient skincare price category."
+          ]
+        },
+        {
+          "id": "",
+          "family": "conversation_turn",
+          "question": "How much money must be put down to reserve that?",
+          "expected_behavior": "unknown",
+          "required_facts": [
+            "The corpus does not specify deposit rules or an amount for the skincare consultation."
+          ],
+          "expected_sources": [
+            "BIZ-501"
+          ],
+          "acceptable_source_alternatives": [],
+          "acceptable_additional_sources": [],
+          "support": [
+            {
+              "doc_id": "BIZ-501",
+              "quote": "Fictional training values only. These are not EMER Medical's real prices.\n\nNew-patient aesthetic consultation: $250.\nSkincare consultation: $150.\nDeposit rules and procedure pricing are intentionally omitted from the corpus.\n\nIf the user asks for a procedure price not listed here, the assistant should say the corpus does not contain that price rather than inventing one."
+            }
+          ],
+          "forbidden_claims": [
+            "Treating the $150 consultation fee as the deposit.",
+            "Requiring a patient ID to explain the missing deposit rule."
+          ]
+        }
+      ],
+      "annotation_note": "Execute all three turns. The final reference concerns the corrected skincare consultation; the case-level question duplicates turn three."
+    },
+    {
+      "id": "IPS-008",
+      "family": "nonpatient_it_reference",
+      "question": "How many minutes does that window last?",
+      "expected_behavior": "unknown",
+      "required_facts": [
+        "The source does not specify the escalation-window duration in minutes."
+      ],
+      "expected_sources": [
+        "OPS-307"
+      ],
+      "acceptable_source_alternatives": [],
+      "acceptable_additional_sources": [],
+      "support": [
+        {
+          "doc_id": "OPS-307",
+          "quote": "Fictional standard office coverage is Monday through Friday, 8:00 AM to 6:00 PM Pacific Time, with limited Saturday coverage for selected appointments.\n\nOperational emergencies outside normal coverage should follow the on-call escalation path. For technology incidents, the primary IT contact is alerted first, followed by the backup support pod if the incident is not acknowledged within the defined escalation window.\n\nThe assistant should distinguish clinical escalation from IT escalation and should not route a clinical concern to IT."
+        }
+      ],
+      "forbidden_claims": [
+        "Inventing a timeout.",
+        "Requiring a patient ID to answer this IT policy question."
+      ],
+      "turns": [
+        {
+          "id": "",
+          "family": "conversation_turn",
+          "question": "The assistant platform is down after normal office coverage. Which contact comes first in the escalation path?",
+          "expected_behavior": "answered",
+          "required_facts": [
+            "Alert the primary IT contact first."
+          ],
+          "expected_sources": [
+            "OPS-307"
+          ],
+          "acceptable_source_alternatives": [],
+          "acceptable_additional_sources": [],
+          "support": [
+            {
+              "doc_id": "OPS-307",
+              "quote": "Fictional standard office coverage is Monday through Friday, 8:00 AM to 6:00 PM Pacific Time, with limited Saturday coverage for selected appointments.\n\nOperational emergencies outside normal coverage should follow the on-call escalation path. For technology incidents, the primary IT contact is alerted first, followed by the backup support pod if the incident is not acknowledged within the defined escalation window.\n\nThe assistant should distinguish clinical escalation from IT escalation and should not route a clinical concern to IT."
+            }
+          ],
+          "forbidden_claims": []
+        },
+        {
+          "id": "",
+          "family": "conversation_turn",
+          "question": "Who is next if they do not acknowledge within the specified window?",
+          "expected_behavior": "answered",
+          "required_facts": [
+            "The backup support pod is next."
+          ],
+          "expected_sources": [
+            "OPS-307"
+          ],
+          "acceptable_source_alternatives": [],
+          "acceptable_additional_sources": [],
+          "support": [
+            {
+              "doc_id": "OPS-307",
+              "quote": "Fictional standard office coverage is Monday through Friday, 8:00 AM to 6:00 PM Pacific Time, with limited Saturday coverage for selected appointments.\n\nOperational emergencies outside normal coverage should follow the on-call escalation path. For technology incidents, the primary IT contact is alerted first, followed by the backup support pod if the incident is not acknowledged within the defined escalation window.\n\nThe assistant should distinguish clinical escalation from IT escalation and should not route a clinical concern to IT."
+            }
+          ],
+          "forbidden_claims": [
+            "Routing the technology incident to the clinical provider instead."
+          ]
+        },
+        {
+          "id": "",
+          "family": "conversation_turn",
+          "question": "How many minutes does that window last?",
+          "expected_behavior": "unknown",
+          "required_facts": [
+            "The source does not specify the escalation-window duration in minutes."
+          ],
+          "expected_sources": [
+            "OPS-307"
+          ],
+          "acceptable_source_alternatives": [],
+          "acceptable_additional_sources": [],
+          "support": [
+            {
+              "doc_id": "OPS-307",
+              "quote": "Fictional standard office coverage is Monday through Friday, 8:00 AM to 6:00 PM Pacific Time, with limited Saturday coverage for selected appointments.\n\nOperational emergencies outside normal coverage should follow the on-call escalation path. For technology incidents, the primary IT contact is alerted first, followed by the backup support pod if the incident is not acknowledged within the defined escalation window.\n\nThe assistant should distinguish clinical escalation from IT escalation and should not route a clinical concern to IT."
+            }
+          ],
+          "forbidden_claims": [
+            "Inventing a timeout.",
+            "Requiring a patient ID to answer this IT policy question."
+          ]
+        }
+      ],
+      "annotation_note": "The references are to the IT contact and escalation window already introduced. Do not infer a patient context."
+    },
+    {
+      "id": "IPS-009",
+      "family": "nonpatient_procedure_reference",
+      "question": "Then name two temporary effects that it actually mentions.",
+      "expected_behavior": "answered",
+      "required_facts": [
+        "At least two of redness, mild swelling, pinpoint crusting, tenderness, and temporary dryness are possible short-term effects."
+      ],
+      "expected_sources": [
+        "PROC-102"
+      ],
+      "acceptable_source_alternatives": [],
+      "acceptable_additional_sources": [],
+      "support": [
+        {
+          "doc_id": "PROC-102",
+          "quote": "Radiofrequency microneedling combines controlled microneedling with radiofrequency energy. In this fictional practice it may be considered for selected patients seeking improvement in texture, acne scarring, skin laxity, or other provider-approved concerns.\n\nBefore treatment, the provider considers current skin condition, history of pigment change or scarring, active infection, implanted devices where relevant, medications, and recent procedures. Treatment parameters are determined only by the licensed treating provider.\n\nExpected short-term effects can include redness, mild swelling, pinpoint crusting, tenderness, and temporary dryness. Patients receive individualized aftercare, including gentle skincare, avoidance of unnecessary irritation, and sun protection.\n\nThe knowledge assistant should describe this procedure only at a general educational level and should not recommend parameters or treatment depth."
+        }
+      ],
+      "forbidden_claims": [
+        "Requiring a patient identity for general procedure effects."
+      ],
+      "annotation_note": "Maintain the RF procedure reference across an unknown-detail answer, then answer the supported effects request. No patient was selected.",
+      "turns": [
+        {
+          "id": "",
+          "family": "conversation_turn",
+          "question": "In general, what does the RF needling procedure combine?",
+          "expected_behavior": "answered",
+          "required_facts": [
+            "It combines controlled microneedling with radiofrequency energy."
+          ],
+          "expected_sources": [
+            "PROC-102"
+          ],
+          "acceptable_source_alternatives": [],
+          "acceptable_additional_sources": [],
+          "support": [
+            {
+              "doc_id": "PROC-102",
+              "quote": "Radiofrequency microneedling combines controlled microneedling with radiofrequency energy. In this fictional practice it may be considered for selected patients seeking improvement in texture, acne scarring, skin laxity, or other provider-approved concerns.\n\nBefore treatment, the provider considers current skin condition, history of pigment change or scarring, active infection, implanted devices where relevant, medications, and recent procedures. Treatment parameters are determined only by the licensed treating provider.\n\nExpected short-term effects can include redness, mild swelling, pinpoint crusting, tenderness, and temporary dryness. Patients receive individualized aftercare, including gentle skincare, avoidance of unnecessary irritation, and sun protection.\n\nThe knowledge assistant should describe this procedure only at a general educational level and should not recommend parameters or treatment depth."
+            }
+          ],
+          "forbidden_claims": []
+        },
+        {
+          "id": "",
+          "family": "conversation_turn",
+          "question": "Give the exact number of recovery days for that treatment from this dataset.",
+          "expected_behavior": "unknown",
+          "required_facts": [
+            "The corpus gives no exact recovery duration in days for RF microneedling."
+          ],
+          "expected_sources": [
+            "PROC-102"
+          ],
+          "acceptable_source_alternatives": [],
+          "acceptable_additional_sources": [],
+          "support": [
+            {
+              "doc_id": "PROC-102",
+              "quote": "Radiofrequency microneedling combines controlled microneedling with radiofrequency energy. In this fictional practice it may be considered for selected patients seeking improvement in texture, acne scarring, skin laxity, or other provider-approved concerns.\n\nBefore treatment, the provider considers current skin condition, history of pigment change or scarring, active infection, implanted devices where relevant, medications, and recent procedures. Treatment parameters are determined only by the licensed treating provider.\n\nExpected short-term effects can include redness, mild swelling, pinpoint crusting, tenderness, and temporary dryness. Patients receive individualized aftercare, including gentle skincare, avoidance of unnecessary irritation, and sun protection.\n\nThe knowledge assistant should describe this procedure only at a general educational level and should not recommend parameters or treatment depth."
+            }
+          ],
+          "forbidden_claims": [
+            "Inventing a numeric recovery duration."
+          ]
+        },
+        {
+          "id": "",
+          "family": "conversation_turn",
+          "question": "Then name two temporary effects that it actually mentions.",
+          "expected_behavior": "answered",
+          "required_facts": [
+            "At least two of redness, mild swelling, pinpoint crusting, tenderness, and temporary dryness are possible short-term effects."
+          ],
+          "expected_sources": [
+            "PROC-102"
+          ],
+          "acceptable_source_alternatives": [],
+          "acceptable_additional_sources": [],
+          "support": [
+            {
+              "doc_id": "PROC-102",
+              "quote": "Radiofrequency microneedling combines controlled microneedling with radiofrequency energy. In this fictional practice it may be considered for selected patients seeking improvement in texture, acne scarring, skin laxity, or other provider-approved concerns.\n\nBefore treatment, the provider considers current skin condition, history of pigment change or scarring, active infection, implanted devices where relevant, medications, and recent procedures. Treatment parameters are determined only by the licensed treating provider.\n\nExpected short-term effects can include redness, mild swelling, pinpoint crusting, tenderness, and temporary dryness. Patients receive individualized aftercare, including gentle skincare, avoidance of unnecessary irritation, and sun protection.\n\nThe knowledge assistant should describe this procedure only at a general educational level and should not recommend parameters or treatment depth."
+            }
+          ],
+          "forbidden_claims": [
+            "Requiring a patient identity for general procedure effects."
+          ],
+          "annotation_note": "Any two distinct listed effects satisfy the fact; no exact pair is prescribed."
+        }
+      ]
+    },
+    {
+      "id": "IPS-010",
+      "family": "answer_and_unknown_components",
+      "question": "Contrast Consult Scheduled with Converted, then state the exact inactive-day threshold for Dormant.",
+      "expected_behavior": "partial",
+      "required_facts": [
+        "Consult Scheduled means a consultation date and time are confirmed.",
+        "Converted means the first paid treatment is completed.",
+        "The exact inactive-day threshold for Dormant is not supplied."
+      ],
+      "expected_sources": [
+        "BIZ-502"
+      ],
+      "acceptable_source_alternatives": [],
+      "acceptable_additional_sources": [],
+      "support": [
+        {
+          "doc_id": "BIZ-502",
+          "quote": "Lead statuses used in the fictional training system:\n- New: inquiry received but not yet contacted.\n- Contacted: staff reached the lead or made a documented attempt.\n- Consult Scheduled: consultation date/time confirmed.\n- Consult Completed: consultation occurred.\n- Treatment Planned: a provider-approved plan exists and the patient is considering or scheduling.\n- Converted: first paid treatment completed.\n- Dormant: no active next step after the defined follow-up window.\n\nStatus changes should be event-driven and auditable."
+        }
+      ],
+      "forbidden_claims": [
+        "Equating a scheduled consultation with a paid treatment.",
+        "Inventing a numeric Dormant threshold."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,247 @@
+[
+  {
+    "id": "PT-001",
+    "category": "synthetic_patient",
+    "textExact": true,
+    "metadataExact": true,
+    "characters": 556
+  },
+  {
+    "id": "PT-002",
+    "category": "synthetic_patient",
+    "textExact": true,
+    "metadataExact": true,
+    "characters": 441
+  },
+  {
+    "id": "PT-003",
+    "category": "synthetic_patient",
+    "textExact": true,
+    "metadataExact": true,
+    "characters": 459
+  },
+  {
+    "id": "PT-004",
+    "category": "synthetic_patient",
+    "textExact": true,
+    "metadataExact": true,
+    "characters": 486
+  },
+  {
+    "id": "PT-005",
+    "category": "synthetic_patient",
+    "textExact": true,
+    "metadataExact": true,
+    "characters": 424
+  },
+  {
+    "id": "PT-006",
+    "category": "synthetic_patient",
+    "textExact": true,
+    "metadataExact": true,
+    "characters": 462
+  },
+  {
+    "id": "PT-007",
+    "category": "synthetic_patient",
+    "textExact": true,
+    "metadataExact": true,
+    "characters": 391
+  },
+  {
+    "id": "PT-008",
+    "category": "synthetic_patient",
+    "textExact": true,
+    "metadataExact": true,
+    "characters": 427
+  },
+  {
+    "id": "PROC-101",
+    "category": "procedure",
+    "textExact": true,
+    "metadataExact": true,
+    "characters": 1029
+  },
+  {
+    "id": "PROC-102",
+    "category": "procedure",
+    "textExact": true,
+    "metadataExact": true,
+    "characters": 920
+  },
+  {
+    "id": "PROC-103",
+    "category": "procedure",
+    "textExact": true,
+    "metadataExact": true,
+    "characters": 799
+  },
+  {
+    "id": "PROC-104",
+    "category": "procedure",
+    "textExact": true,
+    "metadataExact": true,
+    "characters": 663
+  },
+  {
+    "id": "PROC-105",
+    "category": "procedure",
+    "textExact": true,
+    "metadataExact": true,
+    "characters": 771
+  },
+  {
+    "id": "PROC-106",
+    "category": "procedure",
+    "textExact": true,
+    "metadataExact": true,
+    "characters": 582
+  },
+  {
+    "id": "PROC-107",
+    "category": "procedure",
+    "textExact": true,
+    "metadataExact": true,
+    "characters": 736
+  },
+  {
+    "id": "PROC-108",
+    "category": "procedure",
+    "textExact": true,
+    "metadataExact": true,
+    "characters": 603
+  },
+  {
+    "id": "PROC-109",
+    "category": "procedure",
+    "textExact": true,
+    "metadataExact": true,
+    "characters": 528
+  },
+  {
+    "id": "PROC-110",
+    "category": "procedure",
+    "textExact": true,
+    "metadataExact": true,
+    "characters": 617
+  },
+  {
+    "id": "OPS-301",
+    "category": "operations",
+    "textExact": true,
+    "metadataExact": true,
+    "characters": 601
+  },
+  {
+    "id": "OPS-302",
+    "category": "operations",
+    "textExact": true,
+    "metadataExact": true,
+    "characters": 566
+  },
+  {
+    "id": "OPS-303",
+    "category": "operations",
+    "textExact": true,
+    "metadataExact": true,
+    "characters": 554
+  },
+  {
+    "id": "OPS-304",
+    "category": "operations",
+    "textExact": true,
+    "metadataExact": true,
+    "characters": 492
+  },
+  {
+    "id": "OPS-307",
+    "category": "operations",
+    "textExact": true,
+    "metadataExact": true,
+    "characters": 539
+  },
+  {
+    "id": "IT-401",
+    "category": "it",
+    "textExact": true,
+    "metadataExact": true,
+    "characters": 861
+  },
+  {
+    "id": "IT-402",
+    "category": "it",
+    "textExact": true,
+    "metadataExact": true,
+    "characters": 793
+  },
+  {
+    "id": "IT-403",
+    "category": "it",
+    "textExact": true,
+    "metadataExact": true,
+    "characters": 718
+  },
+  {
+    "id": "BIZ-501",
+    "category": "business",
+    "textExact": true,
+    "metadataExact": true,
+    "characters": 372
+  },
+  {
+    "id": "BIZ-502",
+    "category": "business",
+    "textExact": true,
+    "metadataExact": true,
+    "characters": 529
+  },
+  {
+    "id": "CARE-201",
+    "category": "care",
+    "textExact": true,
+    "metadataExact": true,
+    "characters": 733
+  },
+  {
+    "id": "CARE-202",
+    "category": "care",
+    "textExact": true,
+    "metadataExact": true,
+    "characters": 641
+  },
+  {
+    "id": "OPS-305",
+    "category": "governance",
+    "textExact": true,
+    "metadataExact": true,
+    "characters": 599
+  },
+  {
+    "id": "PRACTICE-002",
+    "category": "governance",
+    "textExact": true,
+    "metadataExact": true,
+    "characters": 989
+  },
+  {
+    "id": "PRACTICE-001",
+    "category": "practice",
+    "textExact": true,
+    "metadataExact": true,
+    "characters": 1121
+  },
+  {
+    "id": "OPS-306-V1",
+    "category": "policy",
+    "textExact": true,
+    "metadataExact": true,
+    "characters": 259
+  },
+  {
+    "id": "OPS-306-V2",
+    "category": "policy",
+    "textExact": true,
+    "metadataExact": true,
+    "characters": 441
+  }
+]

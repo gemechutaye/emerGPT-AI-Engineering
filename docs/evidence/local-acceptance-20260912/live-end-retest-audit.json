@@ -1,0 +1,463 @@
+{
+  "at": "2026-09-12T15:40:08.837239+00:00",
+  "database_read_only": true,
+  "session_id": "50344d2d-7925-4cf5-97b0-1e7e2994df6c",
+  "conversation_id": "53a65a6e-6401-442f-a888-961c1cacc0d4",
+  "proof_type": "actual browser synthetic microphone, direct OpenAI Live and real OpenRouter RAG; independent read-only DB/source review",
+  "capture_files": {
+    "live-end-retest-api-observations.json": "07371482667a59b12163e3ba44bbc6c9c7fff694287cfae7c1c22b437fb5db33",
+    "live-end-retest-before.txt": "6d3586d791baca39291648bad2608dbdef98b5c03349384d175f966ff7b51981",
+    "live-end-retest-immediate.txt": "dc5f99fe9f69eabfa72d298c3e7b66ebfaa8d09ad226ec0cd08a576435121f12",
+    "live-end-retest-final-visible.txt": "81e4493462760fc3abb5f76bbde10d35f012f8f7e94f1da7d409bca9455e2492",
+    "live-end-retest-media.json": "61121f510992ca4c48a0df703c48d54ee7dd4d52d5b7a8006cccc61c8c104798",
+    "live-end-retest-final-media.json": "b986f680b40e951b0fadf3151581793f7f4b68a8ff3fb014030ce13b31a5c825",
+    "ui-run-audit.json": "7f87e7ffd3af252671c920a359804006fe51dacbed4b6739a6e19a4d00b59c06"
+  },
+  "observed_End_response": {
+    "at": "2026-09-12T15:36:06.625Z",
+    "path": "/api/v1/voice/sessions/50344d2d-7925-4cf5-97b0-1e7e2994df6c/close",
+    "status": 200,
+    "method": "POST"
+  },
+  "End_capture_limit": "HTTP response status/time captured; response body not stored in this file. Final DB snapshot and browser media evidence checked independently.",
+  "snapshot": {
+    "id": "50344d2d-7925-4cf5-97b0-1e7e2994df6c",
+    "error": null,
+    "status": "closed",
+    "revision": 2,
+    "last_run_id": "0b1d25b9-7c23-4e4f-ba6d-e03d3fe0956c",
+    "close_reason": "user",
+    "usage_seconds": 116.0,
+    "playback_blocked": true,
+    "last_delegation_id": "item_ENK3nwvAx3YV3o3nWpbRk",
+    "controller_connected": false,
+    "final_usage_confirmed": true,
+    "provider_close_reason": "connection_lost"
+  },
+  "database_status": "closed",
+  "event_counts": {
+    "session.started": 1,
+    "session.usage.updated": 7,
+    "session.input_transcript.delta": 21,
+    "session.delegation.created": 2,
+    "session.output_transcript.delta": 27,
+    "session.instructions.appended": 1,
+    "session.commentary.appended": 2,
+    "error": 1,
+    "session.closed": 1
+  },
+  "delegation_events": [
+    {
+      "event_id": 1765,
+      "id": "item_ENK2KYRkjL4sCncPvQTMY",
+      "offset_ms": 24400
+    },
+    {
+      "event_id": 1810,
+      "id": "item_ENK3nwvAx3YV3o3nWpbRk",
+      "offset_ms": 115800
+    }
+  ],
+  "delegations": [
+    {
+      "id": "item_ENK2KYRkjL4sCncPvQTMY",
+      "revision": 1,
+      "run_id": "3a9c9776-f6cf-4ac0-b301-cdfb4b737923",
+      "request_start_ms": 0,
+      "resolved_question": "What is the current status and follow-up plan for patient six?"
+    },
+    {
+      "id": "item_ENK3nwvAx3YV3o3nWpbRk",
+      "revision": 2,
+      "run_id": "0b1d25b9-7c23-4e4f-ba6d-e03d3fe0956c",
+      "request_start_ms": 24400,
+      "resolved_question": "What exact deposit has Patient Four already paid?"
+    }
+  ],
+  "late_errors": [
+    {
+      "event_id": 1812,
+      "code": "context_injection_incomplete",
+      "message": "The session closed before the estimated context injection completed."
+    }
+  ],
+  "closure_event": {
+    "id": 1813,
+    "reason": "connection_lost",
+    "seconds": 116.0
+  },
+  "transcript_groups": [
+    {
+      "speaker": "user",
+      "start_ms": 20800,
+      "end_ms": 24600,
+      "text": " Um. Could you tell me the current status and follow-up for patient six, please"
+    },
+    {
+      "speaker": "assistant",
+      "start_ms": 24600,
+      "end_ms": 25000,
+      "text": " I'll check."
+    },
+    {
+      "speaker": "assistant",
+      "start_ms": 64400,
+      "end_ms": 74000,
+      "text": " The file notes the consultation was completed. PT-006 asked for cost information and wants to decide later. No follow-up date or interval is documented."
+    },
+    {
+      "speaker": "user",
+      "start_ms": 113000,
+      "end_ms": 116000,
+      "text": " What is the exact deposit that Patient Four already paid"
+    },
+    {
+      "speaker": "assistant",
+      "start_ms": 116000,
+      "end_ms": 116200,
+      "text": " I'm checking"
+    }
+  ],
+  "runs": [
+    {
+      "id": "3a9c9776-f6cf-4ac0-b301-cdfb4b737923",
+      "question": "What is the current status and follow-up plan for patient six?",
+      "status": "completed",
+      "answer_status": "partial",
+      "created_at": "2026-09-12T15:34:34.651665+00:00",
+      "completed_at": "2026-09-12T15:35:11.614190+00:00",
+      "seconds_after_observed_End_response_created": -91.973335,
+      "seconds_after_observed_End_response_completed": -55.01081,
+      "processing_ms": 36939,
+      "first_terminal_UI_observation": "2026-09-12T15:35:11.825Z",
+      "statements": [
+        "PT-006’s documented current status is that the educational consultation was completed, the provider reviewed the RF microneedling overview and alternatives, and the patient requested cost information and will decide later.",
+        "The record also notes no prior RF microneedling and that the patient wants to understand expected downtime before deciding.",
+        "No patient-specific follow-up date, interval, owner, task status, or scheduled next contact is documented in the supplied record."
+      ],
+      "gaps": [
+        "The supplied record does not specify a follow-up date or interval, whether a follow-up task was created, or whether the patient ultimately selected a treatment."
+      ],
+      "scopes": [
+        {
+          "patient_ids": [
+            "PT-006"
+          ],
+          "all_patients": false,
+          "patient_discovery": false,
+          "allowed_source_ids": [
+            "BIZ-502",
+            "CARE-201",
+            "IT-401",
+            "OPS-302",
+            "OPS-303",
+            "PRACTICE-001",
+            "PROC-107",
+            "PT-006"
+          ]
+        }
+      ],
+      "cited_sources": [
+        "PT-006"
+      ],
+      "exact_citations": 3,
+      "UI_DB_mechanical_pass": true,
+      "answer_attempts": 5,
+      "usage_equals_durable_ledger": true,
+      "prompt_identity": {
+        "prompt_id": "answer-v15",
+        "prompt_sha256": "8e437b2d62c7102048c50d92552b5c93ea00240766533d02d83d4950b3510a56",
+        "checker_prompt_id": "check-v19",
+        "checker_prompt_sha256": "82bf627d95d36e227ba55e49874c4a3881c7b9c82121d8bd4633be468ccc83e5"
+      }
+    },
+    {
+      "id": "0b1d25b9-7c23-4e4f-ba6d-e03d3fe0956c",
+      "question": "What exact deposit has Patient Four already paid?",
+      "status": "completed",
+      "answer_status": "unsupported",
+      "created_at": "2026-09-12T15:36:08.485117+00:00",
+      "completed_at": "2026-09-12T15:36:30.243091+00:00",
+      "seconds_after_observed_End_response_created": 1.860117,
+      "seconds_after_observed_End_response_completed": 23.618091,
+      "processing_ms": 21746,
+      "first_terminal_UI_observation": "2026-09-12T15:36:30.480Z",
+      "statements": [
+        "The supplied record for PT-004 does not document that a deposit was paid or state an exact deposit amount."
+      ],
+      "gaps": [],
+      "scopes": [
+        {
+          "patient_ids": [
+            "PT-004"
+          ],
+          "all_patients": false,
+          "patient_discovery": false,
+          "allowed_source_ids": [
+            "BIZ-501",
+            "BIZ-502",
+            "CARE-201",
+            "IT-403",
+            "OPS-306-V2",
+            "PRACTICE-001",
+            "PT-004"
+          ]
+        }
+      ],
+      "cited_sources": [
+        "PT-004"
+      ],
+      "exact_citations": 1,
+      "UI_DB_mechanical_pass": true,
+      "answer_attempts": 5,
+      "usage_equals_durable_ledger": true,
+      "prompt_identity": {
+        "prompt_id": "answer-v15",
+        "prompt_sha256": "8e437b2d62c7102048c50d92552b5c93ea00240766533d02d83d4950b3510a56",
+        "checker_prompt_id": "check-v19",
+        "checker_prompt_sha256": "82bf627d95d36e227ba55e49874c4a3881c7b9c82121d8bd4633be468ccc83e5"
+      }
+    }
+  ],
+  "attempts": [
+    {
+      "id": "72c4ddf8-8d03-418b-a316-3a4ac001d17f",
+      "run_id": null,
+      "operation": "voice_intent_resolution",
+      "model": "openai/gpt-5.6-luna",
+      "status": "completed",
+      "error_code": null,
+      "usage": {
+        "cost": 0.00034683,
+        "provider": "Azure",
+        "latency_ms": 1875.247,
+        "request_id": "gen-1789227273-CrFcMMqlrhluqszsMOoj",
+        "total_tokens": 1144,
+        "prompt_tokens": 1113,
+        "completion_tokens": 31
+      }
+    },
+    {
+      "id": "73ff0e4b-eb52-4a32-a66b-fd7a494854c2",
+      "run_id": "3a9c9776-f6cf-4ac0-b301-cdfb4b737923",
+      "operation": "query_embedding",
+      "model": "openai/text-embedding-3-large",
+      "status": "completed",
+      "error_code": null,
+      "usage": {
+        "cost": 1.82e-06,
+        "provider": "Azure",
+        "latency_ms": 558.064,
+        "request_id": "gen-emb-1789227275-xfWcxTll7uaoJ51OLSWg",
+        "total_tokens": 14,
+        "prompt_tokens": 14,
+        "completion_tokens": null
+      }
+    },
+    {
+      "id": "922b6bcd-d3f8-4c7b-9136-d3bfcc6310ed",
+      "run_id": "3a9c9776-f6cf-4ac0-b301-cdfb4b737923",
+      "operation": "generation",
+      "model": "openai/gpt-5.6-luna",
+      "status": "completed",
+      "error_code": null,
+      "usage": {
+        "cost": 0.00260975,
+        "provider": "Azure",
+        "latency_ms": 8254.156,
+        "request_id": "gen-1789227275-NLL6Nxux9I2CII4stTr8",
+        "total_tokens": 6101,
+        "prompt_tokens": 5209,
+        "completion_tokens": 892
+      }
+    },
+    {
+      "id": "22813e0c-714d-4a58-9554-ef47f557cc8a",
+      "run_id": "3a9c9776-f6cf-4ac0-b301-cdfb4b737923",
+      "operation": "support_check",
+      "model": "openai/gpt-5.6-luna",
+      "status": "completed",
+      "error_code": null,
+      "usage": {
+        "cost": 0.00431035,
+        "provider": "Azure",
+        "latency_ms": 13807.18,
+        "request_id": "gen-1789227284-3UaDRyDwGaPopcAFMnGP",
+        "total_tokens": 9017,
+        "prompt_tokens": 7265,
+        "completion_tokens": 1752
+      }
+    },
+    {
+      "id": "5a7802da-b94b-4c8f-93f1-2d2704476c97",
+      "run_id": "3a9c9776-f6cf-4ac0-b301-cdfb4b737923",
+      "operation": "repair",
+      "model": "openai/gpt-5.6-luna",
+      "status": "completed",
+      "error_code": null,
+      "usage": {
+        "cost": 0.002203245,
+        "provider": "Azure",
+        "latency_ms": 5175.487,
+        "request_id": "gen-1789227297-XatnrHbuKzc8sBWuHMJB",
+        "total_tokens": 6519,
+        "prompt_tokens": 6126,
+        "completion_tokens": 393
+      }
+    },
+    {
+      "id": "0412421c-1466-41b6-a405-1b5eb1e5aad1",
+      "run_id": "3a9c9776-f6cf-4ac0-b301-cdfb4b737923",
+      "operation": "support_check",
+      "model": "openai/gpt-5.6-luna",
+      "status": "completed",
+      "error_code": null,
+      "usage": {
+        "cost": 0.001959727,
+        "provider": "Azure",
+        "latency_ms": 8899.506,
+        "request_id": "gen-1789227303-ECod5y0uxtVE2nJymYx1",
+        "total_tokens": 8083,
+        "prompt_tokens": 7257,
+        "completion_tokens": 826
+      }
+    },
+    {
+      "id": "a5a54da1-81c3-4660-b3f4-14bc364f766d",
+      "run_id": null,
+      "operation": "voice_intent_resolution",
+      "model": "openai/gpt-5.6-luna",
+      "status": "completed",
+      "error_code": null,
+      "usage": {
+        "cost": 0.000973335,
+        "provider": "Azure",
+        "latency_ms": 4266.747,
+        "request_id": "gen-1789227364-hqWFeb2ii5IwrK5A3lce",
+        "total_tokens": 3008,
+        "prompt_tokens": 2868,
+        "completion_tokens": 140
+      }
+    },
+    {
+      "id": "618f15b6-2e6a-40f0-a21a-d10a9b866cd0",
+      "run_id": "0b1d25b9-7c23-4e4f-ba6d-e03d3fe0956c",
+      "operation": "query_embedding",
+      "model": "openai/text-embedding-3-large",
+      "status": "completed",
+      "error_code": null,
+      "usage": {
+        "cost": 1.3e-06,
+        "provider": "Azure",
+        "latency_ms": 462.3,
+        "request_id": "gen-emb-1789227368-cSeIjCahoNGaFiKf9aqk",
+        "total_tokens": 10,
+        "prompt_tokens": 10,
+        "completion_tokens": null
+      }
+    },
+    {
+      "id": "da000820-a74c-470f-bdd9-5eeeb35cb687",
+      "run_id": "0b1d25b9-7c23-4e4f-ba6d-e03d3fe0956c",
+      "operation": "generation",
+      "model": "openai/gpt-5.6-luna",
+      "status": "completed",
+      "error_code": null,
+      "usage": {
+        "cost": 0.001144891,
+        "provider": "Azure",
+        "latency_ms": 4673.404,
+        "request_id": "gen-1789227369-g58604JHuLESiPVQEQQ8",
+        "total_tokens": 5425,
+        "prompt_tokens": 5071,
+        "completion_tokens": 354
+      }
+    },
+    {
+      "id": "9ac33382-ea31-43c0-9a4b-386b321e5454",
+      "run_id": "0b1d25b9-7c23-4e4f-ba6d-e03d3fe0956c",
+      "operation": "support_check",
+      "model": "openai/gpt-5.6-luna",
+      "status": "completed",
+      "error_code": null,
+      "usage": {
+        "cost": 0.001464892,
+        "provider": "Azure",
+        "latency_ms": 5200.954,
+        "request_id": "gen-1789227374-MXzWXbfoMqn4A7se2mds",
+        "total_tokens": 7397,
+        "prompt_tokens": 6864,
+        "completion_tokens": 533
+      }
+    },
+    {
+      "id": "b2cc770e-722f-4079-9723-65a62c00b6a6",
+      "run_id": "0b1d25b9-7c23-4e4f-ba6d-e03d3fe0956c",
+      "operation": "repair",
+      "model": "openai/gpt-5.6-luna",
+      "status": "completed",
+      "error_code": null,
+      "usage": {
+        "cost": 0.001288287,
+        "provider": "Azure",
+        "latency_ms": 4394.164,
+        "request_id": "gen-1789227379-wkov1sJVuNqeWX6c94FO",
+        "total_tokens": 6017,
+        "prompt_tokens": 5630,
+        "completion_tokens": 387
+      }
+    },
+    {
+      "id": "8c8eebfd-e09f-4514-9583-f30493f61cba",
+      "run_id": "0b1d25b9-7c23-4e4f-ba6d-e03d3fe0956c",
+      "operation": "support_check",
+      "model": "openai/gpt-5.6-luna",
+      "status": "completed",
+      "error_code": null,
+      "usage": {
+        "cost": 0.002117742,
+        "provider": "Azure",
+        "latency_ms": 6562.246,
+        "request_id": "gen-1789227383-3MntivtHJ6RX972juwVO",
+        "total_tokens": 7890,
+        "prompt_tokens": 6862,
+        "completion_tokens": 1028
+      }
+    }
+  ],
+  "usage_totals": {
+    "attempts": 12,
+    "statuses": {
+      "completed": 12
+    },
+    "known_cost_usd": "0.018422169",
+    "unknown_cost_count": 0,
+    "unique_receipts": 12,
+    "direct_OpenAI_usage_seconds": 116,
+    "direct_OpenAI_cost": "not supplied; seconds are not a monetary receipt"
+  },
+  "media": {
+    "peers": [
+      {
+        "state": "closed",
+        "receivers": [
+          "ended"
+        ]
+      }
+    ],
+    "audioElements": 0,
+    "fixtureRecorder": "inactive"
+  },
+  "mechanical_judgment": "PASS: exact two recorded requests admitted once each; both answers completed; latest run created and completed after captured End; correct closed snapshot/usage retained despite late injection error; captured final answer/source/receipts equal DB.",
+  "independent_semantic_judgment": {
+    "PT006": "PASS: consultation completion, RF overview/alternatives, no prior RF and undecided cost/downtime context preserved. Missing follow-up date/interval remains missing. Substantive provider transcript is faithful, though shorter than written answer.",
+    "PT004_deposit": "PASS: rejects the assumption a paid deposit is established; does not infer zero, no payment, an amount or consultation-price substitution. Entire PT-004 original supports record-bounded absence. Patient scope is PT-004; no PT-006 evidence permitted in that part.",
+    "post_End_speech": "No factual response to deposit question appears in stored output transcript; last utterance is the pre-End “I’m checking” already visible in the pre-End capture. No output transcript event follows closure; actual peer/receiver ended and audio elements are removed. This is transport/caption evidence, not human listening."
+  },
+  "limitations": [
+    "One actual post-fix scenario is a regression, not an independent reliability rate.",
+    "Physical microphone/human listening and advertised browser/hosted acceptance remain unverified.",
+    "Media offsets are not subtracted from wall-clock timestamps.",
+    "No provider calls, replay, runtime restart or application mutation by this reviewer."
+  ]
+}

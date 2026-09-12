@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "files": {
+    "development": {
+      "sha256": "cf072be8b0ed75af3aaa0bc5db279cf281d85ecb87566aa8e8819a11232fd143",
+      "cases": 40
+    },
+    "holdout": {
+      "sha256": "42035011cd27117ed769e64a43ee5da483941cb5fe1a8d503aaef333f0b57dc2",
+      "cases": 20
+    },
+    "voice": {
+      "sha256": "87f91e52f16764018927504c79379ef341a487d4e0683d65c7393fd8ebb50408",
+      "cases": 12
+    },
+    "mutations": {
+      "sha256": "1012ebbfc0b6eaa1402dc2f3fd737c41a0719db443cf3c1b355580d1126b07fa",
+      "cases": 6
+    },
+    "development-v2": {
+      "sha256": "94762ecdfae947bd8f10f358a48b9601a01db1d544f8d48d9f06641d622f2f92",
+      "cases": 2
+    },
+    "development-v3": {
+      "sha256": "97bcdcdeffe0f42acb1006d091ef783cb45ce6975bd9782bef8a237297ee9efd",
+      "cases": 6
+    },
+    "holdout-v2": {
+      "sha256": "6e0674e941e2d46878753a245617a34b201522a80f82cbba83e28cdf63b7599c",
+      "cases": 20
+    },
+    "development-interval-v6": {
+      "sha256": "0adfa141c4372c0ee90c4b2d8199d7d87b3b5b06f3592e6748d505142b60ad4e",
+      "cases": 1
+    }
+  },
+  "never_ingest": true
+}

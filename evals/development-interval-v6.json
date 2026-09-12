@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "kind": "development_regression",
+  "corpus_sha256": "b66264c95a383b2169650083ca85bd9f50cf3929b838ac7790ff6b6049a6901a",
+  "retired_from": {
+    "suite": "holdout",
+    "sha256": "42035011cd27117ed769e64a43ee5da483941cb5fe1a8d503aaef333f0b57dc2",
+    "retired_case_ids": [
+      "H01",
+      "H02",
+      "H03",
+      "H04",
+      "H05",
+      "H06",
+      "H07",
+      "H08",
+      "H09"
+    ],
+    "retired_at": "2026-09-11T15:51:47.801813+00:00",
+    "reason": "All nine scenarios issued in the stopped first selected-pipeline run are now development evidence. Source review and saved replies informed general scope, citation and answerability corrections. Unissued H10\u2013H20 remain eligible for the replacement holdout."
+  },
+  "review_policy": "No keyword-based factual quality scores. Required facts, answerability, unsupported claims and citation support require recorded author or independent human assessment. Automated contract and retrieval coverage are separate.",
+  "cases": [
+    {
+      "id": "H05",
+      "family": "holdout.deadline.aggregate",
+      "question": "As of September 30, 2026, are the two-, six-, and four-week follow-ups overdue?",
+      "scope": {
+        "patient_id": null,
+        "as_of": "2026-09-10"
+      },
+      "required_facts": [
+        "Intervals documented for PT-001/PT-004/PT-008",
+        "No encounter dates to compute due or overdue"
+      ],
+      "required_sources": [
+        "PT-001",
+        "PT-004",
+        "PT-008"
+      ],
+      "forbidden_claims": [
+        "Publication dates treated as encounters",
+        "Overdue conclusion"
+      ],
+      "expected_answerability": "partial",
+      "reviewer_type": "author-authored annotation; factual outcomes require author or independent human review",
+      "assessment": null
+    }
+  ],
+  "purpose": "One targeted re-generation for unanchored documented follow-up intervals; other corrected cases reuse saved drafts."
+}

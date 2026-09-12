@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "kind": "source_mutation",
+  "classification": "Targeted evaluation-only counterfactual unresolved conflict; not a claim about the original corpus and not new independent holdout proof.",
+  "base_bundle": {
+    "path": "artifacts/verification/intelligence-20260912/retrieval-audit/fts-v2-large.sqlite",
+    "index_id": "4bac79a1aaf46f400446aebb",
+    "sha256": "74ea709f0aa3949156664a760c12283a3173e24920b351cf61abb46d7dd39255",
+    "corpus_sha256": "b66264c95a383b2169650083ca85bd9f50cf3929b838ac7790ff6b6049a6901a"
+  },
+  "execution": {
+    "isolation": "Clone the verified base bundle separately for each case. Apply replacements only to in-memory evaluation data. Never modify supplied corpus files, the production manifest, durable source records, or the active index.",
+    "source_replacements": "Resolve each mutations[].doc_id against the BASE document map. For each replacement require the string old to occur exactly once in the named field, then replace it with new. A renamed doc_id must be unique in the resulting map. Sources not named in a case must remain byte-for-byte unchanged.",
+    "annotation_replacements": "Resolve each policy_annotation_replacements[].doc_id against the BASE config.policies list. Require its named field to equal old, then replace the entire field value with new. Validate all resulting provenance/supersession quotes and effective intervals against the mutated source text.",
+    "hashes_and_index": [
+      "Recompute every changed SourceDocument.sha256 from its UTF-8 text; preserve unchanged source metadata except explicitly listed replacements.",
+      "Create a deterministic synthetic corpus byte stream from all final seven-field source records, sorted by final doc_id, using ensure_ascii=false, sort_keys=true, separators=(',',':'), one JSON record per line with a final newline. SHA-256 of those bytes is the fixture corpus_checksum; it must differ from the supplied corpus checksum.",
+      "Rebuild FTS v2 rows from final doc_id/title/text. Never retain stale search text or old identity keys after a rename.",
+      "Set config.embedding=null and remove embeddings from the fixture bundle. A changed source must not reuse its old semantic vector as if it described the altered text. These offline fixtures use lexical retrieval so no embedding calls are needed.",
+      "Add config.evaluation_fixture with the case id and the frozen suite SHA-256. Recompute index id as the first 24 hex characters of SHA-256(canonical JSON of {corpus_checksum,config}), matching Bundle's canonicalization. Finalize SQLite, then compute the bundle checksum from its actual bytes.",
+      "Resolve scopes and source citations against this isolated fixture bundle. Save the exact mutated sources, retrieval order, allowed sources, generation/checker receipts, answer and citation offsets with each outcome. The base bundle and active index must remain unchanged."
+    ],
+    "retrieval_mode": "lexical",
+    "top_k": 8,
+    "conversation_context": "Use a fresh conversation with no previous answers for every case. Do not tell the generator the old values or the expected outcome."
+  },
+  "author_role": "Source-derived fixture author agent; not human review.",
+  "created_at_utc": "2026-09-12T11:24:44.038720+00:00",
+  "construction_status": "Mutation specification only; no fixture bundle constructed or provider call made by author.",
+  "cases": [
+    {
+      "id": "UCF-001",
+      "family": "unresolved_equal_authority_policy_conflict",
+      "question": "Using the supplied policy records for September 12, 2026, which notice window governs routine cancellations, and does the policy impose an automatic fee?",
+      "mutations": [
+        {
+          "doc_id": "OPS-306-V1",
+          "replacements": [
+            {
+              "field": "title",
+              "old": "Appointment Cancellation Policy - Superseded",
+              "new": "Appointment Cancellation Policy - Concurrent A"
+            },
+            {
+              "field": "version",
+              "old": "1.0",
+              "new": "2.0"
+            },
+            {
+              "field": "effective_date",
+              "old": "2026-01-01",
+              "new": "2026-07-01"
+            },
+            {
+              "field": "authority",
+              "old": "Superseded Policy",
+              "new": "Current Policy"
+            },
+            {
+              "field": "text",
+              "old": "Superseded policy, effective January 1, 2026 through June 30, 2026.\n\nRoutine appointments canceled with less than 24 hours' notice may be subject to a cancellation fee unless waived by management. This version is retained only to test version-aware retrieval.",
+              "new": "Current policy, effective July 1, 2026.\n\nRoutine appointments should be canceled or rescheduled at least 24 hours in advance when possible. Late-cancellation or no-show handling is determined by the current scheduling policy and may be waived by authorized staff."
+            }
+          ]
+        },
+        {
+          "doc_id": "OPS-306-V2",
+          "replacements": [
+            {
+              "field": "title",
+              "old": "Appointment Cancellation Policy - Current",
+              "new": "Appointment Cancellation Policy - Concurrent B"
+            },
+            {
+              "field": "text",
+              "old": "Current policy, effective July 1, 2026.\n\nRoutine appointments should be canceled or rescheduled at least 48 hours in advance when possible. Late-cancellation or no-show handling is determined by the current scheduling policy and may be waived by authorized staff. This version supersedes OPS-306-V1.\n\nWhen asked about the cancellation window, the assistant should use this version and may mention that an older 24-hour policy was superseded.",
+              "new": "Current policy, effective July 1, 2026.\n\nRoutine appointments should be canceled or rescheduled at least 48 hours in advance when possible. Late-cancellation or no-show handling is determined by the current scheduling policy and may be waived by authorized staff."
+            }
+          ]
+        }
+      ],
+      "policy_annotation_replacements": [
+        {
+          "doc_id": "OPS-306-V1",
+          "replacements": [
+            {
+              "field": "valid_from",
+              "old": "2026-01-01",
+              "new": "2026-07-01"
+            },
+            {
+              "field": "valid_through",
+              "old": "2026-06-30",
+              "new": null
+            },
+            {
+              "field": "provenance_quote",
+              "old": "Superseded policy, effective January 1, 2026 through June 30, 2026.",
+              "new": "Current policy, effective July 1, 2026."
+            }
+          ]
+        },
+        {
+          "doc_id": "OPS-306-V2",
+          "replacements": [
+            {
+              "field": "supersedes",
+              "old": [
+                "OPS-306-V1"
+              ],
+              "new": []
+            },
+            {
+              "field": "supersession_quote",
+              "old": "This version supersedes OPS-306-V1.",
+              "new": null
+            }
+          ]
+        }
+      ],
+      "expected_answerability": "partial",
+      "required_sources": [
+        "OPS-306-V1",
+        "OPS-306-V2"
+      ],
+      "required_facts": [
+        "One current policy asks for at least 24 hours notice when possible.",
+        "The other current policy asks for at least 48 hours notice when possible.",
+        "Both apply on the requested date and conflict; the supplied evidence does not establish which notice window governs.",
+        "The records do not impose an automatic fee; handling follows scheduling policy and may be waived by authorized staff."
+      ],
+      "expected_evidence": [
+        {
+          "doc_id": "OPS-306-V1",
+          "quote": "Current policy, effective July 1, 2026.\n\nRoutine appointments should be canceled or rescheduled at least 24 hours in advance when possible. Late-cancellation or no-show handling is determined by the current scheduling policy and may be waived by authorized staff."
+        },
+        {
+          "doc_id": "OPS-306-V2",
+          "quote": "Current policy, effective July 1, 2026.\n\nRoutine appointments should be canceled or rescheduled at least 48 hours in advance when possible. Late-cancellation or no-show handling is determined by the current scheduling policy and may be waived by authorized staff."
+        }
+      ],
+      "forbidden_original_values": [],
+      "forbidden_claims": [
+        "Declaring either 24 or 48 hours uniquely governing without disclosing the unresolved conflict.",
+        "Claiming OPS-306-V2 explicitly supersedes OPS-306-V1 in this mutated evidence.",
+        "Using a later effective date or higher numeric metadata version to resolve the tie; the mutated values are equal.",
+        "Claiming an automatic fee or inventing a fee amount."
+      ],
+      "review_note": "Evaluation-only counterfactual: original corpus has a resolved V1/V2 succession. Here both policy documents are Current Policy, version2.0, effective July1,2026, with no ending date or explicit supersession. Both give the same kind of requested notice rule, differing only24vs48, so this tests a real unresolved same-type conflict rather than mixing a fee threshold with a notice request. Document-ID suffixes are not precedence evidence. A supported explanation of both conflicting rules and absent governing resolution is required; do not demand an invented tie-break. Metadata/provenance quotes are replaced consistently. Root constructs and validates the isolated fixture bundle separately."
+    }
+  ]
+}

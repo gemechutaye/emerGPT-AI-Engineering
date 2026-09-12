@@ -1,0 +1,204 @@
+/* Shared EMER identity and honest, event-driven response presentation. */
+.assistant-identity {
+  display: inline-flex;
+  flex: 0 0 auto;
+  color: var(--ink);
+  vertical-align: middle;
+}
+.assistant-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  line-height: 1;
+}
+.assistant-identity .brand-art {
+  width: 23px;
+  height: 26px;
+  flex: 0 0 23px;
+}
+.assistant-identity .brand-symbol {
+  width: 23px;
+  height: 26px;
+  gap: 3px;
+}
+.assistant-identity .brand-symbol i {
+  width: 22px;
+  height: 4px;
+  flex: 0 0 4px;
+  border-radius: 1.5px;
+  transform-origin: left center;
+}
+.assistant-identity .brand-symbol i:nth-child(2) {
+  width: 15px;
+}
+.assistant-identity .brand-symbol i:last-child {
+  width: 20px;
+}
+.assistant-identity .brand-wordmark {
+  font-size: 21px;
+  letter-spacing: -0.8px;
+  font-weight: 700;
+}
+.assistant-identity.is-compact .brand-art {
+  width: 18px;
+  height: 21px;
+  flex-basis: 18px;
+}
+.assistant-identity.is-compact .brand-symbol {
+  width: 18px;
+  height: 21px;
+  gap: 2.5px;
+}
+.assistant-identity.is-compact .brand-symbol i {
+  width: 17px;
+  height: 3px;
+  flex-basis: 3px;
+}
+.assistant-identity.is-compact .brand-symbol i:nth-child(2) {
+  width: 12px;
+}
+.assistant-identity.is-compact .brand-symbol i:last-child {
+  width: 16px;
+}
+.assistant-identity.is-compact .brand-wordmark {
+  font-size: 17px;
+  letter-spacing: -0.55px;
+}
+.assistant-identity.is-compact .assistant-brand {
+  gap: 6px;
+}
+
+.answer-content .answer-heading {
+  min-height: 28px;
+  margin-bottom: 4px;
+  gap: 12px;
+}
+.answer-content .answer-label {
+  letter-spacing: 0;
+}
+.answer-content .answer-activity {
+  gap: 18px;
+  align-items: baseline;
+}
+.answer-content .run-activity {
+  margin: 2px 0 18px;
+}
+.answer-content .run-activity.is-active {
+  margin-bottom: 24px;
+}
+.run-activity summary {
+  gap: 7px;
+  line-height: 1.5;
+  border-radius: 5px;
+}
+.run-activity summary > svg {
+  flex-shrink: 0;
+  transition: transform 160ms ease;
+}
+.run-activity .activity-stage {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink);
+}
+.run-activity .activity-time {
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  padding-left: 3px;
+}
+.answer-content .answer-activity > .text-button {
+  min-height: 34px;
+  font-size: 12px;
+  margin: 0;
+  padding: 5px 8px;
+  border-radius: 7px;
+}
+.answer-activity > .text-button:hover {
+  background: var(--surface);
+}
+.published-answer > .resolved-scopes:first-child {
+  margin-top: 0;
+}
+.answer-reveal {
+  animation: answer-arrive 240ms cubic-bezier(0.2, 0.65, 0.3, 1) backwards;
+}
+.assistant-identity.is-working .brand-symbol i {
+  animation: emer-consider 1600ms ease-in-out infinite;
+}
+.assistant-identity.is-working .brand-symbol i:nth-child(2) {
+  animation-delay: 150ms;
+}
+.assistant-identity.is-working .brand-symbol i:last-child {
+  animation-delay: 300ms;
+}
+@keyframes emer-consider {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+  45% {
+    opacity: 0.5;
+    transform: scaleX(0.78);
+  }
+}
+@keyframes answer-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.sidebar-primary > button > svg {
+  flex-shrink: 0;
+}
+.sidebar-primary kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  min-height: 22px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--muted);
+  letter-spacing: 0;
+}
+.sidebar-primary kbd svg {
+  flex: 0 0 13px;
+}
+.transcript-turn,
+.is-live .transcript-turn {
+  display: block;
+}
+.transcript-turn .transcript-speaker {
+  display: inline-flex;
+  align-items: center;
+  min-height: 21px;
+  padding: 0;
+  margin: 0 0 7px;
+}
+.recap-answer-body > .recap-speaker {
+  margin-bottom: 14px;
+}
+.live-caption[data-speaker="output"] .live-caption-dot {
+  display: none;
+}
+.shared-message h2 {
+  line-height: 1.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .assistant-identity.is-working .brand-symbol i,
+  .answer-reveal {
+    animation: none;
+  }
+  .run-activity summary > svg {
+    transition: none;
+  }
+}

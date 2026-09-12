@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+  <defs><filter id="edge" x="-5%" y="-5%" width="110%" height="110%"><feGaussianBlur stdDeviation=".45"/></filter></defs>
+  <g fill="white" filter="url(#edge)">
+    <ellipse cx="499.72" cy="555.53" rx="396.9" ry="401.56"/>
+    <path d="M440 0h120v220H440z"/>
+  </g>
+</svg>

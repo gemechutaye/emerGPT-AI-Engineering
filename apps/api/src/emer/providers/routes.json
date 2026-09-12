@@ -1,0 +1,45 @@
+{
+  "config_version": "verified-2026-09-12-v4",
+  "routes": {
+    "openai/gpt-4.1-nano": {
+      "endpoints": [
+        "azure"
+      ],
+      "token_parameter": "max_completion_tokens",
+      "verification": "HTTP200 metadata generation via Azure on 2026-09-12; max_completion_tokens required; account ZDR policy retained"
+    },
+    "openai/gpt-5.6-luna": {
+      "endpoints": [
+        "azure/eu"
+      ],
+      "token_parameter": "max_completion_tokens",
+      "verification": "HTTP 200 structured-output capability probe; account ZDR policy retained"
+    },
+    "anthropic/claude-sonnet-4.6": {
+      "endpoints": [
+        "amazon-bedrock/global"
+      ],
+      "token_parameter": "max_tokens",
+      "verification": "HTTP 200 structured-output capability probe; account ZDR policy retained"
+    },
+    "openai/gpt-5.5": {
+      "endpoints": [
+        "azure/eu"
+      ],
+      "token_parameter": "max_completion_tokens",
+      "verification": "HTTP200 full-corpus structured generation and server citation validation passed; replaces Gemini3.6 after bounded HTTP400 schema failures"
+    },
+    "openai/text-embedding-3-small": {
+      "endpoints": [
+        "azure"
+      ],
+      "verification": "HTTP200 complete35-document and40-query embedding batches; returned provider alias preserved in usage"
+    },
+    "openai/text-embedding-3-large": {
+      "endpoints": [
+        "azure"
+      ],
+      "verification": "HTTP200 complete35-document and40-query embedding batches; returned provider alias preserved in usage"
+    }
+  }
+}

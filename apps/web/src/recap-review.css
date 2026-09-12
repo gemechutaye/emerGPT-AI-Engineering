@@ -1,0 +1,123 @@
+.typed-conversation-recap {
+  margin: 0 0 20px;
+  color: inherit;
+}
+.typed-conversation-recap > summary {
+  padding: 12px 0;
+  font-size: 13px;
+  cursor: pointer;
+}
+.typed-conversation-recap > summary:focus-visible {
+  outline: 2px solid #7594fb;
+  outline-offset: 2px;
+}
+/* The title lives outside .conversation; only its review tabs need to stick. */
+.conversation-review .review-tabs {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  flex-shrink: 0;
+  background: #fafafa;
+  box-shadow: 0 -2px 0 2px #fafafa;
+}
+.conversation-review .review-tabs button {
+  min-height: 48px;
+  font-weight: 600;
+  color: #626774;
+}
+.conversation-review .review-tabs button[aria-selected="true"] {
+  color: #252b38;
+  border-bottom-color: #5750a0;
+}
+.conversation-review [role="tabpanel"]:focus-visible {
+  outline: 2px solid #7594fb;
+  outline-offset: -2px;
+}
+.conversation-review .conversation-recap .recap-text {
+  color: #343b48;
+  font-size: 16px;
+  font-weight: 450;
+  line-height: 1.8;
+}
+.recap-sources {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid #e1e2e8;
+}
+.recap-sources > h3 {
+  margin: 0 0 6px;
+  color: #343b48;
+  font-size: 15px;
+  font-weight: 600;
+}
+.recap-sources-note {
+  margin: 0 0 18px;
+  color: #646b78;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.recap-answer {
+  border-bottom: 1px solid #e5e6eb;
+}
+.recap-answer > summary {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 64px;
+  padding: 15px 2px;
+  list-style: none;
+  cursor: pointer;
+}
+.recap-answer > summary::-webkit-details-marker {
+  display: none;
+}
+.recap-answer > summary > span {
+  flex: 1;
+  min-width: 0;
+}
+.recap-answer > summary > svg {
+  flex-shrink: 0;
+  color: #747b89;
+}
+.recap-answer[open] > summary > svg {
+  transform: rotate(90deg);
+}
+.recap-speaker {
+  display: block;
+  margin: 0 0 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #656b78;
+}
+.recap-question {
+  color: #303744;
+  font-size: 15px;
+  font-weight: 550;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+.recap-answer-body {
+  padding: 10px 2px 22px;
+  color: #3f4653;
+  font-size: 15px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+.recap-answer-body p {
+  margin: 0 0 12px;
+}
+.recap-answer-gaps,
+.recap-answer-next {
+  margin-top: 18px;
+}
+.recap-answer-gaps h4,
+.recap-answer-next h4 {
+  margin: 0 0 6px;
+  font-size: 13px;
+  font-weight: 600;
+}
+@media (max-width: 600px) {
+  .conversation-review .conversation-recap .recap-text {
+    font-size: 15px;
+  }
+}

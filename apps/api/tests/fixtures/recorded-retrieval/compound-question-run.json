@@ -1,0 +1,586 @@
+{
+  "id": "75548789-801d-4f16-b7d0-c7874b5a006c",
+  "conversation_id": "8266f8ba-cff7-4787-b07f-b3ca9cf9d19e",
+  "question": "I need a short reply for PT-006. Where are they in the decision process, what short-term effects does the RF microneedling overview mention, and what amount should I quote for the RF microneedling procedure itself?",
+  "context_version": 1,
+  "index_id": "4bac79a1aaf46f400446aebb",
+  "status": "completed",
+  "answer": {
+    "status": "partial",
+    "statements": [
+      {
+        "part_id": "part-1",
+        "text": "PT-006 has completed an educational consultation, reviewed RF microneedling and alternatives, requested cost information, and plans to decide later; no treatment decision is documented.",
+        "citations": [
+          {
+            "doc_id": "PT-006",
+            "title": "Synthetic Patient Record PT-006",
+            "version": "1.0",
+            "effective_date": "2026-09-01",
+            "authority": "Synthetic Patient Source",
+            "source_sha256": "6f129c66bf6a3698b1091569159c90f9d8b247089a9bc0e9ca2339492c7bc852",
+            "index_id": "4bac79a1aaf46f400446aebb",
+            "quote": "SYNTHETIC TRAINING RECORD - NOT A REAL PATIENT.\nPatient ID: PT-006\nAge: 38\nPrimary goal: skin tightening and texture\nRelevant context: No prior RF microneedling. Wants to understand expected downtime before deciding.\nCurrent status: Educational consultation completed. Provider reviewed RF microneedling overview and alternatives. Patient requested cost information and will decide later.\nThe AI assistant must not infer facts that are not stated in this record.",
+            "start": 0,
+            "end": 462
+          }
+        ]
+      },
+      {
+        "part_id": "part-1",
+        "text": "The RF microneedling overview mentions redness, mild swelling, pinpoint crusting, tenderness, and temporary dryness as possible short-term effects.",
+        "citations": [
+          {
+            "doc_id": "PROC-102",
+            "title": "RF Microneedling - General Overview",
+            "version": "1.0",
+            "effective_date": "2026-09-01",
+            "authority": "Approved Training Dataset",
+            "source_sha256": "1d0239c405fcb780d6a4ee5ee7a21f91e2ed61c73294548e2f8b46b4ccd4afb0",
+            "index_id": "4bac79a1aaf46f400446aebb",
+            "quote": "Expected short-term effects can include redness, mild swelling, pinpoint crusting, tenderness, and temporary dryness.",
+            "start": 528,
+            "end": 645
+          }
+        ]
+      }
+    ],
+    "gaps": [
+      {
+        "part_id": "part-1",
+        "text": "The supplied sources do not provide an amount for the RF microneedling procedure itself, so no procedure quote can be given."
+      }
+    ],
+    "next_steps": [],
+    "scopes": [
+      {
+        "part_id": "part-1",
+        "question": "I need a short reply for PT-006. Where are they in the decision process, what short-term effects does the RF microneedling overview mention, and what amount should I quote for the RF microneedling procedure itself?",
+        "patient_ids": [
+          "PT-006"
+        ],
+        "unknown_patient_ids": [],
+        "as_of": "2026-09-12",
+        "date_origin": "today",
+        "all_patients": false,
+        "patient_discovery": false,
+        "warnings": [
+          "Source effective dates are publication dates, not patient encounters or absolute follow-up deadlines."
+        ],
+        "applicable_policy_ids": [
+          "OPS-306-V2"
+        ],
+        "superseded_policy_ids": [
+          "OPS-306-V1"
+        ],
+        "conflicting_policy_ids": [],
+        "allowed_source_ids": [
+          "OPS-302",
+          "PROC-101",
+          "PROC-102",
+          "PROC-103",
+          "PROC-105",
+          "PROC-106",
+          "PROC-108",
+          "PT-006"
+        ],
+        "inapplicable_policy_ids": [
+          "OPS-306-V1"
+        ],
+        "policy_windows": [
+          {
+            "doc_id": "OPS-306-V1",
+            "family": "appointment-cancellation",
+            "valid_from": "2026-01-01",
+            "valid_through": "2026-06-30",
+            "relation": "superseded"
+          },
+          {
+            "doc_id": "OPS-306-V2",
+            "family": "appointment-cancellation",
+            "valid_from": "2026-07-01",
+            "valid_through": null,
+            "relation": "applicable"
+          }
+        ],
+        "source_reference_ids": []
+      }
+    ],
+    "index_id": "4bac79a1aaf46f400446aebb",
+    "index_checksum": "74ea709f0aa3949156664a760c12283a3173e24920b351cf61abb46d7dd39255",
+    "usage": [
+      {
+        "operation": "generation",
+        "model": "openai/gpt-5.6-luna",
+        "provider": "Azure",
+        "request_id": "gen-1789219731-TuAUtDpcutxjSv01xPPI",
+        "prompt_tokens": 5150,
+        "completion_tokens": 437,
+        "total_tokens": 5587,
+        "cost": 0.001315391,
+        "latency_ms": 4313.043
+      },
+      {
+        "operation": "support_check",
+        "model": "openai/gpt-5.6-luna",
+        "provider": "Azure",
+        "request_id": "gen-1789219735-XktOaNSc6YIG3Snlii3Z",
+        "prompt_tokens": 6968,
+        "completion_tokens": 778,
+        "total_tokens": 7746,
+        "cost": 0.00187154,
+        "latency_ms": 8939.79
+      }
+    ],
+    "diagnostics": {
+      "prompt_id": "answer-v14",
+      "retrieval": {
+        "mode": "hybrid",
+        "top_k": 8,
+        "scores": {
+          "PT-006": 0.03252247488101534,
+          "OPS-302": 0.02690100430416069,
+          "PROC-101": 0.031746031746031744,
+          "PROC-102": 0.03252247488101534,
+          "PROC-103": 0.030776515151515152,
+          "PROC-105": 0.02862400327131466,
+          "PROC-106": 0.02844551282051282,
+          "PROC-108": 0.027425373134328357
+        },
+        "latency_ms": 3.991,
+        "corpus_count": 35,
+        "raw_top_k_ids": [
+          "PROC-102",
+          "PT-006",
+          "PROC-101",
+          "PROC-103",
+          "PT-002",
+          "PROC-105",
+          "PROC-106",
+          "PT-001"
+        ],
+        "score_meaning": "Retrieval relevance with exact identifier priority, not answer confidence",
+        "mode_requested": "hybrid",
+        "raw_ranked_ids": [
+          "PROC-102",
+          "PT-006",
+          "PROC-101",
+          "PROC-103",
+          "PT-002",
+          "PROC-105",
+          "PROC-106",
+          "PT-001",
+          "PROC-108",
+          "PT-007",
+          "PT-005",
+          "PT-003",
+          "OPS-302",
+          "BIZ-501",
+          "PRACTICE-001",
+          "PROC-107",
+          "OPS-306-V2",
+          "PROC-104",
+          "PT-004",
+          "PRACTICE-002",
+          "IT-403",
+          "PT-008",
+          "PROC-110",
+          "PROC-109",
+          "CARE-201",
+          "CARE-202",
+          "OPS-306-V1",
+          "OPS-303",
+          "OPS-305",
+          "BIZ-502",
+          "OPS-307",
+          "OPS-304",
+          "OPS-301",
+          "IT-401",
+          "IT-402"
+        ],
+        "selected_count": 8,
+        "embedding_model": "openai/text-embedding-3-large",
+        "scoped_selection": [
+          {
+            "part_id": "part-1",
+            "selected_ids": [
+              "OPS-302",
+              "PROC-101",
+              "PROC-102",
+              "PROC-103",
+              "PROC-105",
+              "PROC-106",
+              "PROC-108",
+              "PT-006"
+            ],
+            "allowed_source_ids": [
+              "OPS-302",
+              "PROC-101",
+              "PROC-102",
+              "PROC-103",
+              "PROC-105",
+              "PROC-106",
+              "PROC-108",
+              "PT-006"
+            ],
+            "ranked_selected_ids": [
+              "PT-006",
+              "PROC-102",
+              "PROC-101",
+              "PROC-103",
+              "PROC-105",
+              "PROC-106",
+              "PROC-108",
+              "OPS-302"
+            ],
+            "permitted_ranked_ids": [
+              "PT-006",
+              "PROC-102",
+              "PROC-101",
+              "PROC-103",
+              "PROC-105",
+              "PROC-106",
+              "PROC-108",
+              "OPS-302",
+              "BIZ-501",
+              "PRACTICE-001",
+              "PROC-107",
+              "OPS-306-V2",
+              "PROC-104",
+              "PRACTICE-002",
+              "IT-403",
+              "PROC-110",
+              "PROC-109",
+              "CARE-201",
+              "CARE-202",
+              "OPS-306-V1",
+              "OPS-303",
+              "OPS-305",
+              "BIZ-502",
+              "OPS-307",
+              "OPS-304",
+              "OPS-301",
+              "IT-401",
+              "IT-402"
+            ],
+            "policy_expansion_ids": [],
+            "patient_expansion_ids": [],
+            "procedure_expansion_ids": [],
+            "procedure_reference_candidates": [],
+            "procedure_expansion_limit_exceeded": false
+          }
+        ],
+        "lexical_ranked_ids": [
+          "PT-006",
+          "PROC-102",
+          "PROC-101",
+          "PROC-103",
+          "OPS-306-V2",
+          "PT-002",
+          "PROC-105",
+          "OPS-302",
+          "PRACTICE-002",
+          "IT-403",
+          "PT-007",
+          "PT-005",
+          "PT-008",
+          "PT-003",
+          "PT-004",
+          "PT-001",
+          "OPS-306-V1",
+          "PROC-106",
+          "PROC-109",
+          "PROC-108",
+          "PROC-104",
+          "PROC-110",
+          "PROC-107",
+          "PRACTICE-001",
+          "CARE-201",
+          "CARE-202",
+          "BIZ-501",
+          "OPS-303",
+          "OPS-305"
+        ],
+        "explicit_source_ids": [
+          "PT-006"
+        ],
+        "semantic_ranked_ids": [
+          "PROC-102",
+          "PT-006",
+          "PROC-101",
+          "PROC-106",
+          "BIZ-501",
+          "PROC-103",
+          "PROC-108",
+          "PRACTICE-001",
+          "PT-001",
+          "PROC-107",
+          "PT-002",
+          "PROC-104",
+          "PROC-105",
+          "PT-003",
+          "PT-005",
+          "PT-007",
+          "PROC-110",
+          "PT-004",
+          "CARE-201",
+          "CARE-202",
+          "PT-008",
+          "OPS-302",
+          "PROC-109",
+          "OPS-303",
+          "IT-403",
+          "PRACTICE-002",
+          "OPS-305",
+          "BIZ-502",
+          "OPS-307",
+          "OPS-304",
+          "OPS-301",
+          "OPS-306-V2",
+          "OPS-306-V1",
+          "IT-401",
+          "IT-402"
+        ],
+        "selection_ranked_ids": [
+          "PT-006",
+          "PROC-102",
+          "PROC-101",
+          "PROC-103",
+          "PT-002",
+          "PROC-105",
+          "PROC-106",
+          "PT-001",
+          "PROC-108",
+          "PT-007",
+          "PT-005",
+          "PT-003",
+          "OPS-302",
+          "BIZ-501",
+          "PRACTICE-001",
+          "PROC-107",
+          "OPS-306-V2",
+          "PROC-104",
+          "PT-004",
+          "PRACTICE-002",
+          "IT-403",
+          "PT-008",
+          "PROC-110",
+          "PROC-109",
+          "CARE-201",
+          "CARE-202",
+          "OPS-306-V1",
+          "OPS-303",
+          "OPS-305",
+          "BIZ-502",
+          "OPS-307",
+          "OPS-304",
+          "OPS-301",
+          "IT-401",
+          "IT-402"
+        ],
+        "exact_title_source_ids": [],
+        "policy_family_expansion": []
+      },
+      "repair_count": 0,
+      "prompt_sha256": "0a4c79b2e48c92c63996cc324d8b82ac2d2db1314d849530313d8b14d170417b",
+      "support_check": "automated_pass",
+      "withheld_count": 0,
+      "answer_coverage": [
+        {
+          "reason": "The surviving answer establishes PT-006's decision-process status and lists the RF microneedling overview's short-term effects, but the requested procedure amount is unavailable in the permitted sources.",
+          "status": "partial",
+          "part_id": "part-1",
+          "answered_requests": [
+            "PT-006's current position in the decision process",
+            "The short-term effects mentioned in the RF microneedling overview"
+          ],
+          "unanswered_requests": [
+            "The amount to quote for the RF microneedling procedure itself"
+          ],
+          "missing_supported_facts": []
+        }
+      ],
+      "support_verdicts": [
+        {
+          "kind": "statement",
+          "index": 0,
+          "reason": "The PT-006 record states that the educational consultation was completed, RF microneedling and alternatives were reviewed, cost information was requested, and the patient will decide later, supporting the documented decision status.",
+          "supported": true,
+          "citation_replacements": [
+            {
+              "quote": "Current status: Educational consultation completed. Provider reviewed RF microneedling overview and alternatives. Patient requested cost information and will decide later.",
+              "doc_id": "PT-006"
+            }
+          ]
+        },
+        {
+          "kind": "statement",
+          "index": 1,
+          "reason": "The RF microneedling overview explicitly lists all five stated possible short-term effects.",
+          "supported": true,
+          "citation_replacements": [
+            {
+              "quote": "Expected short-term effects can include redness, mild swelling, pinpoint crusting, tenderness, and temporary dryness.",
+              "doc_id": "PROC-102"
+            }
+          ]
+        },
+        {
+          "kind": "gap",
+          "index": 0,
+          "reason": "The original question requests the procedure amount, but the complete permitted sources provide no RF microneedling procedure price or amount.",
+          "supported": true,
+          "citation_replacements": []
+        }
+      ],
+      "total_latency_ms": 13282.018,
+      "checker_prompt_id": "check-v18",
+      "rate_limit_retries": 0,
+      "citation_validation": "passed",
+      "empty_draft_fallback": false,
+      "checker_prompt_sha256": "91e527077e82ceabc5197ae6eedbf79a80bfa30c0a3ed2c3c9218c440c4b2982",
+      "split_exact_citation_count": 0,
+      "ignored_locked_repair_edits": [],
+      "verifier_citation_repair_count": 0,
+      "reused_immutable_support_verdicts": 0
+    }
+  },
+  "error": null,
+  "metrics": {
+    "model": "openai/gpt-5.6-luna",
+    "usage": [
+      {
+        "cost": 6.24e-06,
+        "model": "text-embedding-3-large",
+        "provider": "Azure",
+        "operation": "embedding",
+        "latency_ms": 795.461,
+        "request_id": "gen-emb-1789219730-2L1HYktP74lIX9Lxm2k5",
+        "total_tokens": 48,
+        "prompt_tokens": 48,
+        "completion_tokens": null
+      },
+      {
+        "cost": 0.001315391,
+        "model": "openai/gpt-5.6-luna",
+        "provider": "Azure",
+        "operation": "generation",
+        "latency_ms": 4313.043,
+        "request_id": "gen-1789219731-TuAUtDpcutxjSv01xPPI",
+        "total_tokens": 5587,
+        "prompt_tokens": 5150,
+        "completion_tokens": 437
+      },
+      {
+        "cost": 0.00187154,
+        "model": "openai/gpt-5.6-luna",
+        "provider": "Azure",
+        "operation": "support_check",
+        "latency_ms": 8939.79,
+        "request_id": "gen-1789219735-XktOaNSc6YIG3Snlii3Z",
+        "total_tokens": 7746,
+        "prompt_tokens": 6968,
+        "completion_tokens": 778
+      }
+    ],
+    "total_ms": 14223,
+    "source_count": 8,
+    "usage_source": "provider_attempt_ledger",
+    "retrieval_mode": "hybrid",
+    "provider_attempt_count": 3,
+    "unreceipted_provider_attempts": 0
+  },
+  "created_at": "2026-09-12T06:28:50.365933-07:00",
+  "completed_at": "2026-09-12T06:29:04.608339-07:00",
+  "events": [
+    {
+      "sequence": 1,
+      "type": "queued",
+      "data": {},
+      "created_at": "2026-09-12T06:28:50.371404-07:00"
+    },
+    {
+      "sequence": 2,
+      "type": "retrieving",
+      "data": {},
+      "created_at": "2026-09-12T06:28:50.378721-07:00"
+    },
+    {
+      "sequence": 3,
+      "type": "generating",
+      "data": {
+        "index_id": "4bac79a1aaf46f400446aebb",
+        "source_count": 8
+      },
+      "created_at": "2026-09-12T06:28:51.313094-07:00"
+    },
+    {
+      "sequence": 4,
+      "type": "completed",
+      "data": {},
+      "created_at": "2026-09-12T06:29:04.612730-07:00"
+    }
+  ],
+  "provider_attempts": [
+    {
+      "id": "176818c6-70ea-498f-94e4-b8a7c0eb5bc6",
+      "operation": "query_embedding",
+      "model": "openai/text-embedding-3-large",
+      "status": "completed",
+      "usage": {
+        "cost": 6.24e-06,
+        "model": "text-embedding-3-large",
+        "provider": "Azure",
+        "operation": "embedding",
+        "latency_ms": 795.461,
+        "request_id": "gen-emb-1789219730-2L1HYktP74lIX9Lxm2k5",
+        "total_tokens": 48,
+        "prompt_tokens": 48,
+        "completion_tokens": null
+      },
+      "error_code": null,
+      "created_at": "2026-09-12T06:28:50.494293-07:00",
+      "completed_at": "2026-09-12T06:28:51.299845-07:00"
+    },
+    {
+      "id": "0cea450d-8b46-4be3-8811-c6f16cd89b33",
+      "operation": "generation",
+      "model": "openai/gpt-5.6-luna",
+      "status": "completed",
+      "usage": {
+        "cost": 0.001315391,
+        "model": "openai/gpt-5.6-luna",
+        "provider": "Azure",
+        "operation": "generation",
+        "latency_ms": 4313.043,
+        "request_id": "gen-1789219731-TuAUtDpcutxjSv01xPPI",
+        "total_tokens": 5587,
+        "prompt_tokens": 5150,
+        "completion_tokens": 437
+      },
+      "error_code": null,
+      "created_at": "2026-09-12T06:28:51.320649-07:00",
+      "completed_at": "2026-09-12T06:28:55.638695-07:00"
+    },
+    {
+      "id": "5cdc839e-34fc-4e42-b1ce-c81b54ca5746",
+      "operation": "support_check",
+      "model": "openai/gpt-5.6-luna",
+      "status": "completed",
+      "usage": {
+        "cost": 0.00187154,
+        "model": "openai/gpt-5.6-luna",
+        "provider": "Azure",
+        "operation": "support_check",
+        "latency_ms": 8939.79,
+        "request_id": "gen-1789219735-XktOaNSc6YIG3Snlii3Z",
+        "total_tokens": 7746,
+        "prompt_tokens": 6968,
+        "completion_tokens": 778
+      },
+      "error_code": null,
+      "created_at": "2026-09-12T06:28:55.647749-07:00",
+      "completed_at": "2026-09-12T06:29:04.593476-07:00"
+    }
+  ]
+}

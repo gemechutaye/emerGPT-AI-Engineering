@@ -1,0 +1,388 @@
+{
+  "status": "development_fixes_pending_focused_verification",
+  "assessment_at": "2026-09-11T16:00:59.366387+00:00",
+  "reviewer_type": "author_subagent_review",
+  "independent_human_review": false,
+  "stage": "raw_development_drafts_before_repair_or_checker",
+  "current_selection": {
+    "decided_at": "2026-09-11",
+    "decision_type": "explicit_user_selection",
+    "model": "openai/gpt-5.6-luna",
+    "operations": [
+      "answer_generation",
+      "intent_resolution",
+      "support_check",
+      "draft_recheck"
+    ],
+    "retrieval": "full_permitted_context",
+    "corpus_documents": 35,
+    "reason": "The user selected Luna for the current implementation. Historical model comparisons are retained; this decision is not a claim that Luna won every quality comparison.",
+    "final_validation": {
+      "scenario_count": 20,
+      "trials_per_scenario": 3,
+      "total_trials": 60
+    },
+    "acceptance_thresholds": {
+      "critical_fabrications": 0,
+      "material_unsupported_accepted_claims": 0,
+      "minimum_required_fact_coverage": 0.9,
+      "minimum_correct_answerability": 0.95
+    },
+    "retired_prerequisites": [
+      "further_competing_generation_model_comparisons",
+      "complete_original_240_job_retrieval_comparison",
+      "two_distinct_final_models"
+    ]
+  },
+  "coverage": {
+    "requested_drafts": 120,
+    "reviewed_drafts": 119,
+    "review_batches": 3,
+    "missing_review_ids": [],
+    "duplicate_review_ids": [],
+    "provider_or_schema_failures": 1
+  },
+  "models": [
+    {
+      "model": "anthropic/claude-sonnet-4.6",
+      "requested_drafts": 40,
+      "reviewed_drafts": 39,
+      "provider_or_schema_failures": 1,
+      "required_facts": {
+        "present": 121,
+        "reviewed_total": 129,
+        "requested_total": 132
+      },
+      "answerability": {
+        "matches_original_annotation": 39,
+        "reviewed_total": 39,
+        "disagreements": []
+      },
+      "unsupported": {
+        "drafts_with_critical_claims": 3,
+        "critical_claim_count": 5,
+        "critical_drafts_passing_citation_contract": 2,
+        "critical_draft_ids": [
+          "A044",
+          "A060",
+          "A079"
+        ],
+        "all_flagged_claim_count": 25,
+        "drafts_with_flagged_claims": 16,
+        "explicitly_material_claim_count": 15,
+        "drafts_with_unclassified_materiality": 3
+      },
+      "citations": {
+        "references": 297,
+        "exact_quote_matches": 296,
+        "out_of_scope_references": 2,
+        "drafts_with_semantic_support_issues": 22,
+        "reviewer_support_issue_count": 33,
+        "citation_contract_passed_drafts": 30
+      }
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "requested_drafts": 40,
+      "reviewed_drafts": 40,
+      "provider_or_schema_failures": 0,
+      "required_facts": {
+        "present": 121,
+        "reviewed_total": 132,
+        "requested_total": 132
+      },
+      "answerability": {
+        "matches_original_annotation": 39,
+        "reviewed_total": 40,
+        "disagreements": [
+          "A031"
+        ]
+      },
+      "unsupported": {
+        "drafts_with_critical_claims": 0,
+        "critical_claim_count": 0,
+        "critical_drafts_passing_citation_contract": 0,
+        "critical_draft_ids": [],
+        "all_flagged_claim_count": 0,
+        "drafts_with_flagged_claims": 0,
+        "explicitly_material_claim_count": 0,
+        "drafts_with_unclassified_materiality": 0
+      },
+      "citations": {
+        "references": 262,
+        "exact_quote_matches": 262,
+        "out_of_scope_references": 0,
+        "drafts_with_semantic_support_issues": 1,
+        "reviewer_support_issue_count": 1,
+        "citation_contract_passed_drafts": 36
+      }
+    },
+    {
+      "model": "openai/gpt-5.6-luna",
+      "requested_drafts": 40,
+      "reviewed_drafts": 40,
+      "provider_or_schema_failures": 0,
+      "required_facts": {
+        "present": 118,
+        "reviewed_total": 132,
+        "requested_total": 132
+      },
+      "answerability": {
+        "matches_original_annotation": 40,
+        "reviewed_total": 40,
+        "disagreements": []
+      },
+      "unsupported": {
+        "drafts_with_critical_claims": 1,
+        "critical_claim_count": 1,
+        "critical_drafts_passing_citation_contract": 0,
+        "critical_draft_ids": [
+          "A049"
+        ],
+        "all_flagged_claim_count": 3,
+        "drafts_with_flagged_claims": 3,
+        "explicitly_material_claim_count": 1,
+        "drafts_with_unclassified_materiality": 2
+      },
+      "citations": {
+        "references": 211,
+        "exact_quote_matches": 210,
+        "out_of_scope_references": 1,
+        "drafts_with_semantic_support_issues": 6,
+        "reviewer_support_issue_count": 6,
+        "citation_contract_passed_drafts": 34
+      }
+    }
+  ],
+  "identities": {
+    "generation_config_sha256": "c45e86744f00fbaab2a7e16cc41a2c6d702bca003183ae9a1c529a68d8f02fb4",
+    "suite_sha256": "cf072be8b0ed75af3aaa0bc5db279cf281d85ecb87566aa8e8819a11232fd143",
+    "corpus_sha256": "b66264c95a383b2169650083ca85bd9f50cf3929b838ac7790ff6b6049a6901a",
+    "index_id": "7eaebabfe97c6b32c68ad65f",
+    "index_checksum": "b092d92ec093a88947fc890198a79cf81bafb0187539bb5a197051775f68daa5",
+    "generation_source_file_sha256": null,
+    "generation_prompt_sha256": "b321ff96e8f6fdfc809119f781b7de999fdbd5c6a5608a3ff6cb164e969a0c1c",
+    "checker_prompt_sha256": "f372701c4bb88445d79736eebda35cc11c98b3d2db41cf69195237126b8fb778",
+    "blinded_package_sha256": "e9d450c700782b79f36785fd7628894a5f0de76f8a790267db4aaed5016ba5c0",
+    "blinding_map_sha256": "e90220cbfc766b6bfe34e245259b2a7c0e923618173e8a8165a836742a6f6b5e",
+    "current_scope_code_sha256": "1b51c78749e86110f116b6bd1b81e0a4b71d06240f38d4994d7b427b579eac12"
+  },
+  "review_batches": [
+    {
+      "batch": "a",
+      "sha256": "c5f39efc6a9327bc35698f95f06958baacc87790a7bd543286ed1c30fd480d8c"
+    },
+    {
+      "batch": "b",
+      "sha256": "bef7bde2729381ef78a586fea70ba60f656c5cd80f95f7be8c1c2b85edf99852"
+    },
+    {
+      "batch": "c",
+      "sha256": "90a11fb9e0cbb49b0b284a68b2d73db0ceebede410ba194ffe80a641a0c1fd00"
+    }
+  ],
+  "limitations": [
+    "These are raw development drafts, including drafts rejected by deterministic validation; they are not published final answers.",
+    "Three blinded author-subagents reviewed semantics. This is not independent-human verification or an automated checker score.",
+    "Reviewer critical/material severity classifications are preserved without silently adjudicating differences. Some noncritical claims lack a materiality classification.",
+    "Required-fact coverage counts explicit answer prose, including gaps/next steps, rather than facts appearing only in quoted citations. Bundled rubric facts require all substantive components.",
+    "Answerability compares each reviewer judgment with the original annotations; ambiguities about meta-questions and incidental gaps are retained. A schema/provider failure has no factual review and is separately counted.",
+    "Exact quote membership is a deterministic substring property, not evidence of semantic support. Reviewer issue counts may group multiple citations and are not a citation-level correctness percentage.",
+    "The modal-may scope bug affected original D02 evidence. Original outputs are retained; the offline fix has not been re-evaluated with paid providers.",
+    "The original generation run captured corpus, index, suite, prompt and provider configuration identities, but no per-code-file hashes. Current code hashes must not be retroactively attributed to those requests."
+  ],
+  "flagged_review_notes": [
+    {
+      "blind_id": "A031",
+      "case_id": "D34",
+      "model": "openai/gpt-5.5",
+      "reviewer_classified_critical": false,
+      "citation_contract_passed": true,
+      "expected_answerability": "partial",
+      "reviewer_answerability": "answered",
+      "note": "Answerability annotation ambiguity: the literal question asks whether the interval is quantified, not for a numeric interval. Definitions plus 'not quantified' fully answer that wording, so I infer answered; the fixture's partial label is defensible only under a convention that every unprovided numeric detail makes the answer partial. No 30-day interval or consultation-as-conversion claim."
+    },
+    {
+      "blind_id": "A044",
+      "case_id": "D36",
+      "model": "anthropic/claude-sonnet-4.6",
+      "reviewer_classified_critical": true,
+      "citation_contract_passed": true,
+      "expected_answerability": "partial",
+      "reviewer_answerability": "partial",
+      "note": "March fee possibility and management waiver are present. September prose erases when possible by calling 48 hours required. Both dollar amounts are withheld. V1 is also misdescribed as referencing a scheduling policy."
+    },
+    {
+      "blind_id": "A049",
+      "case_id": "D37",
+      "model": "openai/gpt-5.6-luna",
+      "reviewer_classified_critical": true,
+      "citation_contract_passed": false,
+      "expected_answerability": "partial",
+      "reviewer_answerability": "partial",
+      "note": "All eight IDs and correct final interval/noninterval groups are eventually given, and overdue status is properly withheld. However, an earlier published statement incorrectly puts PT-008 in the no-interval group; a later correction does not remove this contradiction."
+    },
+    {
+      "blind_id": "A060",
+      "case_id": "D13",
+      "model": "anthropic/claude-sonnet-4.6",
+      "reviewer_classified_critical": true,
+      "citation_contract_passed": true,
+      "expected_answerability": "answered",
+      "reviewer_answerability": "answered",
+      "note": "All seven CARE-201 checks and relevant procedure considerations are correctly supplied. An extra consultation-workflow sentence invents completion before scheduling as a mandatory prerequisite, which OPS-302 does not establish."
+    },
+    {
+      "blind_id": "A079",
+      "case_id": "D31",
+      "model": "anthropic/claude-sonnet-4.6",
+      "reviewer_classified_critical": true,
+      "citation_contract_passed": false,
+      "expected_answerability": "answered",
+      "reviewer_answerability": "answered",
+      "note": "All four PT-007 facts preserve undocumented versus absent history and pending assessment. Extra workflow text turns a general sequence into hard completion prerequisites; some patient-specific assertions and next-step triggers lack support in their cited excerpts."
+    }
+  ],
+  "pending_gates": [
+    "Source-review every outcome of the selected Luna pipeline across 20 frozen holdout scenarios, three trials each (60 trials).",
+    "Meet unchanged factual and answerability thresholds; any holdout-derived tuning needs fresh affected holdout scenarios.",
+    "Verify deployed typed flows and natural two-way Live with actual physical microphone/listening checks.",
+    "Final-pipeline factual, deployed, and spoken acceptance have not been established."
+  ],
+  "selected_path_development": {
+    "checker_focus": {
+      "reviewer_type": "automated checker compared with frozen author-reviewed unsupported items",
+      "stage": "targeted_development_not_final_acceptance",
+      "case_count": 7,
+      "complete_coverage_count": 7,
+      "expected_rejection_count": 11,
+      "expected_rejections_observed": 11,
+      "actual_reported_cost": 0.026005815,
+      "actual_reported_tokens": 68803,
+      "run_config_sha256": "73e6029d3678a6944703f8cd8b2e2f4b0b8b5dee311ae81b27efe211cd3225c0",
+      "focus_sha256": "8d2e2108be9a9317915305c392dcde2310ecd3020c50276e511531778345b0d9"
+    },
+    "source_mutations": {
+      "assessed_at": "2026-09-11T06:51:47.213958+00:00",
+      "reviewer_type": "author_subagent_review",
+      "independent_human_review": false,
+      "stage": "source_mutation_development_not_final_holdout",
+      "run_config_sha256": "1422fe1b3eb87096675ac72c372c7abac184e12c98011b702acd73fbe0899edc",
+      "source_ledger_sha256": "db602006d354452ff2283c5b0cb6f2a201b50553da75886476fce6452927bc50",
+      "completed": 6,
+      "reviewed": 6,
+      "required_mutations_observed": 6,
+      "unsupported_critical_claims": 0,
+      "material_unsupported_claims": 0,
+      "actual_reported_cost": 0.04527061,
+      "actual_reported_tokens": 139474,
+      "provider_calls": 16
+    },
+    "citation_repair_regressions": {
+      "completed": 6,
+      "failed_citation_validation": 0,
+      "semantic_quality_pass": false,
+      "findings": [
+        "Redundant gaps mislabeled fully answered evidentiary questions as partial.",
+        "An incidental price lacked explicit fictional qualification in prose."
+      ],
+      "current_offline_corrections": [
+        "Per-part coverage assesses only the assigned patient/date slice.",
+        "The original request determines whether an unknown is a genuine requested gap.",
+        "Documented intervals remain unanchored to the question or publication date."
+      ],
+      "live_reverification_pending": true
+    },
+    "retired_first_holdout_source_review": {
+      "reviewer_type": "author_subagent_review",
+      "independent_human_review": false,
+      "stage": "retired_first_holdout_development_evidence",
+      "input_sha256": "70d2647e1fc8a003f30bac9cea43a047035c522841385d87ced87af9b2bc2d1c",
+      "assessment_sha256": "6e60f606f83f8cadf6b09e76607583c0b692db37543642d44b1d5f327e0a29a3",
+      "reviewed": 20,
+      "issued_in_original_run": 27,
+      "required_facts_covered": 28,
+      "required_facts_total": 39,
+      "answerability_matches": 7,
+      "answerability_total": 20,
+      "critical_fabrications": 0,
+      "semantic_citation_issues": 4,
+      "operational_failures": 1,
+      "annotation_disagreements": [
+        "H01/H02 bundled annotations include substantive details not always explicit in the question; original 28/39 assessment is retained rather than rescored.",
+        "H05 missing patient mappings came from scope resolution, not publication-date filtering; later retrieval fixes were assessed on separate developmental receipts.",
+        "Some complete prose received partial because an unrequested or rejected gap incorrectly influenced answerability."
+      ]
+    },
+    "latest_six_case_regressions": {
+      "assessed_at": "2026-09-11T15:58:38.421629+00:00",
+      "reviewer_type": "author_subagent_review",
+      "independent_human_review": false,
+      "run_config_sha256": "74da7e59409b5f69d8f3051ee16faec0f0774aeddd3f4a1769f4d133878335ac",
+      "source_ledger_sha256": "afee9a1827dc8722666d79248d24341ce08c66c90753bfae5699a753121a63c3",
+      "suite_sha256": "97bcdcdeffe0f42acb1006d091ef783cb45ce6975bd9782bef8a237297ee9efd",
+      "trials": 6,
+      "published": 5,
+      "operational_failures": 1,
+      "required_facts_covered": 8,
+      "required_facts_total": 12,
+      "answerability_matches": 2,
+      "answerability_total": 6,
+      "critical_fabrications": 0,
+      "material_unsupported_claims": 1,
+      "semantic_citation_issues": 1,
+      "exact_scoped_quotes": 29,
+      "quotes_total": 29,
+      "semantic_quality_pass": false,
+      "reported_cost": 0.068758547,
+      "reported_tokens": 203230,
+      "provider_calls": 21,
+      "calls_with_unknown_usage": 1,
+      "unknown_receipt": {
+        "request_id": "gen-1789142011-AQHb8pgVKieO6jSacpzk",
+        "operation": "repair",
+        "token_budget": 4500,
+        "reported_cost": null,
+        "reported_tokens": null,
+        "receipt_lookup_http_status": 404,
+        "finish_reason": null,
+        "schema_failure_location": null,
+        "reason": "Previous adapter retained usage metadata but not failed response content or validation cause; no reconstruction or retry."
+      }
+    }
+  },
+  "selected_path_final": {
+    "status": "replacement_holdout_frozen_not_dispatched",
+    "declared_trials": 60,
+    "dispatched": 0,
+    "source_review_complete": false,
+    "suite_sha256": "6e0674e941e2d46878753a245617a34b201522a80f82cbba83e28cdf63b7599c",
+    "retired_to_development": [
+      "H01",
+      "H02",
+      "H03",
+      "H04",
+      "H05",
+      "H06",
+      "H07",
+      "H08",
+      "H09"
+    ],
+    "preserved_first_attempt": {
+      "declared_trials": 60,
+      "dispatched": 27,
+      "published": 24,
+      "failed_closed": 3,
+      "unissued": 33,
+      "reviewed": 20
+    },
+    "current_prompt_ids": [
+      "answer-v6",
+      "check-v5"
+    ],
+    "candidate_sha256": "85f0505a62add465fc3831dce472f49ed7bd0d19a2a075cede14d55a8f3e1686",
+    "current_prompt_changes_live_verified": false,
+    "focused_checks_prepared": 3,
+    "deterministic_tests": 80
+  }
+}

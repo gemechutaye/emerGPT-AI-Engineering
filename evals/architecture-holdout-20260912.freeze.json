@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "frozen_at_utc": "2026-09-12T16:53:05.628256+00:00",
+  "author_role": "Source-derived evaluation author agent; chunk/index specialist, not human review.",
+  "independence": "Source-derived evaluator authored by the chunk/index specialist after that bounded implementation. The author had the user architecture walkthrough, build orientation and chunk/index implementation context. During authoring the author read the original corpus, evaluator input format, one existing standalone example and one existing sequence solely to match schema. No new generation/retrieval implementation or model outputs were inspected during authoring. Questions/rubrics are new and sealed from the integration owner until the fresh run; this is not independent human review or a claim of an entirely unexposed author.",
+  "source_files": {
+    "EMER_AI_TakeHome_Knowledge_Corpus.jsonl": {
+      "sha256": "b66264c95a383b2169650083ca85bd9f50cf3929b838ac7790ff6b6049a6901a",
+      "bytes": 28792
+    },
+    "EMER_AI_TakeHome_Data_README.txt": {
+      "sha256": "047014e72061e448e9cdc3de5264cca5ab6ffa0a09bed17fa2fadd0aaee78ca4",
+      "bytes": 761
+    }
+  },
+  "suite": {
+    "path": "/Users/gemechutaye/copilot-worktrees/Emer-gpt/gemechutaye-verbose-couscous/evals/architecture-holdout-20260912.json",
+    "sha256": "d050d8a15699343e2bab7c4b241a1b8aa36c205e7942395779f022a35f6314ef",
+    "bytes": 65803,
+    "cases": 20,
+    "sequences": 4,
+    "total_user_turns": 28,
+    "required_facts": 72,
+    "records_covered": 27,
+    "behavior_counts": {
+      "answered": 21,
+      "partial": 5,
+      "unknown": 1,
+      "clarify": 1
+    },
+    "sealed": true,
+    "opening_rule": "Root must not inspect contents or run until architecture integration and repair decisions are ready for a fresh test."
+  },
+  "validation": {
+    "all_quotes_exact": true,
+    "unique_case_ids": true,
+    "sequence_finals_match": true,
+    "corpus_bytes_preserved": true,
+    "application_calls": 0,
+    "provider_calls": 0,
+    "rubrics_sent_to_application_models": false
+  },
+  "freeze_policy": "Freeze before any new model run; root receives only path/hash/counts. Opening or running ends secrecy. Any case used to repair code is thereafter regression/development, not fresh holdout proof."
+}

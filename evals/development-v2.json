@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "kind": "development_regression",
+  "corpus_sha256": "b66264c95a383b2169650083ca85bd9f50cf3929b838ac7790ff6b6049a6901a",
+  "retired_from": {
+    "suite": "holdout",
+    "sha256": "42035011cd27117ed769e64a43ee5da483941cb5fe1a8d503aaef333f0b57dc2",
+    "reason": "Observed failed-closed citation repairs in the first selected-pipeline run; these cases are no longer untouched holdout for the feedback/prompt correction.",
+    "retired_at": "2026-09-11T07:03:24.830467+00:00"
+  },
+  "review_policy": "No keyword-based factual quality scores. Required facts, answerability, unsupported claims and citation support require recorded author or independent human assessment. Automated contract and retrieval coverage are separate.",
+  "cases": [
+    {
+      "id": "H01",
+      "family": "holdout.price.decision_followup",
+      "question": "PT-006 wants an exact quote and a recovery-day count. What can a coordinator tell them now?",
+      "scope": {
+        "patient_id": null,
+        "as_of": "2026-09-10"
+      },
+      "required_facts": [
+        "Education completed, will decide later",
+        "No exact procedure quote or downtime duration"
+      ],
+      "required_sources": [
+        "PT-006",
+        "PROC-102",
+        "BIZ-501"
+      ],
+      "forbidden_claims": [
+        "RF procedure costs $250",
+        "Two-day recovery"
+      ],
+      "expected_answerability": "partial",
+      "reviewer_type": "author-authored annotation; factual outcomes require author or independent human review",
+      "assessment": null
+    },
+    {
+      "id": "H09",
+      "family": "holdout.workflow.incomplete_price",
+      "question": "Can we mark PT-005 converted because a consultation price is listed?",
+      "scope": {
+        "patient_id": null,
+        "as_of": "2026-09-10"
+      },
+      "required_facts": [
+        "Consultation incomplete and no plan",
+        "Converted requires first paid treatment completed",
+        "Price list does not establish payment or conversion"
+      ],
+      "required_sources": [
+        "PT-005",
+        "BIZ-502",
+        "BIZ-501"
+      ],
+      "forbidden_claims": [
+        "Converted",
+        "Paid treatment occurred"
+      ],
+      "expected_answerability": "answered",
+      "reviewer_type": "author-authored annotation; factual outcomes require author or independent human review",
+      "assessment": null
+    }
+  ]
+}

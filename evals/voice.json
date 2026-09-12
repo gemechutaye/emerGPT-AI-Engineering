@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "kind": "voice",
+  "reviewer_type": "requires physical microphone and human listening; synthetic audio or transcripts are separate supporting checks",
+  "trials_per_final_path": 3,
+  "cases": [
+    {
+      "id": "V01",
+      "family": "identifier",
+      "scenario": "Ask for PT-006, then correct to PT-007.",
+      "required_observations": [
+        "Only corrected patient facts spoken",
+        "Obsolete factual audio suppressed"
+      ],
+      "physical_microphone_result": null,
+      "listening_result": null,
+      "caption_result": null,
+      "backend_result": null
+    },
+    {
+      "id": "V02",
+      "family": "numbers",
+      "scenario": "Ask current cancellation window, repeat back 24 hours, and ask for correction.",
+      "required_observations": [
+        "Hear48 hours when possible",
+        "Old24-hour policy distinguished"
+      ],
+      "physical_microphone_result": null,
+      "listening_result": null,
+      "caption_result": null,
+      "backend_result": null
+    },
+    {
+      "id": "V03",
+      "family": "history",
+      "scenario": "Ask cancellation in March, then September2026.",
+      "required_observations": [
+        "Each date gets applicable revision",
+        "Modal waiver wording preserved"
+      ],
+      "physical_microphone_result": null,
+      "listening_result": null,
+      "caption_result": null,
+      "backend_result": null
+    },
+    {
+      "id": "V04",
+      "family": "missing_price",
+      "scenario": "Ask exact RF cost for PT-006.",
+      "required_observations": [
+        "No consultation-to-procedure price substitution"
+      ],
+      "physical_microphone_result": null,
+      "listening_result": null,
+      "caption_result": null,
+      "backend_result": null
+    },
+    {
+      "id": "V05",
+      "family": "missing_date",
+      "scenario": "Ask whether PT-001 is overdue.",
+      "required_observations": [
+        "No encounter date or absolute due inferred"
+      ],
+      "physical_microphone_result": null,
+      "listening_result": null,
+      "caption_result": null,
+      "backend_result": null
+    },
+    {
+      "id": "V06",
+      "family": "negation",
+      "scenario": "Ask whether PT-005 never had filler, then PT-007 has no procedure history.",
+      "required_observations": [
+        "Uncertain/not documented remain distinct from absent"
+      ],
+      "physical_microphone_result": null,
+      "listening_result": null,
+      "caption_result": null,
+      "backend_result": null
+    },
+    {
+      "id": "V07",
+      "family": "pauses",
+      "scenario": "Speak a question with long pause and quiet background speech.",
+      "required_observations": [
+        "Intent assembled from actual transcript",
+        "No accidental background delegation"
+      ],
+      "physical_microphone_result": null,
+      "listening_result": null,
+      "caption_result": null,
+      "backend_result": null
+    },
+    {
+      "id": "V08",
+      "family": "barge_in",
+      "scenario": "Interrupt during factual speech and correct the patient.",
+      "required_observations": [
+        "Playback stops promptly",
+        "Latest intent coalesced; no duplicate RAG calls"
+      ],
+      "physical_microphone_result": null,
+      "listening_result": null,
+      "caption_result": null,
+      "backend_result": null
+    },
+    {
+      "id": "V09",
+      "family": "retrieval_failure",
+      "scenario": "Cause a retrieval/provider failure during a spoken question.",
+      "required_observations": [
+        "Failure announced accurately",
+        "No invented factual answer"
+      ],
+      "physical_microphone_result": null,
+      "listening_result": null,
+      "caption_result": null,
+      "backend_result": null
+    },
+    {
+      "id": "V10",
+      "family": "disconnect",
+      "scenario": "Disconnect sideband while media is connected, then reconnect.",
+      "required_observations": [
+        "Unsafe factual playback stops",
+        "No duplicate provider delegation"
+      ],
+      "physical_microphone_result": null,
+      "listening_result": null,
+      "caption_result": null,
+      "backend_result": null
+    },
+    {
+      "id": "V11",
+      "family": "reset",
+      "scenario": "Reset anonymous session during Live.",
+      "required_observations": [
+        "Mic tracks stop",
+        "Old session and factual results inaccessible"
+      ],
+      "physical_microphone_result": null,
+      "listening_result": null,
+      "caption_result": null,
+      "backend_result": null
+    },
+    {
+      "id": "V12",
+      "family": "stale",
+      "scenario": "Correct context while lookup is in flight and end voice.",
+      "required_observations": [
+        "Stale answer/audio suppressed",
+        "End stops mic immediately; cleanup bounded"
+      ],
+      "physical_microphone_result": null,
+      "listening_result": null,
+      "caption_result": null,
+      "backend_result": null
+    }
+  ]
+}

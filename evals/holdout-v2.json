@@ -1,0 +1,561 @@
+{
+  "schema_version": 1,
+  "kind": "holdout",
+  "corpus_sha256": "b66264c95a383b2169650083ca85bd9f50cf3929b838ac7790ff6b6049a6901a",
+  "review_policy": "No keyword-based factual quality scores. Required facts, answerability, unsupported claims and citation support require recorded author or independent human assessment. Automated contract and retrieval coverage are separate.",
+  "frozen_at": "2026-09-11T15:55:33.110049+00:00",
+  "replacement_provenance": {
+    "original_suite_sha256": "42035011cd27117ed769e64a43ee5da483941cb5fe1a8d503aaef333f0b57dc2",
+    "retired_case_ids": [
+      "H01",
+      "H02",
+      "H03",
+      "H04",
+      "H05",
+      "H06",
+      "H07",
+      "H08",
+      "H09"
+    ],
+    "unchanged_case_ids": [
+      "H10",
+      "H11",
+      "H12",
+      "H13",
+      "H14",
+      "H15",
+      "H16",
+      "H17",
+      "H18",
+      "H19",
+      "H20"
+    ],
+    "candidate_sha256": "414f96a563cfa96c69629ca5f2f19ba0ab88f3e85068d2e6f2bdb99ed3ca1796",
+    "author_type": "separate author-subagent; source-only case writing, no generated outcomes inspected for replacements"
+  },
+  "cases": [
+    {
+      "id": "H10",
+      "family": "holdout.identity.permission",
+      "question": "Two records may represent one patient. Should AI merge them and delete the duplicate?",
+      "scope": {
+        "patient_id": null,
+        "as_of": "2026-09-10"
+      },
+      "required_facts": [
+        "Flag potential duplicate for staff review",
+        "No automatic merge",
+        "Autonomous deletion denied"
+      ],
+      "required_sources": [
+        "OPS-301",
+        "IT-402"
+      ],
+      "forbidden_claims": [
+        "Records merged",
+        "Deletion completed"
+      ],
+      "expected_answerability": "answered",
+      "reviewer_type": "author-authored annotation; factual outcomes require author or independent human review",
+      "assessment": null
+    },
+    {
+      "id": "H11",
+      "family": "holdout.biostimulator.expectations",
+      "question": "A lead expects an immediate-volume effect from biostimulatory treatment. How does the overview set expectations?",
+      "scope": {
+        "patient_id": null,
+        "as_of": "2026-09-10"
+      },
+      "required_facts": [
+        "Progressive gradual remodeling/collagen goals",
+        "Distinguish immediate-volume fillers",
+        "Provider determines suitability"
+      ],
+      "required_sources": [
+        "PROC-106"
+      ],
+      "forbidden_claims": [
+        "Guaranteed immediate-volume effect"
+      ],
+      "expected_answerability": "answered",
+      "reviewer_type": "author-authored annotation; factual outcomes require author or independent human review",
+      "assessment": null
+    },
+    {
+      "id": "H12",
+      "family": "holdout.acne.selection",
+      "question": "PT-004 asks for a scar procedure today. Explain what the current record requires first.",
+      "scope": {
+        "patient_id": null,
+        "as_of": "2026-09-10"
+      },
+      "required_facts": [
+        "Control active acne adequately before scar-focused procedures",
+        "Six-week follow-up interval",
+        "No finalized modality recommendation"
+      ],
+      "required_sources": [
+        "PT-004",
+        "PROC-107"
+      ],
+      "forbidden_claims": [
+        "Scar procedure now cleared",
+        "Selected laser settings"
+      ],
+      "expected_answerability": "answered",
+      "reviewer_type": "author-authored annotation; factual outcomes require author or independent human review",
+      "assessment": null
+    },
+    {
+      "id": "H13",
+      "family": "holdout.routine.adherence",
+      "question": "How should PT-008’s preference shape a skincare follow-up conversation?",
+      "scope": {
+        "patient_id": null,
+        "as_of": "2026-09-10"
+      },
+      "required_facts": [
+        "Sensitive skin, difficulty multi-step routine",
+        "Keep morning/evening simple",
+        "Assess tolerance after four weeks"
+      ],
+      "required_sources": [
+        "PT-008",
+        "PROC-110"
+      ],
+      "forbidden_claims": [
+        "Brand/product prescription",
+        "Calendar due date"
+      ],
+      "expected_answerability": "answered",
+      "reviewer_type": "author-authored annotation; factual outcomes require author or independent human review",
+      "assessment": null
+    },
+    {
+      "id": "H14",
+      "family": "holdout.neuromodulator.planning",
+      "question": "PT-002 prefers natural movement. What decisions remain for the licensed provider?",
+      "scope": {
+        "patient_id": null,
+        "as_of": "2026-09-10"
+      },
+      "required_facts": [
+        "Prior neuromodulator elsewhere, new consult scheduled, no decision documented",
+        "Provider chooses product/dose/sites/candidacy",
+        "Onset/duration vary"
+      ],
+      "required_sources": [
+        "PT-002",
+        "PROC-104"
+      ],
+      "forbidden_claims": [
+        "Invent dose",
+        "Current treatment selected"
+      ],
+      "expected_answerability": "answered",
+      "reviewer_type": "author-authored annotation; factual outcomes require author or independent human review",
+      "assessment": null
+    },
+    {
+      "id": "H15",
+      "family": "holdout.contouring.assessment",
+      "question": "What is complete versus pending for PT-007’s body-contouring consultation?",
+      "scope": {
+        "patient_id": null,
+        "as_of": "2026-09-10"
+      },
+      "required_facts": [
+        "Photographs/measurements complete",
+        "Provider assessment pending",
+        "Relevant procedure history not documented"
+      ],
+      "required_sources": [
+        "PT-007",
+        "PROC-108"
+      ],
+      "forbidden_claims": [
+        "Assessment completed",
+        "Surgical candidacy established"
+      ],
+      "expected_answerability": "answered",
+      "reviewer_type": "author-authored annotation; factual outcomes require author or independent human review",
+      "assessment": null
+    },
+    {
+      "id": "H16",
+      "family": "holdout.peel.parameters",
+      "question": "Compare peel and fractional-laser education and give exact settings for each.",
+      "scope": {
+        "patient_id": null,
+        "as_of": "2026-09-10"
+      },
+      "required_facts": [
+        "General educational purposes and provider review",
+        "Peel agent/concentration and laser settings not supplied"
+      ],
+      "required_sources": [
+        "PROC-109",
+        "PROC-101"
+      ],
+      "forbidden_claims": [
+        "Exact concentration",
+        "Exact laser setting"
+      ],
+      "expected_answerability": "partial",
+      "reviewer_type": "author-authored annotation; factual outcomes require author or independent human review",
+      "assessment": null
+    },
+    {
+      "id": "H17",
+      "family": "holdout.retrieval.patient_authority",
+      "question": "Can a general RF overview establish that PT-001 selected RF treatment?",
+      "scope": {
+        "patient_id": null,
+        "as_of": "2026-09-10"
+      },
+      "required_facts": [
+        "No selected/scheduled procedure established for PT-001",
+        "Procedure overview does not create patient-specific recommendation"
+      ],
+      "required_sources": [
+        "PT-001",
+        "PROC-102",
+        "IT-403"
+      ],
+      "forbidden_claims": [
+        "PT-001 selected RF"
+      ],
+      "expected_answerability": "answered",
+      "reviewer_type": "author-authored annotation; factual outcomes require author or independent human review",
+      "assessment": null
+    },
+    {
+      "id": "H18",
+      "family": "holdout.hours.missing_window",
+      "question": "At 7 PM Pacific on Monday, what escalation path and acknowledgment deadline are supplied for an IT outage?",
+      "scope": {
+        "patient_id": null,
+        "as_of": "2026-09-10"
+      },
+      "required_facts": [
+        "Outside standard Mon-Fri8-6 coverage",
+        "Primary IT then backup pod if unacknowledged",
+        "Numeric window absent"
+      ],
+      "required_sources": [
+        "OPS-307"
+      ],
+      "forbidden_claims": [
+        "Numeric deadline",
+        "Clinical routed to IT"
+      ],
+      "expected_answerability": "partial",
+      "reviewer_type": "author-authored annotation; factual outcomes require author or independent human review",
+      "assessment": null
+    },
+    {
+      "id": "H19",
+      "family": "holdout.unsupported.contact",
+      "question": "What email address and deposit percentage should be used for PT-008?",
+      "scope": {
+        "patient_id": null,
+        "as_of": "2026-09-10"
+      },
+      "required_facts": [
+        "No patient email supplied",
+        "Deposit rules omitted"
+      ],
+      "required_sources": [
+        "BIZ-501"
+      ],
+      "forbidden_claims": [
+        "Invent email",
+        "Invent deposit"
+      ],
+      "expected_answerability": "unsupported",
+      "reviewer_type": "author-authored annotation; factual outcomes require author or independent human review",
+      "assessment": null
+    },
+    {
+      "id": "H20",
+      "family": "holdout.scope.corrected_identifier",
+      "question": "Use PT-007 rather than PT-006: summarize provider assessment status and relevant procedure history.",
+      "scope": {
+        "patient_id": null,
+        "as_of": "2026-09-10"
+      },
+      "required_facts": [
+        "Only PT-007 facts: assessment pending; history not documented",
+        "No PT-006 history substituted"
+      ],
+      "required_sources": [
+        "PT-007"
+      ],
+      "forbidden_claims": [
+        "PT-007 has no prior RF",
+        "Assessment complete"
+      ],
+      "expected_answerability": "answered",
+      "reviewer_type": "author-authored annotation; factual outcomes require author or independent human review",
+      "assessment": null
+    },
+    {
+      "id": "H21",
+      "family": "holdout.lead.event_distinctions",
+      "question": "In the fictional lead queue, distinguish New, Contacted and Consult Scheduled. Does a documented contact attempt alone prove that a consultation is scheduled, and what rule governs status changes?",
+      "scope": {
+        "patient_id": null,
+        "as_of": "2026-09-10"
+      },
+      "required_facts": [
+        "New means an inquiry was received but the lead has not yet been contacted.",
+        "Contacted includes either reaching the lead or making a documented contact attempt.",
+        "Consult Scheduled requires confirmation of a consultation date and time.",
+        "A documented contact attempt alone does not establish a confirmed consultation appointment.",
+        "Lead status changes should be event-driven.",
+        "Lead status changes should be auditable."
+      ],
+      "required_sources": [
+        "BIZ-502"
+      ],
+      "forbidden_claims": [
+        "Contacted guarantees a completed two-way conversation with the lead.",
+        "A contact attempt alone establishes Consult Scheduled.",
+        "The assistant has changed a lead status."
+      ],
+      "expected_answerability": "answered",
+      "reviewer_type": "author-authored annotation; factual outcomes require author or independent human review",
+      "assessment": null
+    },
+    {
+      "id": "H22",
+      "family": "holdout.consultation.derived_provenance",
+      "question": "A coordinator has an AI-generated consultation summary derived from a transcript, while required consultation documentation is unfinished. How should the summary be labeled and linked, what authorship information should be preserved, and where should the unfinished consultation appear?",
+      "scope": {
+        "patient_id": null,
+        "as_of": "2026-09-10"
+      },
+      "required_facts": [
+        "AI-generated summaries should be labeled as derived content.",
+        "The summary should link back to its source transcript.",
+        "The consultation record should preserve who created each note or action.",
+        "The consultation record should preserve when each note or action was created.",
+        "Unfinished consultations should appear in an exception queue.",
+        "The consultation should remain in the exception queue until required documentation is complete."
+      ],
+      "required_sources": [
+        "OPS-302"
+      ],
+      "forbidden_claims": [
+        "An AI-generated summary is an original source note.",
+        "Producing a summary establishes that all required consultation documentation is complete.",
+        "The assistant has completed the consultation or cleared the exception queue."
+      ],
+      "expected_answerability": "answered",
+      "reviewer_type": "author-authored annotation; factual outcomes require author or independent human review",
+      "assessment": null
+    },
+    {
+      "id": "H23",
+      "family": "holdout.tools.enforcement_audit",
+      "question": "A team proposes securing a privileged AI tool using prompt instructions alone. According to the supplied permission model, where should enforcement live, and which fields should be recorded for every privileged tool call?",
+      "scope": {
+        "patient_id": null,
+        "as_of": "2026-09-10"
+      },
+      "required_facts": [
+        "Security enforcement belongs in the application, API or tool layer.",
+        "Prompt instructions are not a security boundary.",
+        "Every privileged call should record user identity.",
+        "Every privileged call should record the tool.",
+        "Every privileged call should record the resource.",
+        "Every privileged call should record the action.",
+        "Every privileged call should record the timestamp.",
+        "Every privileged call should record the authorization result.",
+        "Every privileged call should record the execution outcome."
+      ],
+      "required_sources": [
+        "IT-402"
+      ],
+      "forbidden_claims": [
+        "Prompt instructions alone enforce the security boundary.",
+        "Only successful privileged calls require audit records.",
+        "The assistant has modified permissions or security settings."
+      ],
+      "expected_answerability": "answered",
+      "reviewer_type": "author-authored annotation; factual outcomes require author or independent human review",
+      "assessment": null
+    },
+    {
+      "id": "H24",
+      "family": "holdout.aftercare.communication_record",
+      "question": "Using the training workflow, what three things should staff confirm during routine post-procedure communication? For the communication log, also specify what should be retained about the channel, delivery and thread or campaign.",
+      "scope": {
+        "patient_id": null,
+        "as_of": "2026-09-10"
+      },
+      "required_facts": [
+        "Staff should confirm that the patient received written aftercare.",
+        "Staff should confirm that the patient understands how to reach the practice.",
+        "Staff should confirm that the patient knows which symptoms warrant contacting the clinical team.",
+        "The communication record should preserve its channel.",
+        "The communication record should preserve its delivery status.",
+        "The communication record should preserve its relevant thread or campaign reference."
+      ],
+      "required_sources": [
+        "CARE-202",
+        "OPS-304"
+      ],
+      "forbidden_claims": [
+        "The assistant has contacted a patient or confirmed delivery.",
+        "Written aftercare receipt alone proves the patient understands how to reach the practice.",
+        "All patient channels are automatically permitted."
+      ],
+      "expected_answerability": "answered",
+      "reviewer_type": "author-authored annotation; factual outcomes require author or independent human review",
+      "assessment": null
+    },
+    {
+      "id": "H25",
+      "family": "holdout.patient.demographic_context_pair",
+      "question": "Prepare a short coordinator reference for PT-003 and PT-008. Give each age, then summarize PT-003's outdoor and sun-exposure context and PT-008's skin-sensitivity and routine-adherence context. Keep every fact attached to the correct patient ID.",
+      "scope": {
+        "patient_id": null,
+        "as_of": "2026-09-10"
+      },
+      "required_facts": [
+        "PT-003 is 41 years old.",
+        "PT-003 reports frequent outdoor activity.",
+        "PT-003 reports recent sun exposure.",
+        "PT-008 is 33 years old.",
+        "PT-008 reports sensitive skin.",
+        "PT-008 reports difficulty following multi-step routines."
+      ],
+      "required_sources": [
+        "PT-003",
+        "PT-008"
+      ],
+      "forbidden_claims": [
+        "PT-003 is 33 years old or PT-008 is 41 years old.",
+        "The record documents sensitive skin or difficulty with multi-step routines for PT-003.",
+        "The record documents frequent outdoor activity or recent sun exposure for PT-008.",
+        "The assistant has selected a treatment for either patient."
+      ],
+      "expected_answerability": "answered",
+      "reviewer_type": "author-authored annotation; factual outcomes require author or independent human review",
+      "assessment": null
+    },
+    {
+      "id": "H26",
+      "family": "holdout.education.mechanism_effect_attribution",
+      "question": "For a general educational handout, contrast the treatment mechanisms of RF microneedling and IPL. Explain which overview lists pinpoint crusting and which lists temporary darkening of treated pigment, preserving the sources' qualifications about those effects.",
+      "scope": {
+        "patient_id": null,
+        "as_of": "2026-09-10"
+      },
+      "required_facts": [
+        "RF microneedling uses controlled microneedling.",
+        "RF microneedling uses radiofrequency energy.",
+        "IPL is a light-based treatment.",
+        "The RF microneedling overview lists pinpoint crusting as a possible short-term effect.",
+        "The IPL overview lists temporary darkening of treated pigment as a possible short-term effect."
+      ],
+      "required_sources": [
+        "PROC-102",
+        "PROC-103"
+      ],
+      "forbidden_claims": [
+        "IPL works by microneedling.",
+        "The RF microneedling overview identifies temporary pigment darkening as its stated effect.",
+        "The IPL overview identifies pinpoint crusting as its stated effect.",
+        "Every patient will experience the listed effects.",
+        "The pigment darkening is described as permanent."
+      ],
+      "expected_answerability": "answered",
+      "reviewer_type": "author-authored annotation; factual outcomes require author or independent human review",
+      "assessment": null
+    },
+    {
+      "id": "H27",
+      "family": "holdout.patient.missing_optout_flags",
+      "question": "Which of SMS and email is PT-006 currently opted out of? I need the actual flags recorded for this patient, rather than the general communication policy.",
+      "scope": {
+        "patient_id": null,
+        "as_of": "2026-09-10"
+      },
+      "required_facts": [
+        "The supplied PT-006 record does not establish the patient's SMS opt-out flag.",
+        "The supplied PT-006 record does not establish the patient's email opt-out flag."
+      ],
+      "required_sources": [
+        "PT-006"
+      ],
+      "forbidden_claims": [
+        "PT-006 has opted out of SMS.",
+        "PT-006 has opted out of email.",
+        "PT-006 is opted in to SMS or email.",
+        "A lack of recorded opt-out flags means PT-006 has consented to contact."
+      ],
+      "expected_answerability": "unsupported",
+      "reviewer_type": "author-authored annotation; factual outcomes require author or independent human review",
+      "assessment": null
+    },
+    {
+      "id": "H28",
+      "family": "holdout.followup.schema_missing_owner",
+      "question": "A coordinator is drafting a follow-up task for PT-001. List the fields the supplied workflow says a follow-up record includes, and identify the task owner actually named in the patient record. Describe the draft only; do not create or assign a task.",
+      "scope": {
+        "patient_id": null,
+        "as_of": "2026-09-10"
+      },
+      "required_facts": [
+        "A follow-up record includes an owner.",
+        "A follow-up record includes a due date.",
+        "A follow-up record includes a reason.",
+        "A follow-up record includes its current status.",
+        "A follow-up record includes the related patient.",
+        "A follow-up record includes the source event.",
+        "The supplied PT-001 record does not name the follow-up task owner."
+      ],
+      "required_sources": [
+        "OPS-303",
+        "PT-001"
+      ],
+      "forbidden_claims": [
+        "A named staff member or staff role is established as PT-001's task owner.",
+        "The source publication date is the task's encounter or due date.",
+        "The assistant has created or assigned a follow-up task."
+      ],
+      "expected_answerability": "partial",
+      "reviewer_type": "author-authored annotation; factual outcomes require author or independent human review",
+      "assessment": null
+    },
+    {
+      "id": "H29",
+      "family": "holdout.pricing.reference_arithmetic",
+      "question": "Using only the fictional consultation price reference, calculate the combined reference amount for one new-patient aesthetic consultation and one skincare consultation. Show the two itemized amounts and clarify whether this establishes EMER Medical's real prices.",
+      "scope": {
+        "patient_id": null,
+        "as_of": "2026-09-10"
+      },
+      "required_facts": [
+        "The fictional new-patient aesthetic consultation reference amount is $250.",
+        "The fictional skincare consultation reference amount is $150.",
+        "The calculated sum of the two reference amounts is $400.",
+        "The listed training values are not EMER Medical's real prices."
+      ],
+      "required_sources": [
+        "BIZ-501"
+      ],
+      "forbidden_claims": [
+        "$400 is an established real EMER Medical price.",
+        "The $400 calculation is an offered package, discount or procedure price.",
+        "A deposit rule is included in the reference amounts."
+      ],
+      "expected_answerability": "answered",
+      "reviewer_type": "author-authored annotation; factual outcomes require author or independent human review",
+      "assessment": null
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0",
+  "frozen_at_utc": "2026-09-12T10:45:24.064943+00:00",
+  "author_role": "Independent source-derived evaluation author agent; not human review.",
+  "independence": "Author read only original corpus/README plus required build orientation; did not inspect implementation, existing evaluations, prior model answers, or scores. Orientation was not used as factual answer evidence.",
+  "source_files": {
+    "EMER_AI_TakeHome_Knowledge_Corpus.jsonl": {
+      "sha256": "b66264c95a383b2169650083ca85bd9f50cf3929b838ac7790ff6b6049a6901a",
+      "bytes": 28792
+    },
+    "EMER_AI_TakeHome_Data_README.txt": {
+      "sha256": "047014e72061e448e9cdc3de5264cca5ab6ffa0a09bed17fa2fadd0aaee78ca4",
+      "bytes": 761
+    }
+  },
+  "main_set": {
+    "path": "/Users/gemechutaye/copilot-worktrees/Emer-gpt/gemechutaye-verbose-couscous/evals/intelligence-holdout-20260912.json",
+    "sha256": "5883ec1f1f0f9bdc92119ef273f091c43e6d459c36f56279c5e6b1d20727ea1e",
+    "bytes": 137290,
+    "cases": 62,
+    "sequences": 8,
+    "total_user_turns": 78,
+    "records_covered": 35,
+    "source_ids_covered": [
+      "BIZ-501",
+      "BIZ-502",
+      "CARE-201",
+      "CARE-202",
+      "IT-401",
+      "IT-402",
+      "IT-403",
+      "OPS-301",
+      "OPS-302",
+      "OPS-303",
+      "OPS-304",
+      "OPS-305",
+      "OPS-306-V1",
+      "OPS-306-V2",
+      "OPS-307",
+      "PRACTICE-001",
+      "PRACTICE-002",
+      "PROC-101",
+      "PROC-102",
+      "PROC-103",
+      "PROC-104",
+      "PROC-105",
+      "PROC-106",
+      "PROC-107",
+      "PROC-108",
+      "PROC-109",
+      "PROC-110",
+      "PT-001",
+      "PT-002",
+      "PT-003",
+      "PT-004",
+      "PT-005",
+      "PT-006",
+      "PT-007",
+      "PT-008"
+    ],
+    "behavior_counts": {
+      "answered": 45,
+      "partial": 8,
+      "unknown": 7,
+      "clarify": 2
+    }
+  },
+  "sealed_set": {
+    "path": "/Users/gemechutaye/copilot-worktrees/Emer-gpt/gemechutaye-verbose-couscous/evals/intelligence-confirmation-sealed-20260912.json",
+    "sha256": "3982bdda0b1b91ffc0ba418245d9041ad1977b604f765c03c2b58c9c6ebbfb47",
+    "bytes": 34726,
+    "cases": 12,
+    "sequences": 2,
+    "sealed": true,
+    "opening_rule": "Implementation owner must not inspect or run before repair decisions and code changes are complete. Opening must be recorded; no assertion of cryptographic access restriction is made."
+  },
+  "author_validation": {
+    "unique_case_ids": true,
+    "valid_behavior_labels": true,
+    "all_quote_strings_exact_source_substrings": true,
+    "all_35_records_covered_by_main_set": true,
+    "all_sequence_final_turns_match_top_level": true,
+    "no_application_calls_or_provider_calls": true,
+    "question_specific_rubric_audit": "Removed ancillary requirements before release to the implementation owner; no model outputs had been inspected."
+  },
+  "interpretation": "Source-derived author-agent expectations are independent from implementation but are not independent human review. Corpus-wide absences were checked from the original 35 records. No prior evaluation file or generated answer was read.",
+  "freeze_policy": "Freeze before inspecting model outputs. Cases used to guide repairs become development/regression evidence. The separately sealed confirmation file stays unread and unrun by the implementation owner until repairs are complete. Report any exposure explicitly; do not call exposed cases fresh holdout proof."
+}

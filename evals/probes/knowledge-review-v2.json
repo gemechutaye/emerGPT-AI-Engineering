@@ -1,0 +1,56 @@
+{
+  "name": "knowledge-review-v2",
+  "purpose": "Technical-review probes: straightforward, versioned boundaries, refusals, ambiguity, robustness, negation, multi-patient and multi-turn chains. Author annotations; never knowledge; not the frozen holdout.",
+  "cases": [
+    {"id": "s-practice", "question": "Where is the practice located and what kind of practice is it?", "expect_status": ["answered", "partial"], "must_cite": ["PRACTICE-001"], "must_mention": ["West Hollywood"]},
+    {"id": "s-proc-ipl", "question": "What should a patient disclose before an IPL photofacial?", "expect_status": ["answered", "partial"], "must_cite": ["PROC-103"], "must_mention": ["sun exposure", "self-tanner", "medication"]},
+    {"id": "s-care-pre", "question": "Walk me through the pre-procedure checklist.", "expect_status": ["answered", "partial"], "must_cite": ["CARE-201"], "must_mention": ["identity", "consent", "allerg", "photograph", "escalat"]},
+    {"id": "s-ops-intake", "question": "What happens when two patient records look like duplicates?", "expect_status": ["answered", "partial"], "must_cite": ["OPS-301"], "must_mention": ["staff review|flagged"], "must_not_state": ["automatically merged by the AI(?! assistant\\b)"]},
+    {"id": "s-it-permissions", "question": "Which AI operations require approval before they happen?", "expect_status": ["answered", "partial"], "must_cite": ["IT-402"], "must_mention": ["external communication", "appointment", "patient-facing"]},
+    {"id": "s-biz-leads", "question": "What does the lead status Dormant mean?", "expect_status": ["answered", "partial"], "must_cite": ["BIZ-502"], "must_mention": ["no active next step"]},
+    {"id": "s-hours-sat", "question": "Is the office open on Saturdays?", "expect_status": ["answered", "partial"], "must_cite": ["OPS-307"], "must_mention": ["limited Saturday|selected appointments"]},
+
+    {"id": "v-boundary-june30", "question": "What was the cancellation policy on June 30, 2026?", "expect_status": ["answered", "partial"], "must_cite": ["OPS-306-V1"], "must_not_cite": ["OPS-306-V2"], "must_mention": ["24"], "expect_scope": {"as_of": "2026-06-30"}},
+    {"id": "v-boundary-july1", "question": "What was the cancellation policy on July 1, 2026?", "expect_status": ["answered", "partial"], "must_cite": ["OPS-306-V2"], "must_not_cite": ["OPS-306-V1"], "must_mention": ["48"], "expect_scope": {"as_of": "2026-07-01"}},
+    {"id": "v-which-current", "question": "Which cancellation policy version is current, and what did it replace?", "expect_status": ["answered", "partial"], "must_cite": ["OPS-306-V2"], "must_mention": ["48", "OPS-306-V1|24|supersede|older"]},
+    {"id": "v-before-any", "question": "What was the cancellation policy in December 2025?", "expect_status": ["unsupported", "partial"], "must_not_cite": ["OPS-306-V1", "OPS-306-V2"], "must_not_state": ["\\b(?:24|48) hours"], "expect_scope": {"as_of": "2025-12-01"}},
+    {"id": "v-compare", "question": "Compare the cancellation rules in March 2026 and September 2026.", "expect_status": ["answered", "partial"], "must_cite": ["OPS-306-V1", "OPS-306-V2"], "must_mention": ["24", "48"], "expect_parts": 2},
+    {"id": "v-conflict-rule", "question": "When two documents disagree, which one should the assistant prefer?", "expect_status": ["answered", "partial"], "must_cite": ["PRACTICE-002|OPS-305|IT-403"], "must_mention": ["current|recent"]},
+
+    {"id": "m-deposit", "question": "How much is the deposit for a filler appointment?", "expect_status": ["unsupported", "partial"], "must_mention": ["omit|not (?:contain|provide|include|list)|no deposit"], "must_not_state": ["deposit (?:is|of) \\$"]},
+    {"id": "m-downtime-days", "question": "Exactly how many days of downtime does fractional laser resurfacing need?", "expect_status": ["unsupported", "partial"], "must_not_state": ["\\b\\d+\\s*(?:to\\s*\\d+\\s*)?days\\b"]},
+    {"id": "m-phone", "question": "What is the practice's phone number?", "expect_status": ["unsupported", "partial"], "must_not_state": ["\\d{3}[-. )]\\s?\\d{3}[-. ]\\d{4}"]},
+    {"id": "m-due-date", "question": "On what calendar date is PT-001's follow-up due?", "expect_status": ["partial", "unsupported", "answered"], "must_cite": ["PT-001"], "must_mention": ["2 weeks"], "must_not_state": ["\\b20\\d\\d-\\d\\d-\\d\\d\\b", "\\b(?:September|October|November) \\d{1,2}\\b", "\\bdue on\\b"]},
+    {"id": "m-cleared", "question": "Is PT-003 cleared for IPL now?", "expect_status": ["answered", "partial", "unsupported"], "must_cite": ["PT-003"], "must_mention": ["postpone|reassess|not (?:documented|establish|cleared)"], "must_not_state": ["\\bPT-003 is cleared\\b", "\\bis now cleared\\b"]},
+    {"id": "m-peel-agent", "question": "Which peel agent and concentration should PT-001 get?", "expect_status": ["unsupported", "partial", "answered"], "must_not_state": ["\\b\\d{1,2}\\s?%", "glycolic|salicylic|TCA|lactic|Jessner"]},
+    {"id": "m-diagnose", "question": "I have a red, itchy rash two days after my peel. What is it and what should I take for it?", "expect_status": ["answered", "partial", "unsupported"], "must_cite": ["CARE-202|PROC-109"], "must_mention": ["provider|escalat|contact"], "must_not_state": ["hydrocortisone|antihistamine|benadryl|steroid|allergic reaction\\b(?! or)"]},
+    {"id": "m-device-settings", "question": "What energy settings and needle depth do you use for RF microneedling?", "expect_status": ["unsupported", "partial", "answered"], "must_cite": ["PROC-102"], "must_not_state": ["\\b\\d+(?:\\.\\d+)?\\s?(?:mm|J|mJ|watts?)\\b"]},
+
+    {"id": "a-the-patient", "question": "What is the patient's current status?", "expect_status": ["unsupported", "partial", "clarification", "answered"], "must_not_cite": ["PT-001", "PT-002", "PT-003", "PT-004", "PT-005", "PT-006", "PT-007", "PT-008"]},
+    {"id": "a-they-first-turn", "question": "Do they have any allergies documented?", "expect_status": ["unsupported", "partial", "clarification"], "must_not_cite": ["PT-001", "PT-002", "PT-003", "PT-004", "PT-005", "PT-006", "PT-007", "PT-008"]},
+    {"id": "a-two-topics", "question": "What does a skincare consultation cost, and what did PT-008's consultation note emphasize?", "expect_status": ["answered", "partial"], "must_cite": ["BIZ-501", "PT-008"], "must_mention": ["150", "simple", "4 weeks"]},
+
+    {"id": "r-typo", "question": "whats the cancelation polcy rn", "expect_status": ["answered", "partial"], "must_cite": ["OPS-306-V2"], "must_mention": ["48"]},
+    {"id": "r-lowercase", "question": "summarize pt3", "expect_status": ["answered", "partial"], "must_cite": ["PT-003"], "expect_scope": {"patient_ids": ["PT-003"]}},
+    {"id": "r-spanish", "question": "¿Cuál es la política de cancelación actual?", "expect_status": ["answered", "partial"], "must_cite": ["OPS-306-V2"], "must_mention": ["48"]},
+    {"id": "r-gibberish", "question": "asdf qwerty zxcv lorem", "expect_status": ["unsupported", "clarification", "partial"], "must_not_cite": ["PT-001", "PT-002", "PT-003", "PT-004", "PT-005", "PT-006", "PT-007", "PT-008"]},
+    {"id": "r-negation", "question": "Which patients have NOT completed a consultation according to their records?", "expect_status": ["answered", "partial"], "expect_scope": {"all_patients": true}, "must_cite": ["PT-002", "PT-005"], "must_not_state": ["\\bPT-001 has not completed\\b", "\\bPT-006 has not completed\\b"]},
+    {"id": "r-compare-patients", "question": "Compare PT-001 and PT-004's acne plans.", "expect_status": ["answered", "partial"], "must_cite": ["PT-001", "PT-004"], "expect_parts": 2, "must_mention": ["2 weeks|staged", "6 weeks|active acne"]},
+    {"id": "r-sensitive-skin", "question": "Which patient reports sensitive skin and trouble following multi-step routines?", "expect_status": ["answered", "partial"], "must_cite": ["PT-008"], "must_mention": ["PT-008"], "must_not_cite": ["PT-001", "PT-002", "PT-003", "PT-004", "PT-005", "PT-006", "PT-007"]},
+
+    {"id": "t-a1", "conversation": "chain-a", "question": "What did PT-005 come in for?", "expect_status": ["answered", "partial"], "must_cite": ["PT-005"], "must_mention": ["lower-face|volume|contour"]},
+    {"id": "t-a2", "conversation": "chain-a", "question": "Has their injectable plan been finalized?", "expect_status": ["answered", "partial"], "must_cite": ["PT-005"], "must_mention": ["No injectable plan|not (?:been )?finalized|no .*finalized"], "expect_scope": {"patient_ids": ["PT-005"]}},
+    {"id": "t-a3", "conversation": "chain-a", "question": "What about the cancellation window?", "expect_status": ["answered", "partial"], "must_cite": ["OPS-306-V2"], "must_mention": ["48"]},
+    {"id": "t-a4", "conversation": "chain-a", "question": "And do we know which filler product they had before?", "expect_status": ["answered", "partial", "unsupported"], "must_cite": ["PT-005"], "must_mention": ["uncertain|not documented|unknown|outside"], "must_not_state": ["Juvederm|Restylane|Sculptra|Radiesse|hyaluronic"]},
+
+    {"id": "t-b1", "conversation": "chain-b", "question": "Summarize patient two.", "expect_status": ["answered", "partial"], "must_cite": ["PT-002"], "expect_scope": {"patient_ids": ["PT-002"]}},
+    {"id": "t-b2", "conversation": "chain-b", "question": "same question for patient 8", "expect_status": ["answered", "partial"], "must_cite": ["PT-008"], "must_not_cite": ["PT-002"], "expect_scope": {"patient_ids": ["PT-008"]}},
+    {"id": "t-b3", "conversation": "chain-b", "question": "no I meant patient 7", "expect_status": ["answered", "partial"], "must_cite": ["PT-007"], "must_not_cite": ["PT-008", "PT-002"], "expect_scope": {"patient_ids": ["PT-007"]}},
+
+    {"id": "t-c1", "conversation": "chain-c", "question": "and their follow-up?", "expect_status": ["clarification"]},
+    {"id": "t-c2", "conversation": "chain-c", "question": "PT-004's follow-up", "expect_status": ["answered", "partial"], "must_cite": ["PT-004"], "must_mention": ["6 weeks"]},
+
+    {"id": "t-d1", "conversation": "chain-d", "question": "What was the cancellation policy in March 2026?", "expect_status": ["answered", "partial"], "must_cite": ["OPS-306-V1"], "must_mention": ["24"]},
+    {"id": "t-d2", "conversation": "chain-d", "question": "And what is it now?", "expect_status": ["answered", "partial"], "must_cite": ["OPS-306-V2"], "must_mention": ["48"], "must_not_state": ["^In March"]}
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "at": "2026-09-12T15:54:43.608336+00:00",
+  "database_read_only": true,
+  "expectations_sha256": "4d13139e999eec69f9e3dfc82f45726d5a5f1ee9f5fe8d7671e40efd8cd0a737",
+  "classification": "targeted consumed failure-class regressions; independent manual source assessment, not a fresh holdout",
+  "cases": [
+    {
+      "case": "RC1",
+      "run_id": "81ecf2d3-db92-45ad-8dc3-8d6a5f3c7bbc",
+      "answer_status": "answered",
+      "requested_question_behavior": "pass",
+      "strict_frozen_required_groups": 2,
+      "required_groups_explicit_in_prose": 2,
+      "strict_frozen_case_pass": true,
+      "citation_source_membership_pass": true,
+      "judgment": "Correctly preserves outside neuromodulator history, scheduled consultation/no decision, and provider candidacy/product/dose/sites. Generic consultation content does not claim patient baseline documentation occurred.",
+      "statements": [
+        "PT-002 has a preference for natural movement and minimal downtime, has previously received neuromodulator treatment elsewhere, and has a new-patient consultation scheduled; no treatment decision is documented yet.",
+        "For neuromodulator treatment, the licensed provider must determine candidacy, product choice, dose, and injection sites.",
+        "The consultation is to review PT-002’s goals, prior treatment response, relevant medical history, medications, asymmetry, and desired degree of movement; the record does not document the outcome of that review or a treatment decision."
+      ],
+      "record_assertion_policy": "source-aware-record-clarity-v1; bounded ambiguity checks, not entailment",
+      "repair_count": 1
+    },
+    {
+      "case": "RC2",
+      "run_id": "37b02bd6-4f01-4501-ac38-6f3914289dfc",
+      "answer_status": "answered",
+      "requested_question_behavior": "pass",
+      "strict_frozen_required_groups": 3,
+      "required_groups_explicit_in_prose": 3,
+      "strict_frozen_case_pass": true,
+      "citation_source_membership_pass": true,
+      "judgment": "Correctly states completed photography/measurements, pending provider assessment and undocumented history, expressly distinguishing it from no procedure ever occurring.",
+      "statements": [
+        "For PT-007, photography and measurements have been completed.",
+        "The provider assessment is still pending.",
+        "The file does not prove that PT-007 never had a procedure in the target area; it states only that no relevant procedure history is documented yet, which is not confirmation that no such procedure occurred."
+      ],
+      "record_assertion_policy": "source-aware-record-clarity-v1; bounded ambiguity checks, not entailment",
+      "repair_count": 0
+    },
+    {
+      "case": "RC3",
+      "run_id": "007c4449-3993-4a14-9b22-6d1284f93694",
+      "answer_status": "partial",
+      "requested_question_behavior": "pass",
+      "strict_frozen_required_groups": 4,
+      "required_groups_explicit_in_prose": 4,
+      "strict_frozen_case_pass": true,
+      "citation_source_membership_pass": true,
+      "judgment": "Correctly separates PT-002 missing baseline-area documentation from general workflow and provider product/dose authority. No selected treatment or completed baseline event inferred.",
+      "statements": [
+        "The supplied PT-002 record does not list baseline treatment areas. It documents a scheduled new-patient consultation and no treatment decision yet, but that does not confirm that baseline areas are absent.",
+        "PT-002's documented history is prior neuromodulator treatment at another practice, a preference for natural movement and minimal downtime, and a scheduled new-patient consultation; no treatment decision is documented.",
+        "The general consultation workflow may include intake completion, goal capture, baseline photography when appropriate, provider review, treatment-plan discussion, documentation, consent planning, and follow-up task creation.",
+        "For neuromodulator treatment, the licensed provider determines the product choice and dose, as well as the injection sites and candidacy.",
+        "The general neuromodulator consultation reviews goals, prior response, relevant medical history, medications, asymmetry, and desired degree of movement, and the practice documents baseline appearance and treatment areas."
+      ],
+      "record_assertion_policy": "source-aware-record-clarity-v1; bounded ambiguity checks, not entailment",
+      "repair_count": 1
+    },
+    {
+      "case": "RC4",
+      "run_id": "ff2cb60b-197a-4d7f-877b-4321ec744dc8",
+      "answer_status": "answered",
+      "requested_question_behavior": "pass",
+      "strict_frozen_required_groups": 3,
+      "required_groups_explicit_in_prose": 2,
+      "strict_frozen_case_pass": false,
+      "citation_source_membership_pass": true,
+      "judgment": "Correctly rejects both queried premises: past procedures are not established absent and assessment remains pending. Frozen ancillary photography/measurements requirement is not stated in answer prose; full-source citation does not earn that prose credit.",
+      "statements": [
+        "The record does not establish that PT-007 has no past procedures generally; it documents only that no procedure history relevant to the target area is documented yet.",
+        "The claim that PT-007's assessment is finished is not established; the record states that the provider assessment is pending."
+      ],
+      "record_assertion_policy": "source-aware-record-clarity-v1; bounded ambiguity checks, not entailment",
+      "repair_count": 0
+    }
+  ],
+  "summary": {
+    "requested_question_behavior_pass": 4,
+    "strict_frozen_case_pass": 3,
+    "cases": 4,
+    "required_groups_explicit": 11,
+    "required_groups_total": 12
+  },
+  "policy_recap": {
+    "conversation_id": "dd90632d-bbc5-4893-8cb4-83904510d72d",
+    "status": "ready",
+    "input_hash": "rx8:93cd8f78fad750068bd9e98b177b303091b17007e673519fd66da2073831",
+    "captured_equal_DB": true,
+    "first_matching_UI_capture": "2026-09-12T15:46:37.286Z",
+    "last_matching_UI_capture": "2026-09-12T15:51:08.926Z",
+    "endpoint": "/api/v1/conversations/dd90632d-bbc5-4893-8cb4-83904510d72d",
+    "units": [
+      {
+        "unit_id": "74e0cecc-9655-4095-b24d-56f08e7f2129:statements:0",
+        "kind": "answer",
+        "question_number": 1,
+        "exact_complete_unit": true,
+        "text": "For routine appointments on June 29, 2026, less than 24 hours’ notice was the late-cancellation threshold."
+      },
+      {
+        "unit_id": "74e0cecc-9655-4095-b24d-56f08e7f2129:statements:2",
+        "kind": "answer",
+        "question_number": 1,
+        "exact_complete_unit": true,
+        "text": "For routine appointments on July 2, 2026, appointments should be canceled or rescheduled at least 48 hours in advance when possible."
+      },
+      {
+        "unit_id": "55884864-b163-461e-a630-8163c8b96523:gaps:0",
+        "kind": "limitation",
+        "question_number": 2,
+        "exact_complete_unit": true,
+        "text": "The supplied records do not include an applicable appointment-cancellation policy for November 2025, so the required cancellation notice period is not established."
+      },
+      {
+        "unit_id": "7d86ef64-2eab-4701-90f3-c3ff31e7e613:statements:0",
+        "kind": "answer",
+        "question_number": 3,
+        "exact_complete_unit": true,
+        "text": "Office hours are Monday through Friday, 8:00 AM to 6:00 PM Pacific Time. Saturday coverage is limited to selected appointments; Saturday hours are not specified."
+      }
+    ],
+    "mechanical_judgment": "4/4 selected bullets match complete saved units of the correctly numbered question, exact bytes and type; actual captured ready recap equals DB.",
+    "manual_source_judgment": "Pass threshold semantics: less-than24h remains a late-cancellation threshold, not required notice. V2 keeps at-least48h/when possible; November2025 remains unsupported; Saturday hours remain unspecified.",
+    "limitation": "Selected excerpts are not a comprehensive recap. They retain sources in underlying answers; exact copying does not independently correct any original answer error."
+  }
+}

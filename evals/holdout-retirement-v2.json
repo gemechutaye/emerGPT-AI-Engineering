@@ -1,0 +1,17 @@
+{
+  "suite": "holdout",
+  "sha256": "42035011cd27117ed769e64a43ee5da483941cb5fe1a8d503aaef333f0b57dc2",
+  "retired_case_ids": [
+    "H01",
+    "H02",
+    "H03",
+    "H04",
+    "H05",
+    "H06",
+    "H07",
+    "H08",
+    "H09"
+  ],
+  "retired_at": "2026-09-11T15:51:47.801813+00:00",
+  "reason": "All nine scenarios issued in the stopped first selected-pipeline run are now development evidence. Source review and saved replies informed general scope, citation and answerability corrections. Unissued H10\u2013H20 remain eligible for the replacement holdout."
+}

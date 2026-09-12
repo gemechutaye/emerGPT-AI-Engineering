@@ -1,0 +1,63 @@
+name: Application checks
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  web:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: apps/web/package-lock.json
+      - run: npm ci
+        working-directory: apps/web
+      - run: npm run types:check
+        working-directory: apps/web
+      - run: npm test
+        working-directory: apps/web
+      - run: npm run build
+        working-directory: apps/web
+
+  api:
+    runs-on: ubuntu-24.04
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_DB: postgres
+          POSTGRES_HOST_AUTH_METHOD: trust
+        ports:
+          - 55432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 12
+    env:
+      PGUSER: postgres
+      OPENROUTER_API_KEY: ''
+      OPENAI_API_KEY: ''
+      DATABASE_URL: postgresql+psycopg://localhost:55432/emer_release_unused
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: astral-sh/setup-uv@v10.1.0
+        with:
+          version: '0.9.24'
+          python-version: '3.13'
+      - run: sudo apt-get update && sudo apt-get install -y postgresql-client-16
+      - run: uv sync --frozen
+      - run: mkdir -p .local
+      - run: uv run ruff check apps/api
+      - run: uv run pytest -q apps/api/tests tests/workstream_qa
+      - run: python3 -m unittest discover -s deployment -p 'test_*.py'
+      - run: bash -n deployment/start.sh

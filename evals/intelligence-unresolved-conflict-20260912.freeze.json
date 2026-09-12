@@ -1,0 +1,23 @@
+{
+  "sha256": "4320d773c11f2034a608faca4fffeb897350e25da549145ec4a6a01051e6b9db",
+  "cases": 1,
+  "base_bundle_index_id": "4bac79a1aaf46f400446aebb",
+  "frozen_at_utc": "2026-09-12T11:24:44.038720+00:00",
+  "path": "/Users/gemechutaye/copilot-worktrees/Emer-gpt/gemechutaye-verbose-couscous/evals/intelligence-unresolved-conflict-20260912.json",
+  "base_bundle_sha256": "74ea709f0aa3949156664a760c12283a3173e24920b351cf61abb46d7dd39255",
+  "source_corpus_sha256": "b66264c95a383b2169650083ca85bd9f50cf3929b838ac7790ff6b6049a6901a",
+  "expected_mutated_text_sha256": {
+    "OPS-306-V1": "c4e48a74e9df6765869641303b9061a7038df7d4af86371023be53925f572893",
+    "OPS-306-V2": "1f43e0356dfdfc2451f18727ccdca8810fe79a3f3792ef6f401fcc1f5bb543c9"
+  },
+  "author_validation": {
+    "replacement_old_strings_occur_exactly_once": true,
+    "annotation_old_values_equal_original_config": true,
+    "expected_quotes_exact_mutated_text": true,
+    "explicit_supersession_removed": true,
+    "both_current_same_version_same_effective_date": true,
+    "no_bundle_construction_or_provider_calls": true,
+    "original_six_case_suite_unchanged": true,
+    "sealed_confirmation_not_read": true
+  }
+}

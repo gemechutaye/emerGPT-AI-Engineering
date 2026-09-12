@@ -1,0 +1,291 @@
+/* LiveKit-inspired state and media presentation, using EMER's existing WebRTC audio. */
+.voice-orbit {
+  --voice-ring-start: #94a7c9;
+  --voice-ring-end: #c7b5de;
+  position: relative;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+}
+.is-live .voice-field.voice-orbit {
+  width: clamp(125px, 23dvh, 200px);
+  aspect-ratio: 1;
+  height: auto;
+}
+.voice-orbit.speaking {
+  --voice-ring-start: #d8b276;
+  --voice-ring-end: #d8c8a6;
+}
+.voice-orbit.muted,
+.voice-orbit.sound-paused {
+  --voice-ring-start: #918d87;
+  --voice-ring-end: #b2aaa0;
+}
+.voice-ring {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.voice-ring-bars line {
+  transition:
+    y2 110ms ease-out,
+    opacity 110ms ease-out;
+}
+.voice-orbit-track {
+  stroke: var(--line);
+  stroke-width: 0.6px;
+  fill: none;
+}
+.voice-orbit-halo {
+  position: absolute;
+  inset: 20%;
+  border-radius: 50%;
+  z-index: -1;
+  background: radial-gradient(circle, var(--voice-ring-start), transparent 68%);
+  filter: blur(12px);
+  transition: opacity 160ms;
+}
+.voice-ring-mark {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+}
+.voice-ring-mark .brand-art {
+  width: 35px;
+  height: 38px;
+}
+.voice-ring-mark .brand-symbol {
+  transform: scale(1.12);
+}
+.voice-ring-mark .brand-wordmark {
+  display: none;
+}
+.voice-orbit.connecting .voice-ring-bars {
+  transform-origin: center;
+  animation: voice-orbit-connect 5s linear infinite;
+}
+.voice-orbit.connecting .voice-ring-bars line:nth-child(3n) {
+  opacity: 0.1;
+}
+.voice-orbit.working .voice-ring-bars {
+  transform-origin: center;
+  animation: voice-orbit-think 12s linear infinite;
+}
+.voice-orbit.working .voice-ring-bars line:nth-child(4n) {
+  opacity: 0.85;
+}
+.voice-orbit.listening .voice-orbit-track {
+  animation: voice-ready 3s ease-in-out infinite;
+  transform-origin: center;
+}
+.voice-orbit.muted .voice-ring-mark {
+  opacity: 0.45;
+}
+.voice-state-hint {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 7px auto 0;
+  max-width: 360px;
+}
+.voice-session.is-live .voice-presence {
+  gap: 4px;
+}
+.voice-session.is-live .voice-presence-copy h2 {
+  font-size: 19px;
+  line-height: 1.4;
+  font-weight: 500;
+  color: var(--ink);
+}
+.voice-session.is-live .voice-duration {
+  font-size: 10px;
+  margin-top: 8px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.voice-view-switch {
+  display: flex;
+  justify-content: center;
+  gap: 3px;
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  background: var(--surface);
+  padding: 3px;
+  align-self: center;
+  margin: 17px 0 4px;
+  flex-shrink: 0;
+}
+.voice-view-switch button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 0;
+  border-radius: 99px;
+  padding: 7px 13px;
+  min-height: 30px;
+  color: var(--muted);
+  background: transparent;
+  font-size: 11px;
+  font-weight: 500;
+}
+.voice-view-switch button[aria-pressed="true"] {
+  color: var(--ink);
+  background: var(--canvas);
+  box-shadow: 0 1px 3px #0000000c;
+}
+.voice-session.is-live .voice-caption-surface {
+  margin-top: 8px;
+}
+.voice-session.is-live .live-caption {
+  padding: 12px 18px 10px;
+}
+.voice-session.is-live .live-caption-stage {
+  min-height: 88px;
+}
+.voice-session.is-live :is(.live-caption-words, .live-caption-placeholder) {
+  font-size: clamp(20px, 2.4vw, 27px);
+  line-height: 1.5;
+  letter-spacing: -0.65px;
+  text-wrap: pretty;
+}
+.voice-session.is-live .live-caption-label {
+  margin-bottom: 12px;
+  font-size: 10px;
+}
+.voice-session.is-live .voice-transcript-scroll {
+  margin-top: 8px;
+  max-height: min(32dvh, 320px);
+  padding: 14px 12px 8px;
+}
+.voice-session.is-live .transcript-turn {
+  grid-template-columns: 52px minmax(0, 1fr);
+  gap: 10px;
+  padding: 10px 0;
+}
+.voice-session.is-live .transcript-turn p {
+  font-size: 14px;
+  line-height: 1.7;
+}
+.voice-transcript-note {
+  font-size: 10px;
+  color: var(--muted);
+  text-align: center;
+  margin: 8px 0 0;
+  flex-shrink: 0;
+}
+:root[data-theme] .voice-session .voice-enable {
+  border-radius: 99px;
+  background: var(--button-fill);
+  color: var(--button-ink);
+  border-color: transparent;
+  padding: 10px 16px;
+  font-size: 12px;
+}
+.voice-composer .composer-actions {
+  gap: 8px;
+}
+.voice-composer .composer-mute {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--canvas);
+  color: var(--ink);
+}
+.voice-composer .composer-mute[aria-pressed="true"] {
+  background: color-mix(in srgb, #d8b276 22%, var(--canvas));
+}
+:root[data-theme] .composer.voice-composer .live-button.active {
+  min-height: 42px;
+  padding: 9px 15px;
+  border-radius: 99px;
+  background: var(--button-fill);
+  color: var(--button-ink);
+  border: 1px solid transparent;
+  gap: 8px;
+}
+.composer .live-button:not(.active):hover {
+  background: var(--surface);
+  color: var(--ink);
+}
+@keyframes voice-orbit-connect {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes voice-orbit-think {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+@keyframes voice-ready {
+  50% {
+    opacity: 0.35;
+    transform: scale(0.965);
+  }
+}
+@container (max-height: 470px) {
+  .is-live .voice-field.voice-orbit {
+    width: 112px;
+  }
+  .voice-session.is-live .voice-presence {
+    gap: 0;
+  }
+  .voice-state-hint {
+    margin-top: 3px;
+    font-size: 11px;
+  }
+  .voice-view-switch {
+    margin-top: 10px;
+  }
+  .voice-session.is-live .live-caption-stage {
+    min-height: 62px;
+  }
+}
+@container (max-height: 335px) {
+  .is-live .voice-field.voice-orbit {
+    width: 78px;
+  }
+  .voice-session.is-live .voice-presence {
+    flex-direction: row;
+    gap: 10px;
+  }
+  .voice-session.is-live .voice-presence-copy {
+    text-align: left;
+    flex: 0 1 auto;
+  }
+  .voice-state-hint {
+    max-width: 270px;
+  }
+  .voice-view-switch {
+    margin-top: 3px;
+  }
+  .voice-session.is-live .live-caption-label {
+    margin-bottom: 6px;
+  }
+  .voice-session.is-live :is(.live-caption-words, .live-caption-placeholder) {
+    font-size: 20px;
+  }
+}
+@media (max-width: 480px) {
+  .voice-state-hint {
+    font-size: 11px;
+    max-width: 260px;
+  }
+  .voice-session.is-live .live-caption {
+    padding-inline: 5px;
+  }
+  .voice-session.is-live .voice-transcript-scroll {
+    padding-inline: 4px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .voice-orbit *,
+  .voice-view-switch,
+  .voice-ring-bars line {
+    animation: none !important;
+    transition: none !important;
+  }
+}

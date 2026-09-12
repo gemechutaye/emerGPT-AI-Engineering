@@ -1,0 +1,13 @@
+
+> emer-web@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.11 /Users/gemechutaye/copilot-worktrees/Emer-gpt/gemechutaye-verbose-couscous/apps/web
+
+
+ Test Files  17 passed (17)
+      Tests  196 passed (196)
+   Start at  08:50:43
+   Duration  20.44s (transform 3.64s, setup 4.62s, import 5.75s, tests 37.63s, environment 28.76s)
+

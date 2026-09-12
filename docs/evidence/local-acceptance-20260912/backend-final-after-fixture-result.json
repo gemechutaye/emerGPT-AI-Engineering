@@ -1,0 +1,14 @@
+{
+  "at": "2026-09-12T15:56:08.204573+00:00",
+  "tests": 1318,
+  "passed": 1318,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "seconds": 116.89,
+  "source_changes_during_test": {},
+  "initial_failure_preserved": "backend-final-after-recap-result.json",
+  "fix": "Test fixture now explicitly uses current ready rx8 recap; added stale recap exclusion while canonical question/answer search remains intact. No production changes by this worker for the fixture fix.",
+  "focused_regression": "8 passed in4.77s; recap-search-fixture-regression.xml",
+  "command": ".venv/bin/pytest apps/api/tests -q --junitxml=artifacts/verification/final-ui-acceptance-20260912/backend-final-after-fixture.xml"
+}

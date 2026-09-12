@@ -1,0 +1,199 @@
+/* Shared anchors keep navigation chrome steady while the workspace changes. */
+:root {
+  --chrome-height: 92px;
+  --chrome-inset: 36px;
+  --sidebar-width: 290px;
+}
+:root[data-theme] .app-shell .app-topbar {
+  height: var(--chrome-height);
+  flex-basis: var(--chrome-height);
+  padding: 0 var(--chrome-inset);
+  background: transparent;
+  z-index: 21;
+  pointer-events: none;
+}
+.app-topbar > :is(.brand-toggle, .appearance-control, #home-disco-controls) {
+  pointer-events: auto;
+}
+.app-topbar .brand-toggle {
+  flex-shrink: 0;
+}
+.app-topbar .brand-wordmark {
+  white-space: nowrap;
+}
+.chat-sidebar {
+  width: var(--sidebar-width);
+}
+.sidebar-top {
+  justify-content: flex-end;
+  min-height: calc(var(--chrome-height) - 20px);
+}
+.chat-sidebar[data-state="closed"] {
+  animation: sidebar-depart 180ms ease-in forwards;
+  pointer-events: none;
+}
+@keyframes sidebar-depart {
+  to {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+}
+:root[data-theme]
+  :is(
+    body,
+    .workspace,
+    .chat-sidebar,
+    .appearance-menu,
+    .composer,
+    .answer-source-reader,
+    .task-heading h1,
+    .answer-prose p
+  ) {
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease;
+}
+:root[data-theme] .workspace {
+  transition:
+    margin-left 220ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    background-color 180ms ease,
+    color 180ms ease;
+}
+.appearance-menu {
+  transform-origin: top right;
+  animation: appearance-arrive 140ms ease-out;
+}
+/* A pointer can travel through the gap without dismissing the hover menu. */
+.appearance-menu::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 0;
+  right: 0;
+  height: 10px;
+}
+@keyframes appearance-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.sign-in-entry {
+  min-height: 48px;
+  border: 1px solid transparent;
+}
+.app-shell > .sign-in-entry.is-floating {
+  left: 21px;
+  bottom: 21px;
+  width: 142px;
+  max-width: calc(100vw - 42px);
+  white-space: nowrap;
+  transition:
+    width 240ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    background-color 180ms ease,
+    border-color 180ms ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .app-shell > .sign-in-entry.is-floating:hover {
+    width: calc(var(--sidebar-width) - 22px);
+  }
+}
+.app-shell > .sign-in-entry.is-floating:focus-visible {
+  width: calc(var(--sidebar-width) - 22px);
+}
+.answer-source-list > li {
+  border-radius: 12px;
+}
+:root[data-theme] .answer-source-button {
+  height: auto;
+}
+.answer-source-button > svg {
+  transition: transform 160ms ease;
+}
+:root[data-theme] .answer-source-list > .is-expanded {
+  background: var(--surface);
+  margin-bottom: 8px;
+}
+:root[data-theme] .answer-source-list > li > .answer-source-reader {
+  margin: 0;
+  padding: 8px 18px 18px;
+  border: 0;
+  border-radius: 0 0 12px 12px;
+  background: transparent;
+  animation: source-arrive 160ms ease-out;
+}
+.answer-source-reader > header {
+  margin-bottom: 12px;
+}
+:root .answer-source-original {
+  margin-top: 16px;
+  padding-top: 14px;
+}
+.answer-source-highlight-note {
+  margin: 0 0 12px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.answer-source-reader .answer-source-text {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.8;
+}
+@keyframes source-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(-3px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (max-width: 650px) {
+  :root {
+    --chrome-height: 66px;
+    --chrome-inset: 22px;
+  }
+  /* Sidebar actions sit below the anchored logo/settings on narrow screens. */
+  .sidebar-top {
+    min-height: calc(var(--chrome-height) + 28px);
+    align-items: flex-end;
+    padding-bottom: 10px;
+  }
+}
+@media (max-width: 600px) {
+  :root {
+    --sidebar-width: min(310px, calc(100vw - 32px));
+  }
+}
+@media (max-width: 360px) {
+  :root {
+    --chrome-inset: 14px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  :root[data-theme]
+    :is(
+      body,
+      .workspace,
+      .chat-sidebar,
+      .appearance-menu,
+      .composer,
+      .answer-source-reader,
+      .task-heading h1,
+      .answer-prose p,
+      .sign-in-entry.is-floating,
+      .answer-source-button > svg
+    ) {
+    transition: none;
+    animation: none;
+  }
+  .chat-sidebar[data-state="closed"] {
+    visibility: hidden;
+  }
+}

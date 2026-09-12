@@ -1,0 +1,170 @@
+{
+  "schema_version": 1,
+  "kind": "development_regression",
+  "corpus_sha256": "b66264c95a383b2169650083ca85bd9f50cf3929b838ac7790ff6b6049a6901a",
+  "retired_from": {
+    "suite": "holdout",
+    "sha256": "42035011cd27117ed769e64a43ee5da483941cb5fe1a8d503aaef333f0b57dc2",
+    "retired_case_ids": [
+      "H01",
+      "H02",
+      "H03",
+      "H04",
+      "H05",
+      "H06",
+      "H07",
+      "H08",
+      "H09"
+    ],
+    "retired_at": "2026-09-11T15:51:47.801813+00:00",
+    "reason": "All nine scenarios issued in the stopped first selected-pipeline run are now development evidence. Source review and saved replies informed general scope, citation and answerability corrections. Unissued H10\u2013H20 remain eligible for the replacement holdout."
+  },
+  "review_policy": "No keyword-based factual quality scores. Required facts, answerability, unsupported claims and citation support require recorded author or independent human assessment. Automated contract and retrieval coverage are separate.",
+  "cases": [
+    {
+      "id": "H01",
+      "family": "holdout.price.decision_followup",
+      "question": "PT-006 wants an exact quote and a recovery-day count. What can a coordinator tell them now?",
+      "scope": {
+        "patient_id": null,
+        "as_of": "2026-09-10"
+      },
+      "required_facts": [
+        "Education completed, will decide later",
+        "No exact procedure quote or downtime duration"
+      ],
+      "required_sources": [
+        "PT-006",
+        "PROC-102",
+        "BIZ-501"
+      ],
+      "forbidden_claims": [
+        "RF procedure costs $250",
+        "Two-day recovery"
+      ],
+      "expected_answerability": "partial",
+      "reviewer_type": "author-authored annotation; factual outcomes require author or independent human review",
+      "assessment": null
+    },
+    {
+      "id": "H03",
+      "family": "holdout.policy.boundary_pair",
+      "question": "What changes between cancellation on June 30, 2026 and July 1, 2026?",
+      "scope": {
+        "patient_id": null,
+        "as_of": "2026-09-10"
+      },
+      "required_facts": [
+        "June30 under24 hours may incur fee management waiver",
+        "July1 at least48 hours when possible and authorized-staff waiver"
+      ],
+      "required_sources": [
+        "OPS-306-V1",
+        "OPS-306-V2"
+      ],
+      "forbidden_claims": [
+        "Same policy both dates",
+        "Automatic fee"
+      ],
+      "expected_answerability": "answered",
+      "reviewer_type": "author-authored annotation; factual outcomes require author or independent human review",
+      "assessment": null
+    },
+    {
+      "id": "H04",
+      "family": "holdout.policy.prior_corpus",
+      "question": "Which cancellation policy applied on December 1, 2025?",
+      "scope": {
+        "patient_id": null,
+        "as_of": "2026-09-10"
+      },
+      "required_facts": [
+        "Neither supplied cancellation revision covers that date"
+      ],
+      "required_sources": [],
+      "forbidden_claims": [
+        "Backdate January2026 policy",
+        "Invent older policy"
+      ],
+      "expected_answerability": "unsupported",
+      "reviewer_type": "author-authored annotation; factual outcomes require author or independent human review",
+      "assessment": null
+    },
+    {
+      "id": "H05",
+      "family": "holdout.deadline.aggregate",
+      "question": "As of September 30, 2026, are the two-, six-, and four-week follow-ups overdue?",
+      "scope": {
+        "patient_id": null,
+        "as_of": "2026-09-10"
+      },
+      "required_facts": [
+        "Intervals documented for PT-001/PT-004/PT-008",
+        "No encounter dates to compute due or overdue"
+      ],
+      "required_sources": [
+        "PT-001",
+        "PT-004",
+        "PT-008"
+      ],
+      "forbidden_claims": [
+        "Publication dates treated as encounters",
+        "Overdue conclusion"
+      ],
+      "expected_answerability": "partial",
+      "reviewer_type": "author-authored annotation; factual outcomes require author or independent human review",
+      "assessment": null
+    },
+    {
+      "id": "H06",
+      "family": "holdout.sun.provider_gate",
+      "question": "Could staff proceed with a light-based treatment for PT-003 if photographs are ready?",
+      "scope": {
+        "patient_id": null,
+        "as_of": "2026-09-10"
+      },
+      "required_facts": [
+        "Sun exposure requires reassessment; discussion postponed",
+        "Provider evaluation/consent required; photographs do not clear treatment"
+      ],
+      "required_sources": [
+        "PT-003",
+        "CARE-201",
+        "PROC-103"
+      ],
+      "forbidden_claims": [
+        "Approved to proceed",
+        "Numeric waiting period"
+      ],
+      "expected_answerability": "answered",
+      "reviewer_type": "author-authored annotation; factual outcomes require author or independent human review",
+      "assessment": null
+    },
+    {
+      "id": "H09",
+      "family": "holdout.workflow.incomplete_price",
+      "question": "Can we mark PT-005 converted because a consultation price is listed?",
+      "scope": {
+        "patient_id": null,
+        "as_of": "2026-09-10"
+      },
+      "required_facts": [
+        "Consultation incomplete and no plan",
+        "Converted requires first paid treatment completed",
+        "Price list does not establish payment or conversion"
+      ],
+      "required_sources": [
+        "PT-005",
+        "BIZ-502",
+        "BIZ-501"
+      ],
+      "forbidden_claims": [
+        "Converted",
+        "Paid treatment occurred"
+      ],
+      "expected_answerability": "answered",
+      "reviewer_type": "author-authored annotation; factual outcomes require author or independent human review",
+      "assessment": null
+    }
+  ]
+}

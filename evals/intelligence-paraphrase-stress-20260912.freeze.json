@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "frozen_at_utc": "2026-09-12T11:22:38.552301+00:00",
+  "path": "/Users/gemechutaye/copilot-worktrees/Emer-gpt/gemechutaye-verbose-couscous/evals/intelligence-paraphrase-stress-20260912.json",
+  "sha256": "0ae51b5fbaad4f8d454bd839b8eeb7db8760f2468310e19c5fe3a3e1825e49b5",
+  "cases": 10,
+  "user_turns": 16,
+  "sequences": 3,
+  "source_files": {
+    "EMER_AI_TakeHome_Knowledge_Corpus.jsonl": {
+      "sha256": "b66264c95a383b2169650083ca85bd9f50cf3929b838ac7790ff6b6049a6901a",
+      "bytes": 28792
+    },
+    "EMER_AI_TakeHome_Data_README.txt": {
+      "sha256": "047014e72061e448e9cdc3de5264cca5ab6ffa0a09bed17fa2fadd0aaee78ca4",
+      "bytes": 761
+    }
+  },
+  "author_role": "Source-derived evaluation author agent; not human review.",
+  "evaluation_class": "Targeted stress/regression, not independent holdout.",
+  "validation": {
+    "all_quotes_exact_original_text": true,
+    "unique_ids": true,
+    "sequence_final_turns_match_case_level": true,
+    "no_provider_calls": true,
+    "sealed_confirmation_not_read": true
+  }
+}

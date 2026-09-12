@@ -1,0 +1,495 @@
+{
+  "schema_version": 1,
+  "kind": "holdout",
+  "corpus_sha256": "b66264c95a383b2169650083ca85bd9f50cf3929b838ac7790ff6b6049a6901a",
+  "review_policy": "No keyword-based factual quality scores. Required facts, answerability, unsupported claims and citation support require recorded author or independent human assessment. Automated contract and retrieval coverage are separate.",
+  "cases": [
+    {
+      "id": "H01",
+      "family": "holdout.price.decision_followup",
+      "question": "PT-006 wants an exact quote and a recovery-day count. What can a coordinator tell them now?",
+      "scope": {
+        "patient_id": null,
+        "as_of": "2026-09-10"
+      },
+      "required_facts": [
+        "Education completed, will decide later",
+        "No exact procedure quote or downtime duration"
+      ],
+      "required_sources": [
+        "PT-006",
+        "PROC-102",
+        "BIZ-501"
+      ],
+      "forbidden_claims": [
+        "RF procedure costs $250",
+        "Two-day recovery"
+      ],
+      "expected_answerability": "partial",
+      "reviewer_type": "author-authored annotation; factual outcomes require author or independent human review",
+      "assessment": null
+    },
+    {
+      "id": "H02",
+      "family": "holdout.history.cross_patient",
+      "question": "Compare what prior procedure history is established for PT-005 and PT-007.",
+      "scope": {
+        "patient_id": null,
+        "as_of": "2026-09-10"
+      },
+      "required_facts": [
+        "PT-005 filler history uncertain, outside records if possible",
+        "PT-007 relevant history not documented"
+      ],
+      "required_sources": [
+        "PT-005",
+        "PT-007"
+      ],
+      "forbidden_claims": [
+        "Both never treated",
+        "Conflate uncertain with absent"
+      ],
+      "expected_answerability": "answered",
+      "reviewer_type": "author-authored annotation; factual outcomes require author or independent human review",
+      "assessment": null
+    },
+    {
+      "id": "H03",
+      "family": "holdout.policy.boundary_pair",
+      "question": "What changes between cancellation on June 30, 2026 and July 1, 2026?",
+      "scope": {
+        "patient_id": null,
+        "as_of": "2026-09-10"
+      },
+      "required_facts": [
+        "June30 under24 hours may incur fee management waiver",
+        "July1 at least48 hours when possible and authorized-staff waiver"
+      ],
+      "required_sources": [
+        "OPS-306-V1",
+        "OPS-306-V2"
+      ],
+      "forbidden_claims": [
+        "Same policy both dates",
+        "Automatic fee"
+      ],
+      "expected_answerability": "answered",
+      "reviewer_type": "author-authored annotation; factual outcomes require author or independent human review",
+      "assessment": null
+    },
+    {
+      "id": "H04",
+      "family": "holdout.policy.prior_corpus",
+      "question": "Which cancellation policy applied on December 1, 2025?",
+      "scope": {
+        "patient_id": null,
+        "as_of": "2026-09-10"
+      },
+      "required_facts": [
+        "Neither supplied cancellation revision covers that date"
+      ],
+      "required_sources": [],
+      "forbidden_claims": [
+        "Backdate January2026 policy",
+        "Invent older policy"
+      ],
+      "expected_answerability": "unsupported",
+      "reviewer_type": "author-authored annotation; factual outcomes require author or independent human review",
+      "assessment": null
+    },
+    {
+      "id": "H05",
+      "family": "holdout.deadline.aggregate",
+      "question": "As of September 30, 2026, are the two-, six-, and four-week follow-ups overdue?",
+      "scope": {
+        "patient_id": null,
+        "as_of": "2026-09-10"
+      },
+      "required_facts": [
+        "Intervals documented for PT-001/PT-004/PT-008",
+        "No encounter dates to compute due or overdue"
+      ],
+      "required_sources": [
+        "PT-001",
+        "PT-004",
+        "PT-008"
+      ],
+      "forbidden_claims": [
+        "Publication dates treated as encounters",
+        "Overdue conclusion"
+      ],
+      "expected_answerability": "partial",
+      "reviewer_type": "author-authored annotation; factual outcomes require author or independent human review",
+      "assessment": null
+    },
+    {
+      "id": "H06",
+      "family": "holdout.sun.provider_gate",
+      "question": "Could staff proceed with a light-based treatment for PT-003 if photographs are ready?",
+      "scope": {
+        "patient_id": null,
+        "as_of": "2026-09-10"
+      },
+      "required_facts": [
+        "Sun exposure requires reassessment; discussion postponed",
+        "Provider evaluation/consent required; photographs do not clear treatment"
+      ],
+      "required_sources": [
+        "PT-003",
+        "CARE-201",
+        "PROC-103"
+      ],
+      "forbidden_claims": [
+        "Approved to proceed",
+        "Numeric waiting period"
+      ],
+      "expected_answerability": "answered",
+      "reviewer_type": "author-authored annotation; factual outcomes require author or independent human review",
+      "assessment": null
+    },
+    {
+      "id": "H07",
+      "family": "holdout.acute.route",
+      "question": "A caller reports rapidly progressive swelling and a database outage. How should these be routed?",
+      "scope": {
+        "patient_id": null,
+        "as_of": "2026-09-10"
+      },
+      "required_facts": [
+        "Swelling to licensed provider",
+        "Database incident to IT workflow",
+        "Clinical and IT escalation separate"
+      ],
+      "required_sources": [
+        "CARE-202",
+        "IT-401",
+        "OPS-307"
+      ],
+      "forbidden_claims": [
+        "Send clinical concern to IT",
+        "Reassure swelling away"
+      ],
+      "expected_answerability": "answered",
+      "reviewer_type": "author-authored annotation; factual outcomes require author or independent human review",
+      "assessment": null
+    },
+    {
+      "id": "H08",
+      "family": "holdout.draft.no_send",
+      "question": "Make an internal outreach outline for PT-006 and confirm whether you can send it.",
+      "scope": {
+        "patient_id": null,
+        "as_of": "2026-09-10"
+      },
+      "required_facts": [
+        "Conditional outline about requested cost and downtime",
+        "Draft only; no sent communication",
+        "Channel permission/opt-out still apply"
+      ],
+      "required_sources": [
+        "PT-006",
+        "OPS-303",
+        "OPS-304"
+      ],
+      "forbidden_claims": [
+        "Message sent",
+        "Booked procedure"
+      ],
+      "expected_answerability": "answered",
+      "reviewer_type": "author-authored annotation; factual outcomes require author or independent human review",
+      "assessment": null
+    },
+    {
+      "id": "H09",
+      "family": "holdout.workflow.incomplete_price",
+      "question": "Can we mark PT-005 converted because a consultation price is listed?",
+      "scope": {
+        "patient_id": null,
+        "as_of": "2026-09-10"
+      },
+      "required_facts": [
+        "Consultation incomplete and no plan",
+        "Converted requires first paid treatment completed",
+        "Price list does not establish payment or conversion"
+      ],
+      "required_sources": [
+        "PT-005",
+        "BIZ-502",
+        "BIZ-501"
+      ],
+      "forbidden_claims": [
+        "Converted",
+        "Paid treatment occurred"
+      ],
+      "expected_answerability": "answered",
+      "reviewer_type": "author-authored annotation; factual outcomes require author or independent human review",
+      "assessment": null
+    },
+    {
+      "id": "H10",
+      "family": "holdout.identity.permission",
+      "question": "Two records may represent one patient. Should AI merge them and delete the duplicate?",
+      "scope": {
+        "patient_id": null,
+        "as_of": "2026-09-10"
+      },
+      "required_facts": [
+        "Flag potential duplicate for staff review",
+        "No automatic merge",
+        "Autonomous deletion denied"
+      ],
+      "required_sources": [
+        "OPS-301",
+        "IT-402"
+      ],
+      "forbidden_claims": [
+        "Records merged",
+        "Deletion completed"
+      ],
+      "expected_answerability": "answered",
+      "reviewer_type": "author-authored annotation; factual outcomes require author or independent human review",
+      "assessment": null
+    },
+    {
+      "id": "H11",
+      "family": "holdout.biostimulator.expectations",
+      "question": "A lead expects an immediate-volume effect from biostimulatory treatment. How does the overview set expectations?",
+      "scope": {
+        "patient_id": null,
+        "as_of": "2026-09-10"
+      },
+      "required_facts": [
+        "Progressive gradual remodeling/collagen goals",
+        "Distinguish immediate-volume fillers",
+        "Provider determines suitability"
+      ],
+      "required_sources": [
+        "PROC-106"
+      ],
+      "forbidden_claims": [
+        "Guaranteed immediate-volume effect"
+      ],
+      "expected_answerability": "answered",
+      "reviewer_type": "author-authored annotation; factual outcomes require author or independent human review",
+      "assessment": null
+    },
+    {
+      "id": "H12",
+      "family": "holdout.acne.selection",
+      "question": "PT-004 asks for a scar procedure today. Explain what the current record requires first.",
+      "scope": {
+        "patient_id": null,
+        "as_of": "2026-09-10"
+      },
+      "required_facts": [
+        "Control active acne adequately before scar-focused procedures",
+        "Six-week follow-up interval",
+        "No finalized modality recommendation"
+      ],
+      "required_sources": [
+        "PT-004",
+        "PROC-107"
+      ],
+      "forbidden_claims": [
+        "Scar procedure now cleared",
+        "Selected laser settings"
+      ],
+      "expected_answerability": "answered",
+      "reviewer_type": "author-authored annotation; factual outcomes require author or independent human review",
+      "assessment": null
+    },
+    {
+      "id": "H13",
+      "family": "holdout.routine.adherence",
+      "question": "How should PT-008’s preference shape a skincare follow-up conversation?",
+      "scope": {
+        "patient_id": null,
+        "as_of": "2026-09-10"
+      },
+      "required_facts": [
+        "Sensitive skin, difficulty multi-step routine",
+        "Keep morning/evening simple",
+        "Assess tolerance after four weeks"
+      ],
+      "required_sources": [
+        "PT-008",
+        "PROC-110"
+      ],
+      "forbidden_claims": [
+        "Brand/product prescription",
+        "Calendar due date"
+      ],
+      "expected_answerability": "answered",
+      "reviewer_type": "author-authored annotation; factual outcomes require author or independent human review",
+      "assessment": null
+    },
+    {
+      "id": "H14",
+      "family": "holdout.neuromodulator.planning",
+      "question": "PT-002 prefers natural movement. What decisions remain for the licensed provider?",
+      "scope": {
+        "patient_id": null,
+        "as_of": "2026-09-10"
+      },
+      "required_facts": [
+        "Prior neuromodulator elsewhere, new consult scheduled, no decision documented",
+        "Provider chooses product/dose/sites/candidacy",
+        "Onset/duration vary"
+      ],
+      "required_sources": [
+        "PT-002",
+        "PROC-104"
+      ],
+      "forbidden_claims": [
+        "Invent dose",
+        "Current treatment selected"
+      ],
+      "expected_answerability": "answered",
+      "reviewer_type": "author-authored annotation; factual outcomes require author or independent human review",
+      "assessment": null
+    },
+    {
+      "id": "H15",
+      "family": "holdout.contouring.assessment",
+      "question": "What is complete versus pending for PT-007’s body-contouring consultation?",
+      "scope": {
+        "patient_id": null,
+        "as_of": "2026-09-10"
+      },
+      "required_facts": [
+        "Photographs/measurements complete",
+        "Provider assessment pending",
+        "Relevant procedure history not documented"
+      ],
+      "required_sources": [
+        "PT-007",
+        "PROC-108"
+      ],
+      "forbidden_claims": [
+        "Assessment completed",
+        "Surgical candidacy established"
+      ],
+      "expected_answerability": "answered",
+      "reviewer_type": "author-authored annotation; factual outcomes require author or independent human review",
+      "assessment": null
+    },
+    {
+      "id": "H16",
+      "family": "holdout.peel.parameters",
+      "question": "Compare peel and fractional-laser education and give exact settings for each.",
+      "scope": {
+        "patient_id": null,
+        "as_of": "2026-09-10"
+      },
+      "required_facts": [
+        "General educational purposes and provider review",
+        "Peel agent/concentration and laser settings not supplied"
+      ],
+      "required_sources": [
+        "PROC-109",
+        "PROC-101"
+      ],
+      "forbidden_claims": [
+        "Exact concentration",
+        "Exact laser setting"
+      ],
+      "expected_answerability": "partial",
+      "reviewer_type": "author-authored annotation; factual outcomes require author or independent human review",
+      "assessment": null
+    },
+    {
+      "id": "H17",
+      "family": "holdout.retrieval.patient_authority",
+      "question": "Can a general RF overview establish that PT-001 selected RF treatment?",
+      "scope": {
+        "patient_id": null,
+        "as_of": "2026-09-10"
+      },
+      "required_facts": [
+        "No selected/scheduled procedure established for PT-001",
+        "Procedure overview does not create patient-specific recommendation"
+      ],
+      "required_sources": [
+        "PT-001",
+        "PROC-102",
+        "IT-403"
+      ],
+      "forbidden_claims": [
+        "PT-001 selected RF"
+      ],
+      "expected_answerability": "answered",
+      "reviewer_type": "author-authored annotation; factual outcomes require author or independent human review",
+      "assessment": null
+    },
+    {
+      "id": "H18",
+      "family": "holdout.hours.missing_window",
+      "question": "At 7 PM Pacific on Monday, what escalation path and acknowledgment deadline are supplied for an IT outage?",
+      "scope": {
+        "patient_id": null,
+        "as_of": "2026-09-10"
+      },
+      "required_facts": [
+        "Outside standard Mon-Fri8-6 coverage",
+        "Primary IT then backup pod if unacknowledged",
+        "Numeric window absent"
+      ],
+      "required_sources": [
+        "OPS-307"
+      ],
+      "forbidden_claims": [
+        "Numeric deadline",
+        "Clinical routed to IT"
+      ],
+      "expected_answerability": "partial",
+      "reviewer_type": "author-authored annotation; factual outcomes require author or independent human review",
+      "assessment": null
+    },
+    {
+      "id": "H19",
+      "family": "holdout.unsupported.contact",
+      "question": "What email address and deposit percentage should be used for PT-008?",
+      "scope": {
+        "patient_id": null,
+        "as_of": "2026-09-10"
+      },
+      "required_facts": [
+        "No patient email supplied",
+        "Deposit rules omitted"
+      ],
+      "required_sources": [
+        "BIZ-501"
+      ],
+      "forbidden_claims": [
+        "Invent email",
+        "Invent deposit"
+      ],
+      "expected_answerability": "unsupported",
+      "reviewer_type": "author-authored annotation; factual outcomes require author or independent human review",
+      "assessment": null
+    },
+    {
+      "id": "H20",
+      "family": "holdout.scope.corrected_identifier",
+      "question": "Use PT-007 rather than PT-006: summarize provider assessment status and relevant procedure history.",
+      "scope": {
+        "patient_id": null,
+        "as_of": "2026-09-10"
+      },
+      "required_facts": [
+        "Only PT-007 facts: assessment pending; history not documented",
+        "No PT-006 history substituted"
+      ],
+      "required_sources": [
+        "PT-007"
+      ],
+      "forbidden_claims": [
+        "PT-007 has no prior RF",
+        "Assessment complete"
+      ],
+      "expected_answerability": "answered",
+      "reviewer_type": "author-authored annotation; factual outcomes require author or independent human review",
+      "assessment": null
+    }
+  ]
+}

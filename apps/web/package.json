@@ -1,0 +1,35 @@
+{
+  "name": "emer-web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc -b && vite build",
+    "typecheck": "tsc -b",
+    "preview": "vite preview --host 127.0.0.1",
+    "types:generate": "openapi-typescript openapi.json -o src/generated/api.ts",
+    "types:check": "node scripts/check-api-types.mjs",
+    "test": "vitest run",
+    "format": "prettier --write src index.html vite.config.ts vitest.config.ts scripts",
+    "format:check": "prettier --check src index.html vite.config.ts vitest.config.ts scripts"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "5.90.21",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
+  },
+  "devDependencies": {
+    "@testing-library/react": "16.3.2",
+    "@testing-library/user-event": "14.6.1",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react": "5.1.4",
+    "jsdom": "28.0.0",
+    "openapi-typescript": "7.13.0",
+    "prettier": "3.8.1",
+    "typescript": "5.9.3",
+    "vite": "7.3.6",
+    "vitest": "4.1.11"
+  }
+}

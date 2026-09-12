@@ -1,0 +1,606 @@
+/* Dark values read from Perplexity's rendered CSS on 2026-09-12.
+   Evidence: artifacts/verification/appearance-20260912/perplexity-tokens.json. */
+:root {
+  --canvas: #fafafa;
+  --surface: #f5f5f6;
+  --popup: #fff;
+  --hover: #26272b09;
+  --selected: #26272b12;
+  --outline: #26272b33;
+  --inverse: #fff;
+  --accent: #4e99a3;
+}
+:root[data-theme="dark"] {
+  --canvas: #171615;
+  --surface: #1e1d1c;
+  --popup: #1e1d1c;
+  --ink: #d6d5d4;
+  --muted: #d6d5d4a6;
+  --line: #d6d5d424;
+  --blue: #d6d5d4;
+  --blue-light: #d6d5d412;
+  --hover: #d6d5d409;
+  --selected: #d6d5d412;
+  --outline: #d6d5d433;
+  --inverse: #171615;
+  color: var(--ink);
+  background: var(--canvas);
+
+  .brand {
+    color: var(--ink);
+  }
+  .turn {
+    border-bottom-color: var(--line);
+  }
+
+  :is(body, .workspace, .app-topbar, .shared-page) {
+    background: var(--canvas);
+    color: var(--ink);
+  }
+  :is(
+    .composer,
+    .chat-sidebar,
+    .chat-dialog,
+    .chat-context-menu,
+    .conversation-follow,
+    .voice-session,
+    .answer-source-button,
+    .conversation-recap,
+    .chat-search-input,
+    .rename-field input,
+    .share-link input,
+    .voice-follow,
+    .voice-enable
+  ) {
+    background: var(--surface);
+    border-color: var(--line);
+    color: var(--ink);
+    box-shadow: none;
+  }
+  :is(
+    .is-live.voice-session,
+    .thread-voice-recap .voice-session,
+    .conversation-recap.is-embedded
+  ) {
+    background: transparent;
+  }
+  :is(
+    .question-row,
+    .answer-avatar,
+    .answer-source-number,
+    .answer-source-passages > blockquote,
+    .shared-message.user,
+    .dialog-actions > button,
+    .button.secondary,
+    .next-steps .step-marker,
+    .is-live .voice-icon-control,
+    .is-live .voice-mute
+  ) {
+    background: var(--selected);
+    border-color: var(--line);
+    color: var(--ink);
+  }
+  :is(
+    .task-heading h1,
+    .composer textarea,
+    .question-row h2,
+    .answer-prose p,
+    .next-steps p,
+    .answer-heading > span:first-child,
+    .chat-entry-title,
+    .sidebar-primary > button,
+    .sidebar-brand,
+    .chat-dialog h2,
+    .search-result strong,
+    .chat-search-input input,
+    .activity-metrics dd,
+    .transcript-turn p,
+    .live-caption-words,
+    .recap-question,
+    .recap-answer-body,
+    .recap-sources > h3,
+    .conversation-review .conversation-recap .recap-text,
+    .conversation-recap > p,
+    .conversation-recap .recap-text,
+    .conversation-recap h2,
+    .knowledge-gap h4,
+    .next-steps h4,
+    .answer-source-subtitle,
+    .answer-source-label > span
+  ) {
+    color: var(--ink);
+  }
+  :is(
+    .quiet-icon,
+    .starter-list strong,
+    .starter-icon,
+    .live-button,
+    .composer-mute,
+    .workspace-footnote,
+    .task-heading > p,
+    .chat-entry time,
+    .sidebar-recents-heading > button:first-child,
+    .sidebar-primary kbd,
+    .pinned-chats h3,
+    .sidebar-empty,
+    .sidebar-empty p,
+    .sidebar-notice,
+    .sidebar-notice strong,
+    .history-more,
+    .chat-dialog .dialog-note,
+    .rename-field,
+    .share-link,
+    .search-result,
+    .chat-search-results > h3,
+    .search-empty,
+    .question-row > span,
+    .answer-label,
+    .resolved-scopes > span,
+    .knowledge-gap,
+    .knowledge-gap p,
+    .answer-activity > .text-button,
+    .run-activity,
+    .activity-time,
+    .activity-detail small,
+    .activity-metrics dt,
+    .activity-model,
+    .activity-note,
+    .answer-sources > h4 > span,
+    .answer-source-label > small,
+    .answer-source-button > svg,
+    .answer-source-provenance,
+    .answer-source-authority,
+    .voice-duration,
+    .voice-session .voice-duration,
+    .voice-icon-control,
+    .voice-session .voice-mute,
+    .transcript-speaker,
+    .transcript-turn.input .transcript-speaker,
+    .voice-outcome,
+    .live-caption-label,
+    .live-caption-note,
+    .live-caption-placeholder,
+    .recap-heading,
+    .recap-disclaimer,
+    .recap-pending,
+    .review-pending,
+    .recap-sources-note,
+    .recap-speaker,
+    .recap-answer > summary > svg,
+    .transcript-archive > summary,
+    .saved-transcript-body h3,
+    .shared-page > header > span,
+    .shared-disclosure,
+    .shared-page footer,
+    .shared-message h2
+  ) {
+    color: var(--muted);
+  }
+  :is(
+    .composer textarea,
+    .chat-search-input input,
+    .rename-field input
+  )::placeholder {
+    color: var(--muted);
+  }
+  :is(.brand-symbol i, .brand-symbol i:nth-child(2)) {
+    background: var(--ink);
+  }
+  :is(
+    .starter-list > button,
+    .answer-sources,
+    .answer-source-original,
+    .knowledge-gap,
+    .knowledge-gap.clarification,
+    .activity-detail,
+    .voice-transcript-scroll,
+    .thread-voice-recap .voice-transcript-scroll,
+    .live-caption-note,
+    .saved-transcript-body,
+    .review-tabs,
+    .recap-sources,
+    .recap-answer
+  ) {
+    border-color: var(--line);
+  }
+  :is(
+    .quiet-icon:hover,
+    .sidebar-primary > button:hover,
+    .chat-entry:hover,
+    .chat-entry:focus-within,
+    .chat-entry.is-selected,
+    .history-more:hover,
+    .chat-context-menu button:is(:hover, :focus-visible),
+    .search-result:is(:hover, :focus-visible),
+    .starter-list > button:hover,
+    .answer-source-button:hover,
+    .live-button:hover,
+    .voice-icon-control:hover,
+    .voice-session .voice-mute:hover
+  ) {
+    background: var(--selected);
+    color: var(--ink);
+  }
+  .chat-entry-actions {
+    background: #2c2b2a;
+    box-shadow: -10px 0 10px #2c2b2a;
+  }
+  :is(.chat-entry-actions .is-pinned, .chat-context-menu button) {
+    color: var(--ink);
+  }
+  .composer:focus-within {
+    border-color: var(--outline);
+    box-shadow: none;
+  }
+  :is(
+    .send-button,
+    .live-button.active,
+    .dialog-actions > .primary-action,
+    .voice-session .end-live,
+    .voice-session .voice-retry
+  ) {
+    color: var(--inverse);
+    background: var(--ink);
+    border-color: transparent;
+  }
+  :is(
+    .send-button:hover,
+    .voice-session .end-live:hover,
+    .voice-session .voice-retry:hover
+  ) {
+    background: #d6d5d4a6;
+  }
+  .send-button:disabled {
+    color: #d6d5d433;
+    background: transparent;
+  }
+  :is(
+    .composer-mute[aria-pressed="true"],
+    .voice-session .voice-mute[aria-pressed="true"]
+  ) {
+    color: var(--ink);
+    background: var(--selected);
+  }
+  [data-tooltip]::after {
+    background: var(--surface);
+    border-color: var(--line);
+    color: var(--ink);
+  }
+  .conversation-review .review-tabs {
+    background: var(--canvas);
+    box-shadow: 0 -2px 0 2px var(--canvas);
+  }
+  .conversation-review .review-tabs button {
+    color: var(--muted);
+  }
+  .conversation-review .review-tabs button[aria-selected="true"] {
+    color: var(--ink);
+    border-bottom-color: var(--accent);
+  }
+  .answer-source-text mark {
+    background: #4e99a317;
+  }
+  .answer-source-passages > blockquote {
+    border-left-color: var(--accent);
+  }
+  :is(.error-notice, .voice-error, .voice-interruption) {
+    background: #d571410e;
+    border-color: #d5714140;
+    color: #e9a07e;
+  }
+  :is(
+    .answer-source-error,
+    .chat-dialog .dialog-error,
+    .recap-error,
+    .review-error,
+    .activity-failure li,
+    .chat-context-menu .destructive
+  ) {
+    color: #dc6973;
+  }
+  .chat-context-menu .destructive {
+    border-top-color: var(--line);
+  }
+  .answer-source-error > button {
+    background: var(--surface);
+    color: var(--ink);
+    border-color: var(--line);
+  }
+  :is(.sidebar-scrim, .history-backdrop) {
+    background: #171615b3;
+  }
+  .chat-dialog::backdrop {
+    background: #171615b3;
+  }
+  :is(.conversation, .sidebar-scroll, .voice-transcript-scroll) {
+    scrollbar-color: var(--line) transparent;
+  }
+  .activity-shimmer {
+    background-image: linear-gradient(
+      100deg,
+      #d6d5d480 15%,
+      #d6d5d4 45%,
+      #d6d5d480 65%
+    );
+  }
+  :focus-visible {
+    outline-color: var(--accent);
+  }
+}
+
+.appearance-control {
+  position: relative;
+  margin-left: auto;
+}
+.appearance-trigger {
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+.appearance-menu {
+  position: absolute;
+  top: 46px;
+  right: 0;
+  width: 260px;
+  padding: 16px;
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  color: var(--ink);
+  background: var(--popup);
+  box-shadow: 0 10px 35px #00000012;
+}
+.appearance-menu legend {
+  float: left;
+  width: 100%;
+  padding: 0 0 14px;
+  font-size: 13px;
+  font-weight: 550;
+}
+.theme-options {
+  clear: both;
+  display: flex;
+  gap: 5px;
+}
+.theme-options label {
+  flex: 1;
+  position: relative;
+  cursor: pointer;
+}
+.theme-options input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+.theme-options label > span {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+  padding: 12px 6px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  font-size: 11px;
+  color: var(--muted);
+}
+.theme-options label:hover > span {
+  background: var(--hover);
+}
+.theme-options input:checked + span {
+  color: var(--ink);
+  background: var(--selected);
+  border-color: var(--line);
+}
+.theme-options input:focus-visible + span {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.sidebar-bottom {
+  height: auto;
+  padding: 10px;
+  border-top: 1px solid var(--line);
+}
+.sign-in-entry {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 46px;
+  width: 100%;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 10px;
+  color: var(--ink);
+  background: transparent;
+  font-size: 13px;
+  font-weight: 450;
+  text-align: left;
+}
+.sign-in-entry:hover {
+  background: var(--hover);
+}
+.sign-in-avatar {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  color: var(--inverse);
+  background: var(--accent);
+}
+.sign-in-entry > svg {
+  margin-left: auto;
+  color: var(--accent);
+}
+.sign-in-entry.is-floating {
+  position: fixed;
+  bottom: 14px;
+  left: 18px;
+  z-index: 8;
+  width: 134px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+.chat-dialog.sign-in-dialog {
+  position: relative;
+  width: min(620px, calc(100vw - 32px));
+  padding: 0;
+  overflow: auto;
+  background: var(--canvas);
+}
+.sign-in-dialog > header {
+  position: absolute;
+  top: 16px;
+  left: calc(40% + 26px);
+  right: 16px;
+  margin: 0;
+  align-items: flex-start;
+}
+.sign-in-dialog > header h2 {
+  padding-top: 43px;
+  font-size: 29px;
+  line-height: 1.1;
+  font-weight: 750;
+  letter-spacing: -1px;
+}
+.sign-in-dialog > header .quiet-icon {
+  flex-shrink: 0;
+}
+.sign-in-art {
+  position: absolute;
+  inset: 0 60% 0 0;
+  min-height: 360px;
+  overflow: hidden;
+  background: #cbc1f7;
+  color: #302944;
+}
+.sign-in-emblem {
+  position: absolute;
+  left: 50%;
+  top: 44%;
+  transform: translate(-50%, -50%) rotate(-12deg);
+  font-size: 154px;
+  line-height: 1;
+  font-weight: 650;
+  letter-spacing: -16px;
+}
+.sign-in-orbit {
+  position: absolute;
+  width: 310px;
+  height: 160px;
+  left: -38px;
+  top: 100px;
+  border: 1px solid #fff9;
+  border-radius: 50%;
+  transform: rotate(-38deg);
+}
+.orbit-two {
+  transform: rotate(42deg);
+}
+.sign-in-art-caption {
+  position: absolute;
+  left: 24px;
+  bottom: 26px;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.6px;
+}
+.sign-in-copy {
+  margin-left: 40%;
+  min-height: 380px;
+  padding: 148px 26px 24px;
+}
+.coming-soon {
+  position: absolute;
+  top: 35px;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--muted);
+}
+.sign-in-copy > p {
+  margin: 0 0 22px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.sign-in-unavailable {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--selected);
+  color: var(--muted);
+  padding: 13px;
+  font-size: 13px;
+  cursor: not-allowed;
+  opacity: 1;
+}
+.sign-in-dialog .sign-in-unavailable:disabled {
+  opacity: 1;
+}
+.sign-in-copy .sign-in-note {
+  font-size: 11px;
+  margin: 10px 0 18px;
+}
+.continue-exploring {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  width: 100%;
+  min-height: 42px;
+  border: 0;
+  border-radius: 9px;
+  background: var(--ink);
+  color: var(--inverse);
+  font-size: 12px;
+  font-weight: 550;
+}
+@media (max-width: 1099px) {
+  .app-shell:has(.workspace.has-turns) > .sign-in-entry.is-floating {
+    display: none;
+  }
+}
+@media (max-width: 600px) {
+  .sign-in-entry.is-floating {
+    bottom: 10px;
+    left: 12px;
+  }
+  .workspace.is-new .work-area {
+    padding-bottom: 72px;
+  }
+  .sign-in-dialog > header {
+    left: 24px;
+    top: 130px;
+  }
+  .sign-in-dialog > header h2 {
+    font-size: 26px;
+    padding-top: 40px;
+  }
+  .sign-in-art {
+    inset: 0 0 auto;
+    height: 130px;
+    min-height: 0;
+  }
+  .sign-in-emblem {
+    font-size: 90px;
+    left: 76%;
+    top: 45%;
+  }
+  .sign-in-art-caption {
+    bottom: 22px;
+  }
+  .sign-in-orbit {
+    top: -30px;
+    left: 30%;
+  }
+  .sign-in-copy {
+    margin: 0;
+    min-height: 0;
+    padding: 258px 24px 24px;
+  }
+  .coming-soon {
+    top: 150px;
+  }
+}

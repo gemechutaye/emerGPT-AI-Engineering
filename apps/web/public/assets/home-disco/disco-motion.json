@@ -1,0 +1,15 @@
+{
+  "poster": "/assets/home-disco/disco-ball.png",
+  "animation": "/assets/home-disco/disco-spin.webp",
+  "controlled": {
+    "forward": "/assets/home-disco/disco-forward.mp4",
+    "reverse": "/assets/home-disco/disco-reverse.mp4",
+    "size": 512,
+    "frames": 180,
+    "fps": 18,
+    "duration": 10,
+    "restCycleSeconds": 7.2,
+    "lightSamples": "/assets/home-disco/disco-light-samples.json"
+  },
+  "sources": []
+}

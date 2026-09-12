@@ -1,0 +1,19 @@
+{
+  "PROVENANCE.md": "568a772927b62c264821c4794a5ead0cce4d91d47cfb1c37cb8aa2b9664ec7f4",
+  "audio/LICENSE.md": "00066c08159c7f62acdb69d2a35b1b485726e09d2e3ac64db0e21ed5cd834c5b",
+  "audio/happy-birthday-jazz.mp3": "59b9b90320bfda1f321819d7fe958703ef087481001d5c821aa8b98f2fb38bcb",
+  "confetti.mjs": "327bf337d445cc305172f625d857ba30a7f8636674a31238df97f0fe183c6f3b",
+  "disco-ball.png": "cd7fabcf8d7a4791d68d5322e50de462697dc3f2bae08c83f3c59e38d7d6b3f0",
+  "disco-forward.mp4": "d46a8f08330bfaa883912bdb78ab78b0c3052f4616bc0837115df1e1cb3612d5",
+  "disco-light-samples.json": "9e329446236960bab74472106f8a8f7bac72602746428ec230389d5b03c3451e",
+  "disco-motion.json": "a9ff604ed6cb3547977b700ae21d981c3fc0684e9b989be7f900ecfb404d2805",
+  "disco-motion.mjs": "16aa3ebb8001d193276b90e8b30c087726e334b5d4c28b1c3abdec3798b60534",
+  "disco-outline.svg": "9bb769b2f2b81171d50a03c8cbe3006ceaddb967fc5e10a36ee72ff0b05fd158",
+  "disco-renderer.mjs": "4fa1491a0da96074d6f563bc9df81ca47746ff791117bf6d522c92d2f3f30c54",
+  "disco-reverse.mp4": "b6e4db9101cadefc6ae9ebd924a245a454303f1ff9385cfc55e44281c52a115e",
+  "disco-spin.webp": "d1dd7da9826d8893c77f512c8722095e79138254246752e970a8dd73972cd6ee",
+  "disco.mjs": "fa34dc99545869f20f5b5c2a1dbe311026255d2a63b968fe3a64dc8f2755cfb0",
+  "homepage-party.mjs": "556d5a4d8dcd8965bb216f7f611f01caad12b23c6b4fa8550f2043a1a6f2f788",
+  "music-track.mjs": "471b7131111d75da0efad26d648fb0f0fdd13428a0bb3335ccc375b18ad7d494",
+  "ui-sounds.mjs": "ee5624d58933fa1a3d9fe8a4a1973b2392da835ccea9159d1422b0db29288f71"
+}

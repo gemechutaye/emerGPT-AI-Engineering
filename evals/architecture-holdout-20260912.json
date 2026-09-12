@@ -1,0 +1,938 @@
+{
+  "schema_version": "1.0",
+  "author_role": "Source-derived evaluation author agent; chunk/index specialist, not human review.",
+  "created_at_utc": "2026-09-12T16:53:05.628256+00:00",
+  "independence": "Source-derived evaluator authored by the chunk/index specialist after that bounded implementation. The author had the user architecture walkthrough, build orientation and chunk/index implementation context. During authoring the author read the original corpus, evaluator input format, one existing standalone example and one existing sequence solely to match schema. No new generation/retrieval implementation or model outputs were inspected during authoring. Questions/rubrics are new and sealed from the integration owner until the fresh run; this is not independent human review or a claim of an entirely unexposed author.",
+  "knowledge_sources": {
+    "EMER_AI_TakeHome_Knowledge_Corpus.jsonl": {
+      "sha256": "b66264c95a383b2169650083ca85bd9f50cf3929b838ac7790ff6b6049a6901a",
+      "bytes": 28792
+    },
+    "EMER_AI_TakeHome_Data_README.txt": {
+      "sha256": "047014e72061e448e9cdc3de5264cca5ab6ffa0a09bed17fa2fadd0aaee78ca4",
+      "bytes": 761
+    }
+  },
+  "semantics": {
+    "expected_behavior": {
+      "answered": "All requested substantive facts supported, including supported corrections of premises.",
+      "partial": "A substantive supported portion plus requested information unavailable in the corpus.",
+      "unknown": "Requested substantive information absent; supported explanation of absence allowed.",
+      "clarify": "Several plausible referents remain; clarification or explicitly covering both without silent choice is acceptable."
+    },
+    "labels": "Judge actual content and material completion; these semantic labels need not match incidental API status strings exactly.",
+    "required_facts": "Atomic question-specific meanings; equivalent natural wording passes. Do not add extra requirements from support quotes.",
+    "support": "Exact original source text anchors. Absence claims result from inspecting the full original corpus, not from a quote proving a universal negative.",
+    "expected_sources": "Minimum expected direct sources; independently verified equivalent support is acceptable, and relevant extras are not a failure.",
+    "turns": "Run each turn in order in one fresh conversation using actual prior assistant results. Case-level expectations duplicate the final turn; do not run it twice.",
+    "scope": "Synthetic corpus grounding only; not medical, physical voice, UI, deployment or independent-human certification."
+  },
+  "freeze_policy": "Freeze before any new model run; root receives only path/hash/counts. Opening or running ends secrecy. Any case used to repair code is thereafter regression/development, not fresh holdout proof.",
+  "set_purpose": "Fresh architecture challenge, separately preserved from legacy required-fact regressions.",
+  "case_count": 20,
+  "sequence_count": 4,
+  "cases": [
+    {
+      "family": "compound_distinct_escalations",
+      "question": "For a front-desk handover, cover three separate things: where a new severe post-procedure pain report goes, what IT should inspect if the AI stops responding, and the normal weekday coverage hours.",
+      "expected_behavior": "answered",
+      "required_facts": [
+        "New severe post-procedure pain or other concerning symptoms should be escalated to a licensed provider, not reassured away or routed to IT.",
+        "AI incident investigation includes application health, authentication, tool connectivity, provider status, queues/databases and recent deployments; a representative concrete set is sufficient.",
+        "Standard weekday coverage is Monday through Friday, 8:00 AM to 6:00 PM Pacific Time."
+      ],
+      "expected_sources": [
+        "CARE-202",
+        "IT-401",
+        "OPS-307"
+      ],
+      "acceptable_source_alternatives": [],
+      "acceptable_additional_sources": [],
+      "support": [
+        {
+          "doc_id": "CARE-202",
+          "quote": "Post-procedure communication should be concise, procedure-specific, and documented. Staff should confirm that the patient received written aftercare, understands how to reach the practice, and knows which symptoms warrant contacting the clinical team.\n\nRoutine questions can be answered from approved aftercare materials. New or worsening symptoms, signs of infection, severe pain, unexpected visual symptoms, rapidly progressive swelling, or other urgent concerns should be escalated to a licensed provider.\n\nThe assistant should not reassure away a concerning symptom. Its role is to retrieve the appropriate source and support escalation."
+        },
+        {
+          "doc_id": "IT-401",
+          "quote": "For AI-platform incidents, the support workflow is:\n1. Confirm whether the issue affects one user or the entire service.\n2. Check application health, authentication, tool/MCP connectivity, model-provider status, queues, databases, and recent deployments.\n3. Review structured logs and error traces without exposing unnecessary sensitive content.\n4. Identify whether the failure is configuration, credential, integration, provider, application, or infrastructure related.\n5. Restore the safest known working state or escalate to the responsible engineer.\n6. Document the incident, timeline, root cause when known, remediation, and follow-up action.\n\nExamples of monitored conditions include tool registration failures, \"no MCP attached / no tools attached\" states, authentication failures, queue backlog, database errors, provider timeouts, and elevated latency."
+        },
+        {
+          "doc_id": "OPS-307",
+          "quote": "Fictional standard office coverage is Monday through Friday, 8:00 AM to 6:00 PM Pacific Time, with limited Saturday coverage for selected appointments.\n\nOperational emergencies outside normal coverage should follow the on-call escalation path. For technology incidents, the primary IT contact is alerted first, followed by the backup support pod if the incident is not acknowledged within the defined escalation window.\n\nThe assistant should distinguish clinical escalation from IT escalation and should not route a clinical concern to IT."
+        }
+      ],
+      "forbidden_claims": [
+        "Treating severe pain as an IT incident.",
+        "Inventing an exact on-call response timeout."
+      ],
+      "id": "ARH-001"
+    },
+    {
+      "family": "compound_procedure_mechanism_timing_missing_price",
+      "question": "A coordinator needs three distinct answers: what RF microneedling combines, whether biostimulatory effects are immediate, and the listed procedure price for each. Keep any missing information explicit.",
+      "expected_behavior": "partial",
+      "required_facts": [
+        "RF microneedling combines controlled microneedling with radiofrequency energy.",
+        "Biostimulatory results are generally progressive rather than immediate, supporting gradual tissue remodeling or collagen-related goals.",
+        "The corpus omits procedure prices for both treatments; consultation prices do not supply those amounts."
+      ],
+      "expected_sources": [
+        "PROC-102",
+        "PROC-106",
+        "BIZ-501"
+      ],
+      "acceptable_source_alternatives": [],
+      "acceptable_additional_sources": [],
+      "support": [
+        {
+          "doc_id": "PROC-102",
+          "quote": "Radiofrequency microneedling combines controlled microneedling with radiofrequency energy. In this fictional practice it may be considered for selected patients seeking improvement in texture, acne scarring, skin laxity, or other provider-approved concerns.\n\nBefore treatment, the provider considers current skin condition, history of pigment change or scarring, active infection, implanted devices where relevant, medications, and recent procedures. Treatment parameters are determined only by the licensed treating provider.\n\nExpected short-term effects can include redness, mild swelling, pinpoint crusting, tenderness, and temporary dryness. Patients receive individualized aftercare, including gentle skincare, avoidance of unnecessary irritation, and sun protection.\n\nThe knowledge assistant should describe this procedure only at a general educational level and should not recommend parameters or treatment depth."
+        },
+        {
+          "doc_id": "PROC-106",
+          "quote": "Biostimulatory injectables are used in selected aesthetic treatment plans to support gradual tissue remodeling or collagen-related goals. Results are generally progressive rather than immediate.\n\nThe provider determines whether a biostimulatory injectable is appropriate based on anatomy, treatment goals, prior procedures, relevant health history, and product-specific considerations. The practice emphasizes realistic expectations and staged follow-up.\n\nThe assistant should distinguish biostimulatory treatments from immediate-volume fillers when answering educational questions."
+        },
+        {
+          "doc_id": "BIZ-501",
+          "quote": "Fictional training values only. These are not EMER Medical's real prices.\n\nNew-patient aesthetic consultation: $250.\nSkincare consultation: $150.\nDeposit rules and procedure pricing are intentionally omitted from the corpus.\n\nIf the user asks for a procedure price not listed here, the assistant should say the corpus does not contain that price rather than inventing one."
+        }
+      ],
+      "forbidden_claims": [
+        "Using $250 or $150 as a treatment price.",
+        "An exact number of days until biostimulatory results."
+      ],
+      "id": "ARH-002"
+    },
+    {
+      "family": "boundary_date_qualifications_missing_fee",
+      "question": "Contrast routine cancellation notice for June 30, 2026 with July 1, 2026. Include the exceptions and the exact fee amount, if one is actually supplied.",
+      "expected_behavior": "partial",
+      "required_facts": [
+        "June 30 falls under V1: less than 24 hours notice may be subject to a cancellation fee, unless management waives it.",
+        "July 1 falls under V2: cancel or reschedule at least 48 hours ahead when possible.",
+        "V2 late-cancellation/no-show handling follows the current scheduling policy and may be waived by authorized staff.",
+        "Neither version establishes an exact cancellation fee amount."
+      ],
+      "expected_sources": [
+        "OPS-306-V1",
+        "OPS-306-V2"
+      ],
+      "acceptable_source_alternatives": [],
+      "acceptable_additional_sources": [],
+      "support": [
+        {
+          "doc_id": "OPS-306-V1",
+          "quote": "Superseded policy, effective January 1, 2026 through June 30, 2026.\n\nRoutine appointments canceled with less than 24 hours' notice may be subject to a cancellation fee unless waived by management. This version is retained only to test version-aware retrieval."
+        },
+        {
+          "doc_id": "OPS-306-V2",
+          "quote": "Current policy, effective July 1, 2026.\n\nRoutine appointments should be canceled or rescheduled at least 48 hours in advance when possible. Late-cancellation or no-show handling is determined by the current scheduling policy and may be waived by authorized staff. This version supersedes OPS-306-V1.\n\nWhen asked about the cancellation window, the assistant should use this version and may mention that an older 24-hour policy was superseded."
+        }
+      ],
+      "forbidden_claims": [
+        "A mandatory fixed fee.",
+        "The old 24-hour policy applies on July 1.",
+        "Omitting both the discretionary old fee and the new when-possible qualification."
+      ],
+      "id": "ARH-003"
+    },
+    {
+      "family": "historical_inspection_is_not_current_application",
+      "question": "I am inspecting OPS-306-V1 on September 12, 2026. What did its under-24-hour clause actually say, and may I present that as the current cancellation rule?",
+      "expected_behavior": "answered",
+      "required_facts": [
+        "V1 said routine appointments canceled with less than 24 hours notice may be subject to a fee unless waived by management.",
+        "V1 was effective January 1 through June 30, 2026 and is superseded, so its clause is historical on September 12.",
+        "V2 supersedes V1 from July 1 and requests at least 48 hours for cancellation/rescheduling when possible."
+      ],
+      "expected_sources": [
+        "OPS-306-V1",
+        "OPS-306-V2"
+      ],
+      "acceptable_source_alternatives": [],
+      "acceptable_additional_sources": [],
+      "support": [
+        {
+          "doc_id": "OPS-306-V1",
+          "quote": "Superseded policy, effective January 1, 2026 through June 30, 2026.\n\nRoutine appointments canceled with less than 24 hours' notice may be subject to a cancellation fee unless waived by management. This version is retained only to test version-aware retrieval."
+        },
+        {
+          "doc_id": "OPS-306-V2",
+          "quote": "Current policy, effective July 1, 2026.\n\nRoutine appointments should be canceled or rescheduled at least 48 hours in advance when possible. Late-cancellation or no-show handling is determined by the current scheduling policy and may be waived by authorized staff. This version supersedes OPS-306-V1.\n\nWhen asked about the cancellation window, the assistant should use this version and may mention that an older 24-hour policy was superseded."
+        }
+      ],
+      "forbidden_claims": [
+        "Suppressing the requested historical wording solely because it is no longer current.",
+        "Presenting V1 as September policy."
+      ],
+      "id": "ARH-004"
+    },
+    {
+      "family": "patient_compound_consultation_and_clinical_prerequisite",
+      "question": "Compare PT-004 and PT-006 without blending them: what remains unfinished for each, and what must happen before each moves forward?",
+      "expected_behavior": "answered",
+      "required_facts": [
+        "PT-004 has not completed the active-acne plan and is currently focused on controlling breakouts.",
+        "PT-004 scar-focused procedures should be considered only after active acne is adequately controlled.",
+        "PT-006 has completed an educational consultation where the provider reviewed RF microneedling and alternatives.",
+        "PT-006 wants downtime information before deciding, requested cost information, and will decide later; the record does not document a selected treatment."
+      ],
+      "expected_sources": [
+        "PT-004",
+        "PT-006"
+      ],
+      "acceptable_source_alternatives": [],
+      "acceptable_additional_sources": [],
+      "support": [
+        {
+          "doc_id": "PT-004",
+          "quote": "SYNTHETIC TRAINING RECORD - NOT A REAL PATIENT.\nPatient ID: PT-004\nAge: 29\nPrimary goal: active acne plus residual scarring\nRelevant context: Currently focused on controlling breakouts. Interested in scar procedures but has not completed active-acne plan.\nCurrent status: Provider documented that scar-focused procedures should be considered only after active acne is adequately controlled. Follow-up in 6 weeks.\nThe AI assistant must not infer facts that are not stated in this record."
+        },
+        {
+          "doc_id": "PT-006",
+          "quote": "SYNTHETIC TRAINING RECORD - NOT A REAL PATIENT.\nPatient ID: PT-006\nAge: 38\nPrimary goal: skin tightening and texture\nRelevant context: No prior RF microneedling. Wants to understand expected downtime before deciding.\nCurrent status: Educational consultation completed. Provider reviewed RF microneedling overview and alternatives. Patient requested cost information and will decide later.\nThe AI assistant must not infer facts that are not stated in this record."
+        }
+      ],
+      "forbidden_claims": [
+        "PT-006 educational consultation is still incomplete.",
+        "PT-004 is already cleared for scar procedures."
+      ],
+      "id": "ARH-005"
+    },
+    {
+      "family": "uncertain_and_undocumented_are_distinct",
+      "question": "For PT-005 versus PT-007, separate what is known about prior procedures from what is still missing, then state the current assessment or consultation status for each.",
+      "expected_behavior": "answered",
+      "required_facts": [
+        "PT-005 prior filler history is uncertain, and outside treatment records will be obtained if possible.",
+        "PT-005 consultation is incomplete pending prior product/treatment history, with no injectable plan finalized.",
+        "PT-007 has no relevant target-area procedure history documented yet; that is not confirmation of no prior procedures.",
+        "PT-007 photography and measurements are completed and provider assessment is pending."
+      ],
+      "expected_sources": [
+        "PT-005",
+        "PT-007"
+      ],
+      "acceptable_source_alternatives": [],
+      "acceptable_additional_sources": [],
+      "support": [
+        {
+          "doc_id": "PT-005",
+          "quote": "SYNTHETIC TRAINING RECORD - NOT A REAL PATIENT.\nPatient ID: PT-005\nAge: 47\nPrimary goal: lower-face volume and contour concerns\nRelevant context: Prior filler history is uncertain; patient will obtain outside treatment records if possible.\nCurrent status: Consultation incomplete pending prior product/treatment history. No injectable plan finalized.\nThe AI assistant must not infer facts that are not stated in this record."
+        },
+        {
+          "doc_id": "PT-007",
+          "quote": "SYNTHETIC TRAINING RECORD - NOT A REAL PATIENT.\nPatient ID: PT-007\nAge: 56\nPrimary goal: body-contouring consultation\nRelevant context: Interested in non-surgical options. No procedure history relevant to target area documented yet.\nCurrent status: Photography and measurements completed. Provider assessment pending.\nThe AI assistant must not infer facts that are not stated in this record."
+        }
+      ],
+      "forbidden_claims": [
+        "PT-005 definitely never had filler.",
+        "PT-007 has a confirmed negative procedure history.",
+        "Outside records are guaranteed to be obtained."
+      ],
+      "id": "ARH-006"
+    },
+    {
+      "family": "compound_consultation_queue_and_task_schema",
+      "question": "What happens to an unfinished consultation, how should an AI summary of it be attributed, and what fields belong in a follow-up task? Answer those as separate operational items.",
+      "expected_behavior": "answered",
+      "required_facts": [
+        "Unfinished consultations remain in an exception queue until required documentation is complete.",
+        "AI summaries must be labeled as derived content and linked to source notes or transcripts; the consultation preserves who created each note/action and when.",
+        "A follow-up record includes owner, due date, reason, current status, related patient and source event."
+      ],
+      "expected_sources": [
+        "OPS-302",
+        "OPS-303"
+      ],
+      "acceptable_source_alternatives": [],
+      "acceptable_additional_sources": [],
+      "support": [
+        {
+          "doc_id": "OPS-302",
+          "quote": "A consultation generally moves through: intake completion, goal capture, baseline photography when appropriate, provider review, treatment-plan discussion, documentation, quote or financial discussion where applicable, consent planning, and follow-up task creation.\n\nThe consultation record should preserve who created each note or action and when. AI-generated summaries should be labeled as derived content and linked back to their source notes or transcripts.\n\nUnfinished consultations should appear in an exception queue until required documentation is complete."
+        },
+        {
+          "doc_id": "OPS-303",
+          "quote": "The practice uses follow-up tasks to prevent patients from being lost after consultations or procedures. A follow-up record includes owner, due date, reason, current status, related patient, and source event.\n\nExamples include post-procedure check-ins, treatment-plan follow-up, missed appointment outreach, skincare tolerance check, and dormant-patient reactivation.\n\nAutomated reminders may be drafted by AI, but patient-facing communication should follow approved templates and channel permissions. Opt-out and do-not-contact status must be respected."
+        }
+      ],
+      "forbidden_claims": [
+        "An AI recap becomes a new original clinical source."
+      ],
+      "id": "ARH-007"
+    },
+    {
+      "family": "outreach_permissions_and_draft_state",
+      "question": "If an AI has prepared a dormant-patient email, does that mean it was sent? Explain what governs permission to send and what happens if the patient opted out of that channel.",
+      "expected_behavior": "answered",
+      "required_facts": [
+        "AI-generated drafts are distinguishable from sent communications; preparation alone is not evidence of sending.",
+        "Sending external communication is an approval-required capability, and patient communication must follow approved templates and channel permissions.",
+        "Do-not-contact and channel-specific opt-out settings override reactivation or marketing workflows."
+      ],
+      "expected_sources": [
+        "OPS-304",
+        "IT-402",
+        "OPS-303"
+      ],
+      "acceptable_source_alternatives": [],
+      "acceptable_additional_sources": [],
+      "support": [
+        {
+          "doc_id": "OPS-304",
+          "quote": "The practice may communicate through phone, SMS, email, and approved platform messaging. Every communication should be associated with the correct patient or lead record when identity is known.\n\nThe system should preserve timestamp, sender, recipient, channel, delivery status, and relevant thread or campaign reference. AI-generated drafts should be distinguishable from sent communications.\n\nDo-not-contact and channel-specific opt-out settings override marketing or reactivation workflows."
+        },
+        {
+          "doc_id": "IT-402",
+          "quote": "AI tools are permissioned by capability. Read, write, approval-required, and denied operations should be explicitly separated.\n\nExample:\n- Read: retrieve appointment, retrieve approved patient summary, check system health.\n- Write: create an internal task or add an internal note when the user's role permits it.\n- Approval required: send external communication, modify an appointment, or update patient-facing information.\n- Denied to autonomous AI: delete records, modify user permissions, export bulk patient data, change security settings.\n\nSecurity enforcement belongs in the application/API/tool layer. Prompt instructions are not a security boundary. Every privileged tool call should record user identity, tool, resource, action, timestamp, authorization result, and execution outcome."
+        },
+        {
+          "doc_id": "OPS-303",
+          "quote": "The practice uses follow-up tasks to prevent patients from being lost after consultations or procedures. A follow-up record includes owner, due date, reason, current status, related patient, and source event.\n\nExamples include post-procedure check-ins, treatment-plan follow-up, missed appointment outreach, skincare tolerance check, and dormant-patient reactivation.\n\nAutomated reminders may be drafted by AI, but patient-facing communication should follow approved templates and channel permissions. Opt-out and do-not-contact status must be respected."
+        }
+      ],
+      "forbidden_claims": [
+        "The assistant has actually emailed the patient.",
+        "Reactivation intent overrides an email opt-out."
+      ],
+      "id": "ARH-008"
+    },
+    {
+      "family": "authority_and_execution_audit",
+      "question": "According to the dataset, can autonomous AI delete records or export all patient data? Where is permission enforced, and what evidence should a privileged tool call leave?",
+      "expected_behavior": "answered",
+      "required_facts": [
+        "Autonomous AI is denied record deletion and bulk patient-data export.",
+        "Permission/security enforcement belongs in the application/API/tool layer; prompt instructions are not a security boundary.",
+        "Privileged tool calls should record user identity, tool, resource, action, timestamp, authorization result and execution outcome."
+      ],
+      "expected_sources": [
+        "IT-402"
+      ],
+      "acceptable_source_alternatives": [],
+      "acceptable_additional_sources": [],
+      "support": [
+        {
+          "doc_id": "IT-402",
+          "quote": "AI tools are permissioned by capability. Read, write, approval-required, and denied operations should be explicitly separated.\n\nExample:\n- Read: retrieve appointment, retrieve approved patient summary, check system health.\n- Write: create an internal task or add an internal note when the user's role permits it.\n- Approval required: send external communication, modify an appointment, or update patient-facing information.\n- Denied to autonomous AI: delete records, modify user permissions, export bulk patient data, change security settings.\n\nSecurity enforcement belongs in the application/API/tool layer. Prompt instructions are not a security boundary. Every privileged tool call should record user identity, tool, resource, action, timestamp, authorization result, and execution outcome."
+        }
+      ],
+      "forbidden_claims": [
+        "A prompt alone enforces tool permissions.",
+        "The requested export or deletion has been executed."
+      ],
+      "id": "ARH-009"
+    },
+    {
+      "family": "all_patient_interval_inventory_without_encounter_dates",
+      "question": "Make a complete PT-001 through PT-008 follow-up audit. For each record, give its stated interval or say none is supplied; then tell me whether these records establish any actual calendar due dates or overdue patients.",
+      "expected_behavior": "partial",
+      "required_facts": [
+        "PT-001 has a two-week follow-up task interval.",
+        "PT-002 has no stated follow-up interval.",
+        "PT-003 has no stated follow-up interval.",
+        "PT-004 has a six-week follow-up interval.",
+        "PT-005 has no stated follow-up interval.",
+        "PT-006 has no stated follow-up interval.",
+        "PT-007 has no stated follow-up interval.",
+        "PT-008 should reassess tolerance after four weeks.",
+        "The records do not provide the source encounter/task dates needed to calculate actual due dates or determine which patients are overdue; effective_date is not an encounter date."
+      ],
+      "expected_sources": [
+        "PT-001",
+        "PT-002",
+        "PT-003",
+        "PT-004",
+        "PT-005",
+        "PT-006",
+        "PT-007",
+        "PT-008"
+      ],
+      "acceptable_source_alternatives": [],
+      "acceptable_additional_sources": [],
+      "support": [
+        {
+          "doc_id": "PT-001",
+          "quote": "SYNTHETIC TRAINING RECORD - NOT A REAL PATIENT.\nPatient ID: PT-001\nAge: 34\nPrimary goal: texture and acne-scar improvement\nRelevant context: History includes prior acne treatment and one superficial peel. No current procedure is scheduled. Interested in options with manageable downtime.\nCurrent status: Consultation completed. Provider discussed a staged acne-scar plan and emphasized that active acne control and scar type affect modality selection. Follow-up task due in 2 weeks.\nThe AI assistant must not infer facts that are not stated in this record."
+        },
+        {
+          "doc_id": "PT-002",
+          "quote": "SYNTHETIC TRAINING RECORD - NOT A REAL PATIENT.\nPatient ID: PT-002\nAge: 52\nPrimary goal: facial rejuvenation and fine-line concerns\nRelevant context: Previously received neuromodulator treatment at another practice. Reports preference for natural movement and minimal downtime.\nCurrent status: New-patient consultation scheduled. No treatment decision documented yet.\nThe AI assistant must not infer facts that are not stated in this record."
+        },
+        {
+          "doc_id": "PT-003",
+          "quote": "SYNTHETIC TRAINING RECORD - NOT A REAL PATIENT.\nPatient ID: PT-003\nAge: 41\nPrimary goal: pigment and sun-damage concerns\nRelevant context: Reports frequent outdoor activity and recent sun exposure. No treatment selected.\nCurrent status: Provider note: postpone light-based procedure discussion until recent sun exposure is reassessed. Skincare and sun-protection counseling documented.\nThe AI assistant must not infer facts that are not stated in this record."
+        },
+        {
+          "doc_id": "PT-004",
+          "quote": "SYNTHETIC TRAINING RECORD - NOT A REAL PATIENT.\nPatient ID: PT-004\nAge: 29\nPrimary goal: active acne plus residual scarring\nRelevant context: Currently focused on controlling breakouts. Interested in scar procedures but has not completed active-acne plan.\nCurrent status: Provider documented that scar-focused procedures should be considered only after active acne is adequately controlled. Follow-up in 6 weeks.\nThe AI assistant must not infer facts that are not stated in this record."
+        },
+        {
+          "doc_id": "PT-005",
+          "quote": "SYNTHETIC TRAINING RECORD - NOT A REAL PATIENT.\nPatient ID: PT-005\nAge: 47\nPrimary goal: lower-face volume and contour concerns\nRelevant context: Prior filler history is uncertain; patient will obtain outside treatment records if possible.\nCurrent status: Consultation incomplete pending prior product/treatment history. No injectable plan finalized.\nThe AI assistant must not infer facts that are not stated in this record."
+        },
+        {
+          "doc_id": "PT-006",
+          "quote": "SYNTHETIC TRAINING RECORD - NOT A REAL PATIENT.\nPatient ID: PT-006\nAge: 38\nPrimary goal: skin tightening and texture\nRelevant context: No prior RF microneedling. Wants to understand expected downtime before deciding.\nCurrent status: Educational consultation completed. Provider reviewed RF microneedling overview and alternatives. Patient requested cost information and will decide later.\nThe AI assistant must not infer facts that are not stated in this record."
+        },
+        {
+          "doc_id": "PT-007",
+          "quote": "SYNTHETIC TRAINING RECORD - NOT A REAL PATIENT.\nPatient ID: PT-007\nAge: 56\nPrimary goal: body-contouring consultation\nRelevant context: Interested in non-surgical options. No procedure history relevant to target area documented yet.\nCurrent status: Photography and measurements completed. Provider assessment pending.\nThe AI assistant must not infer facts that are not stated in this record."
+        },
+        {
+          "doc_id": "PT-008",
+          "quote": "SYNTHETIC TRAINING RECORD - NOT A REAL PATIENT.\nPatient ID: PT-008\nAge: 33\nPrimary goal: simple skincare routine and prevention\nRelevant context: Reports sensitive skin and difficulty following multi-step routines.\nCurrent status: Skincare consultation note emphasizes keeping morning and evening routines simple and reassessing tolerance after 4 weeks.\nThe AI assistant must not infer facts that are not stated in this record."
+        }
+      ],
+      "forbidden_claims": [
+        "Invented absolute dates derived by adding intervals to September 1.",
+        "Any asserted overdue status."
+      ],
+      "id": "ARH-010"
+    },
+    {
+      "family": "unknown_entity_preserves_independent_general_request",
+      "question": "For PT-019, identify their documented plan. Separately, regardless of that missing or present record, name the identity/consent checks before any elective procedure.",
+      "expected_behavior": "partial",
+      "required_facts": [
+        "PT-019 does not exist in the supplied corpus, so no documented patient plan can be supplied.",
+        "The general pre-procedure checklist says to confirm identity and scheduled procedure, and confirm provider evaluation and consent status."
+      ],
+      "expected_sources": [
+        "CARE-201"
+      ],
+      "acceptable_source_alternatives": [],
+      "acceptable_additional_sources": [],
+      "support": [
+        {
+          "doc_id": "CARE-201",
+          "quote": "For all elective aesthetic procedures, the fictional practice uses a standardized pre-procedure workflow:\n1. Confirm patient identity and scheduled procedure.\n2. Confirm provider evaluation and consent status.\n3. Review allergies, relevant medications, recent procedures, and changes in health history.\n4. Confirm required photographs or baseline documentation.\n5. Confirm that procedure-specific preparation instructions were provided and acknowledged.\n6. Escalate any new contraindication, medication change, infection, unexpected symptom, pregnancy status concern, or uncertainty to the treating provider.\n7. Do not proceed based solely on an AI-generated answer.\n\nThe assistant may retrieve this checklist for workflow questions."
+        }
+      ],
+      "forbidden_claims": [
+        "Substituting another patient for PT-019.",
+        "Withholding the independent supported checklist solely because PT-019 is unknown."
+      ],
+      "id": "ARH-011"
+    },
+    {
+      "family": "unrelated_unanswerable_retrieval",
+      "question": "What processor is in the front-desk laptop, and what did that laptop cost? I need the actual recorded specifications and amount, not general buying advice.",
+      "expected_behavior": "unknown",
+      "required_facts": [
+        "The corpus does not contain the front-desk laptop processor specification or purchase amount."
+      ],
+      "expected_sources": [],
+      "acceptable_source_alternatives": [],
+      "acceptable_additional_sources": [],
+      "support": [],
+      "forbidden_claims": [
+        "A guessed processor model.",
+        "A fabricated hardware purchase amount."
+      ],
+      "id": "ARH-012"
+    },
+    {
+      "family": "patient_measurement_does_not_establish_candidacy",
+      "question": "PT-007 already has photographs and measurements. Does that establish body-contouring candidacy, and what does the general source say the provider evaluates?",
+      "expected_behavior": "answered",
+      "required_facts": [
+        "PT-007 photography and measurements are complete but provider assessment is pending, so documented measurements do not establish candidacy.",
+        "Body-contouring evaluation considers goals, anatomy, prior procedures, general health, and the target such as skin laxity, localized volume or muscle definition.",
+        "The assistant cannot infer surgical candidacy or recommend device settings."
+      ],
+      "expected_sources": [
+        "PT-007",
+        "PROC-108"
+      ],
+      "acceptable_source_alternatives": [],
+      "acceptable_additional_sources": [],
+      "support": [
+        {
+          "doc_id": "PT-007",
+          "quote": "SYNTHETIC TRAINING RECORD - NOT A REAL PATIENT.\nPatient ID: PT-007\nAge: 56\nPrimary goal: body-contouring consultation\nRelevant context: Interested in non-surgical options. No procedure history relevant to target area documented yet.\nCurrent status: Photography and measurements completed. Provider assessment pending.\nThe AI assistant must not infer facts that are not stated in this record."
+        },
+        {
+          "doc_id": "PROC-108",
+          "quote": "Body-contouring services in this fictional practice are evaluated according to the patient's goals, anatomy, prior procedures, general health, and whether the concern is primarily skin laxity, localized volume, muscle definition, or another target.\n\nThe provider explains expected outcomes, limitations, recovery considerations, and whether multiple modalities or staged treatment may be appropriate. The assistant must not infer surgical candidacy or recommend device settings.\n\nProgress is typically documented with measurements, standardized photographs, treatment history, and follow-up assessments."
+        }
+      ],
+      "forbidden_claims": [
+        "Declaring PT-007 an approved candidate.",
+        "Selecting a treatment/device for PT-007."
+      ],
+      "id": "ARH-013"
+    },
+    {
+      "family": "current_notice_preserves_conditional_language",
+      "question": "On September 12, 2026, explain the current routine cancellation or rescheduling guidance and who can waive late/no-show handling. Preserve the qualifications instead of turning them into an absolute rule.",
+      "expected_behavior": "answered",
+      "required_facts": [
+        "The current V2 guidance is to cancel or reschedule at least 48 hours ahead when possible.",
+        "Late-cancellation/no-show handling is determined by the current scheduling policy and may be waived by authorized staff.",
+        "V2 supersedes the older V1 rule."
+      ],
+      "expected_sources": [
+        "OPS-306-V2"
+      ],
+      "acceptable_source_alternatives": [],
+      "acceptable_additional_sources": [
+        "OPS-306-V1"
+      ],
+      "support": [
+        {
+          "doc_id": "OPS-306-V2",
+          "quote": "Current policy, effective July 1, 2026.\n\nRoutine appointments should be canceled or rescheduled at least 48 hours in advance when possible. Late-cancellation or no-show handling is determined by the current scheduling policy and may be waived by authorized staff. This version supersedes OPS-306-V1.\n\nWhen asked about the cancellation window, the assistant should use this version and may mention that an older 24-hour policy was superseded."
+        }
+      ],
+      "forbidden_claims": [
+        "Every late cancellation necessarily produces a fee.",
+        "Only management may waive current V2 handling."
+      ],
+      "id": "ARH-014"
+    },
+    {
+      "family": "source_authority_and_patient_specificity",
+      "question": "Explain the dataset’s source hierarchy in three situations: current versus superseded policy, a patient record versus a general assumption, and a procedure overview being used to choose that patient’s treatment. Must a policy conflict be disclosed?",
+      "expected_behavior": "answered",
+      "required_facts": [
+        "Current policy outranks superseded policy, with the current effective version preferred when versions conflict.",
+        "Synthetic patient records outrank general assumptions about that patient.",
+        "Procedure overviews support general education and do not themselves create patient-specific treatment recommendations.",
+        "A source conflict should be disclosed while identifying the sources used."
+      ],
+      "expected_sources": [
+        "IT-403",
+        "PRACTICE-002"
+      ],
+      "acceptable_source_alternatives": [],
+      "acceptable_additional_sources": [],
+      "support": [
+        {
+          "doc_id": "IT-403",
+          "quote": "The reference architecture for this exercise assumes a hybrid retrieval pattern:\n- metadata filtering narrows by category, patient, date, version, and authority;\n- semantic retrieval finds conceptually relevant passages;\n- keyword or lexical retrieval helps with names, codes, and exact terms;\n- optional reranking orders the candidate passages;\n- the answer generator receives only the strongest supporting context.\n\nCurrent policy outranks superseded policy. Synthetic patient records outrank general assumptions about that patient. Procedure overview documents can support general education but do not create a patient-specific treatment recommendation.\n\nThe system should return source identifiers with the answer."
+        },
+        {
+          "doc_id": "PRACTICE-002",
+          "quote": "The assistant is a decision-support and knowledge-retrieval system. It may summarize approved source material, answer operational questions, retrieve synthetic patient context, and explain general procedure information from this training corpus.\n\nThe assistant must not invent facts that are not supported by retrieved sources. When sources conflict, the most recent effective version marked as Current Policy should be preferred and the conflict should be disclosed. Patient-specific answers must cite the relevant synthetic patient record plus any procedure or policy source used.\n\nThe assistant must not claim to diagnose, prescribe, or replace a licensed clinician. For clinical-sounding questions, it should frame the answer as information found in the training corpus and recommend provider review where appropriate.\n\nThe assistant should preserve provenance. A useful response includes source titles or document IDs, especially for procedure, policy, and patient-specific questions."
+        }
+      ],
+      "forbidden_claims": [
+        "Automatically using the newest date regardless of the question’s historical applicability.",
+        "An educational procedure page establishes the patient’s treatment decision."
+      ],
+      "id": "ARH-015"
+    },
+    {
+      "family": "postponed_discussion_and_missing_clearance_window",
+      "question": "What exactly was postponed for PT-003, what counseling is already recorded, and how many more days until they are cleared for IPL?",
+      "expected_behavior": "partial",
+      "required_facts": [
+        "The provider postponed light-based procedure discussion until recent sun exposure is reassessed.",
+        "Skincare and sun-protection counseling is documented, and no treatment is selected.",
+        "No exact waiting period or future IPL clearance date is supplied; IPL candidacy requires provider review considering recent sun exposure and other factors."
+      ],
+      "expected_sources": [
+        "PT-003",
+        "PROC-103"
+      ],
+      "acceptable_source_alternatives": [],
+      "acceptable_additional_sources": [],
+      "support": [
+        {
+          "doc_id": "PT-003",
+          "quote": "SYNTHETIC TRAINING RECORD - NOT A REAL PATIENT.\nPatient ID: PT-003\nAge: 41\nPrimary goal: pigment and sun-damage concerns\nRelevant context: Reports frequent outdoor activity and recent sun exposure. No treatment selected.\nCurrent status: Provider note: postpone light-based procedure discussion until recent sun exposure is reassessed. Skincare and sun-protection counseling documented.\nThe AI assistant must not infer facts that are not stated in this record."
+        },
+        {
+          "doc_id": "PROC-103",
+          "quote": "Intense pulsed light (IPL) is a light-based treatment commonly used for selected pigment and vascular concerns. Appropriate candidacy depends on skin tone, recent sun or tanning exposure, medications, active skin conditions, and the specific target.\n\nThe fictional practice requires provider review before treatment. Patients should disclose recent sun exposure, self-tanner use, new medications, and any history of unusual reactions to light-based procedures.\n\nShort-term effects may include redness, warmth, temporary darkening of treated pigment, or mild swelling. The practice emphasizes sun protection and following individualized post-care instructions.\n\nThe assistant should not infer that IPL is appropriate for every pigmentation concern and should direct candidacy questions to a provider."
+        }
+      ],
+      "forbidden_claims": [
+        "A scheduled treatment was canceled when only discussion was postponed.",
+        "An invented number of days to clearance.",
+        "Declaring IPL appropriate for PT-003."
+      ],
+      "id": "ARH-016"
+    },
+    {
+      "family": "conversation_assistant_discovered_patient_then_new_topic",
+      "question": "Unrelated to that person: what does Converted mean in the lead-status definitions?",
+      "expected_behavior": "answered",
+      "required_facts": [
+        "Converted means the first paid treatment has been completed."
+      ],
+      "expected_sources": [
+        "BIZ-502"
+      ],
+      "acceptable_source_alternatives": [],
+      "acceptable_additional_sources": [],
+      "support": [
+        {
+          "doc_id": "BIZ-502",
+          "quote": "Lead statuses used in the fictional training system:\n- New: inquiry received but not yet contacted.\n- Contacted: staff reached the lead or made a documented attempt.\n- Consult Scheduled: consultation date/time confirmed.\n- Consult Completed: consultation occurred.\n- Treatment Planned: a provider-approved plan exists and the patient is considering or scheduling.\n- Converted: first paid treatment completed.\n- Dormant: no active next step after the defined follow-up window.\n\nStatus changes should be event-driven and auditable."
+        }
+      ],
+      "forbidden_claims": [
+        "Asserting that PT-002 has converted.",
+        "Treating consultation completion as conversion."
+      ],
+      "id": "ARH-017",
+      "turns": [
+        {
+          "family": "conversation_turn",
+          "question": "Which synthetic patient has a new-patient consultation scheduled after neuromodulator treatment at a different practice?",
+          "expected_behavior": "answered",
+          "required_facts": [
+            "PT-002 is the matching record: previous neuromodulator treatment at another practice and a new-patient consultation scheduled."
+          ],
+          "expected_sources": [
+            "PT-002"
+          ],
+          "acceptable_source_alternatives": [],
+          "acceptable_additional_sources": [],
+          "support": [
+            {
+              "doc_id": "PT-002",
+              "quote": "SYNTHETIC TRAINING RECORD - NOT A REAL PATIENT.\nPatient ID: PT-002\nAge: 52\nPrimary goal: facial rejuvenation and fine-line concerns\nRelevant context: Previously received neuromodulator treatment at another practice. Reports preference for natural movement and minimal downtime.\nCurrent status: New-patient consultation scheduled. No treatment decision documented yet.\nThe AI assistant must not infer facts that are not stated in this record."
+            }
+          ],
+          "forbidden_claims": []
+        },
+        {
+          "family": "conversation_turn",
+          "question": "What movement and downtime preferences did that person report, and is a treatment choice already recorded?",
+          "expected_behavior": "answered",
+          "required_facts": [
+            "PT-002 prefers natural movement and minimal downtime.",
+            "No treatment decision is documented yet for PT-002."
+          ],
+          "expected_sources": [
+            "PT-002"
+          ],
+          "acceptable_source_alternatives": [],
+          "acceptable_additional_sources": [],
+          "support": [
+            {
+              "doc_id": "PT-002",
+              "quote": "SYNTHETIC TRAINING RECORD - NOT A REAL PATIENT.\nPatient ID: PT-002\nAge: 52\nPrimary goal: facial rejuvenation and fine-line concerns\nRelevant context: Previously received neuromodulator treatment at another practice. Reports preference for natural movement and minimal downtime.\nCurrent status: New-patient consultation scheduled. No treatment decision documented yet.\nThe AI assistant must not infer facts that are not stated in this record."
+            }
+          ],
+          "forbidden_claims": [
+            "Using another patient’s preferences."
+          ]
+        },
+        {
+          "family": "conversation_turn",
+          "question": "Unrelated to that person: what does Converted mean in the lead-status definitions?",
+          "expected_behavior": "answered",
+          "required_facts": [
+            "Converted means the first paid treatment has been completed."
+          ],
+          "expected_sources": [
+            "BIZ-502"
+          ],
+          "acceptable_source_alternatives": [],
+          "acceptable_additional_sources": [],
+          "support": [
+            {
+              "doc_id": "BIZ-502",
+              "quote": "Lead statuses used in the fictional training system:\n- New: inquiry received but not yet contacted.\n- Contacted: staff reached the lead or made a documented attempt.\n- Consult Scheduled: consultation date/time confirmed.\n- Consult Completed: consultation occurred.\n- Treatment Planned: a provider-approved plan exists and the patient is considering or scheduling.\n- Converted: first paid treatment completed.\n- Dormant: no active next step after the defined follow-up window.\n\nStatus changes should be event-driven and auditable."
+            }
+          ],
+          "forbidden_claims": [
+            "Asserting that PT-002 has converted.",
+            "Treating consultation completion as conversion."
+          ]
+        }
+      ]
+    },
+    {
+      "family": "conversation_assistant_named_procedure_reference",
+      "question": "Now compare that overview with the dermal filler overview: what patient-context factors inform both?",
+      "expected_behavior": "answered",
+      "required_facts": [
+        "Both address anatomy, patient/treatment goals and previous treatment/procedure history as factors in choosing an approach.",
+        "Both keep appropriateness and selection with the provider rather than the assistant."
+      ],
+      "expected_sources": [
+        "PROC-106",
+        "PROC-105"
+      ],
+      "acceptable_source_alternatives": [],
+      "acceptable_additional_sources": [],
+      "support": [
+        {
+          "doc_id": "PROC-106",
+          "quote": "Biostimulatory injectables are used in selected aesthetic treatment plans to support gradual tissue remodeling or collagen-related goals. Results are generally progressive rather than immediate.\n\nThe provider determines whether a biostimulatory injectable is appropriate based on anatomy, treatment goals, prior procedures, relevant health history, and product-specific considerations. The practice emphasizes realistic expectations and staged follow-up.\n\nThe assistant should distinguish biostimulatory treatments from immediate-volume fillers when answering educational questions."
+        },
+        {
+          "doc_id": "PROC-105",
+          "quote": "Dermal fillers may be used to restore volume, refine contours, or address other provider-selected aesthetic goals. Product selection and placement depend on anatomy, tissue characteristics, treatment history, and patient goals.\n\nThe practice uses a consultation process that includes prior filler history, relevant medical history, treatment goals, photographs when appropriate, and discussion of expected benefits, limitations, alternatives, and complications.\n\nSwelling, tenderness, bruising, and temporary asymmetry can occur after treatment. Urgent concerns are escalated to the treating provider according to practice policy.\n\nThe assistant may summarize general filler information but must not recommend injection sites, volumes, or products for a specific patient."
+        }
+      ],
+      "forbidden_claims": [
+        "Assigning a product, injection volume or site to a patient."
+      ],
+      "id": "ARH-018",
+      "turns": [
+        {
+          "family": "conversation_turn",
+          "question": "Which procedure overview describes progressive collagen-related remodeling instead of immediate-volume filler effects?",
+          "expected_behavior": "answered",
+          "required_facts": [
+            "The biostimulatory injectable overview describes gradual tissue remodeling/collagen-related goals, with progressive rather than immediate results."
+          ],
+          "expected_sources": [
+            "PROC-106"
+          ],
+          "acceptable_source_alternatives": [],
+          "acceptable_additional_sources": [],
+          "support": [
+            {
+              "doc_id": "PROC-106",
+              "quote": "Biostimulatory injectables are used in selected aesthetic treatment plans to support gradual tissue remodeling or collagen-related goals. Results are generally progressive rather than immediate.\n\nThe provider determines whether a biostimulatory injectable is appropriate based on anatomy, treatment goals, prior procedures, relevant health history, and product-specific considerations. The practice emphasizes realistic expectations and staged follow-up.\n\nThe assistant should distinguish biostimulatory treatments from immediate-volume fillers when answering educational questions."
+            }
+          ],
+          "forbidden_claims": []
+        },
+        {
+          "family": "conversation_turn",
+          "question": "Before choosing that option, what factors does the provider assess?",
+          "expected_behavior": "answered",
+          "required_facts": [
+            "For biostimulatory injectables the provider assesses anatomy, treatment goals, prior procedures, relevant health history and product-specific considerations."
+          ],
+          "expected_sources": [
+            "PROC-106"
+          ],
+          "acceptable_source_alternatives": [],
+          "acceptable_additional_sources": [],
+          "support": [
+            {
+              "doc_id": "PROC-106",
+              "quote": "Biostimulatory injectables are used in selected aesthetic treatment plans to support gradual tissue remodeling or collagen-related goals. Results are generally progressive rather than immediate.\n\nThe provider determines whether a biostimulatory injectable is appropriate based on anatomy, treatment goals, prior procedures, relevant health history, and product-specific considerations. The practice emphasizes realistic expectations and staged follow-up.\n\nThe assistant should distinguish biostimulatory treatments from immediate-volume fillers when answering educational questions."
+            }
+          ],
+          "forbidden_claims": []
+        },
+        {
+          "family": "conversation_turn",
+          "question": "Now compare that overview with the dermal filler overview: what patient-context factors inform both?",
+          "expected_behavior": "answered",
+          "required_facts": [
+            "Both address anatomy, patient/treatment goals and previous treatment/procedure history as factors in choosing an approach.",
+            "Both keep appropriateness and selection with the provider rather than the assistant."
+          ],
+          "expected_sources": [
+            "PROC-106",
+            "PROC-105"
+          ],
+          "acceptable_source_alternatives": [],
+          "acceptable_additional_sources": [],
+          "support": [
+            {
+              "doc_id": "PROC-106",
+              "quote": "Biostimulatory injectables are used in selected aesthetic treatment plans to support gradual tissue remodeling or collagen-related goals. Results are generally progressive rather than immediate.\n\nThe provider determines whether a biostimulatory injectable is appropriate based on anatomy, treatment goals, prior procedures, relevant health history, and product-specific considerations. The practice emphasizes realistic expectations and staged follow-up.\n\nThe assistant should distinguish biostimulatory treatments from immediate-volume fillers when answering educational questions."
+            },
+            {
+              "doc_id": "PROC-105",
+              "quote": "Dermal fillers may be used to restore volume, refine contours, or address other provider-selected aesthetic goals. Product selection and placement depend on anatomy, tissue characteristics, treatment history, and patient goals.\n\nThe practice uses a consultation process that includes prior filler history, relevant medical history, treatment goals, photographs when appropriate, and discussion of expected benefits, limitations, alternatives, and complications.\n\nSwelling, tenderness, bruising, and temporary asymmetry can occur after treatment. Urgent concerns are escalated to the treating provider according to practice policy.\n\nThe assistant may summarize general filler information but must not recommend injection sites, volumes, or products for a specific patient."
+            }
+          ],
+          "forbidden_claims": [
+            "Assigning a product, injection volume or site to a patient."
+          ]
+        }
+      ]
+    },
+    {
+      "family": "conversation_two_patients_ambiguous_then_resolved",
+      "question": "I mean PT-004. Give their interval and tell me whether the record’s September 1 effective date establishes when the visit occurred.",
+      "expected_behavior": "answered",
+      "required_facts": [
+        "PT-004 follow-up is in six weeks.",
+        "The source effective date does not establish an encounter date, so an absolute follow-up date cannot be calculated from it."
+      ],
+      "expected_sources": [
+        "PT-004"
+      ],
+      "acceptable_source_alternatives": [],
+      "acceptable_additional_sources": [],
+      "support": [
+        {
+          "doc_id": "PT-004",
+          "quote": "SYNTHETIC TRAINING RECORD - NOT A REAL PATIENT.\nPatient ID: PT-004\nAge: 29\nPrimary goal: active acne plus residual scarring\nRelevant context: Currently focused on controlling breakouts. Interested in scar procedures but has not completed active-acne plan.\nCurrent status: Provider documented that scar-focused procedures should be considered only after active acne is adequately controlled. Follow-up in 6 weeks.\nThe AI assistant must not infer facts that are not stated in this record."
+        }
+      ],
+      "forbidden_claims": [
+        "Giving PT-001’s two-week interval.",
+        "Using September 1 as a documented visit date."
+      ],
+      "id": "ARH-019",
+      "turns": [
+        {
+          "family": "conversation_turn",
+          "question": "Put PT-001 and PT-004 side by side: what is each main goal?",
+          "expected_behavior": "answered",
+          "required_facts": [
+            "PT-001 seeks texture and acne-scar improvement.",
+            "PT-004 has active acne plus residual scarring and is focused on controlling breakouts."
+          ],
+          "expected_sources": [
+            "PT-001",
+            "PT-004"
+          ],
+          "acceptable_source_alternatives": [],
+          "acceptable_additional_sources": [],
+          "support": [
+            {
+              "doc_id": "PT-001",
+              "quote": "SYNTHETIC TRAINING RECORD - NOT A REAL PATIENT.\nPatient ID: PT-001\nAge: 34\nPrimary goal: texture and acne-scar improvement\nRelevant context: History includes prior acne treatment and one superficial peel. No current procedure is scheduled. Interested in options with manageable downtime.\nCurrent status: Consultation completed. Provider discussed a staged acne-scar plan and emphasized that active acne control and scar type affect modality selection. Follow-up task due in 2 weeks.\nThe AI assistant must not infer facts that are not stated in this record."
+            },
+            {
+              "doc_id": "PT-004",
+              "quote": "SYNTHETIC TRAINING RECORD - NOT A REAL PATIENT.\nPatient ID: PT-004\nAge: 29\nPrimary goal: active acne plus residual scarring\nRelevant context: Currently focused on controlling breakouts. Interested in scar procedures but has not completed active-acne plan.\nCurrent status: Provider documented that scar-focused procedures should be considered only after active acne is adequately controlled. Follow-up in 6 weeks.\nThe AI assistant must not infer facts that are not stated in this record."
+            }
+          ],
+          "forbidden_claims": []
+        },
+        {
+          "family": "conversation_turn",
+          "question": "When is that patient supposed to follow up?",
+          "expected_behavior": "clarify",
+          "required_facts": [
+            "There are two plausible patient referents, so ask whether the user means PT-001 or PT-004, or explicitly present both intervals without choosing one silently."
+          ],
+          "expected_sources": [],
+          "acceptable_source_alternatives": [],
+          "acceptable_additional_sources": [],
+          "support": [],
+          "forbidden_claims": [
+            "Silently treating one of the two patients as uniquely intended."
+          ]
+        },
+        {
+          "family": "conversation_turn",
+          "question": "I mean PT-004. Give their interval and tell me whether the record’s September 1 effective date establishes when the visit occurred.",
+          "expected_behavior": "answered",
+          "required_facts": [
+            "PT-004 follow-up is in six weeks.",
+            "The source effective date does not establish an encounter date, so an absolute follow-up date cannot be calculated from it."
+          ],
+          "expected_sources": [
+            "PT-004"
+          ],
+          "acceptable_source_alternatives": [],
+          "acceptable_additional_sources": [],
+          "support": [
+            {
+              "doc_id": "PT-004",
+              "quote": "SYNTHETIC TRAINING RECORD - NOT A REAL PATIENT.\nPatient ID: PT-004\nAge: 29\nPrimary goal: active acne plus residual scarring\nRelevant context: Currently focused on controlling breakouts. Interested in scar procedures but has not completed active-acne plan.\nCurrent status: Provider documented that scar-focused procedures should be considered only after active acne is adequately controlled. Follow-up in 6 weeks.\nThe AI assistant must not infer facts that are not stated in this record."
+            }
+          ],
+          "forbidden_claims": [
+            "Giving PT-001’s two-week interval.",
+            "Using September 1 as a documented visit date."
+          ]
+        }
+      ]
+    },
+    {
+      "family": "conversation_date_correction_then_price_topic_switch",
+      "question": "Separate topic: what fictional amount is listed for a skincare consultation?",
+      "expected_behavior": "answered",
+      "required_facts": [
+        "The fictional skincare consultation amount is $150, not a real EMER price."
+      ],
+      "expected_sources": [
+        "BIZ-501"
+      ],
+      "acceptable_source_alternatives": [],
+      "acceptable_additional_sources": [],
+      "support": [
+        {
+          "doc_id": "BIZ-501",
+          "quote": "Fictional training values only. These are not EMER Medical's real prices.\n\nNew-patient aesthetic consultation: $250.\nSkincare consultation: $150.\nDeposit rules and procedure pricing are intentionally omitted from the corpus.\n\nIf the user asks for a procedure price not listed here, the assistant should say the corpus does not contain that price rather than inventing one."
+        }
+      ],
+      "forbidden_claims": [
+        "Applying the previous July policy-date context to refuse this independent pricing lookup.",
+        "Calling $150 a procedure price."
+      ],
+      "id": "ARH-020",
+      "turns": [
+        {
+          "family": "conversation_turn",
+          "question": "Which routine cancellation notice rule applies on June 28, 2026?",
+          "expected_behavior": "answered",
+          "required_facts": [
+            "V1 applies: less than 24 hours notice may incur a fee unless management waives it."
+          ],
+          "expected_sources": [
+            "OPS-306-V1"
+          ],
+          "acceptable_source_alternatives": [],
+          "acceptable_additional_sources": [],
+          "support": [
+            {
+              "doc_id": "OPS-306-V1",
+              "quote": "Superseded policy, effective January 1, 2026 through June 30, 2026.\n\nRoutine appointments canceled with less than 24 hours' notice may be subject to a cancellation fee unless waived by management. This version is retained only to test version-aware retrieval."
+            }
+          ],
+          "forbidden_claims": []
+        },
+        {
+          "family": "conversation_turn",
+          "question": "Keep the topic, but move the reference date to July 3, 2026. What changes?",
+          "expected_behavior": "answered",
+          "required_facts": [
+            "V2 applies on July 3 and supersedes V1.",
+            "Cancellation/rescheduling should be at least 48 hours ahead when possible; late/no-show handling may be waived by authorized staff."
+          ],
+          "expected_sources": [
+            "OPS-306-V2"
+          ],
+          "acceptable_source_alternatives": [],
+          "acceptable_additional_sources": [
+            "OPS-306-V1"
+          ],
+          "support": [
+            {
+              "doc_id": "OPS-306-V2",
+              "quote": "Current policy, effective July 1, 2026.\n\nRoutine appointments should be canceled or rescheduled at least 48 hours in advance when possible. Late-cancellation or no-show handling is determined by the current scheduling policy and may be waived by authorized staff. This version supersedes OPS-306-V1.\n\nWhen asked about the cancellation window, the assistant should use this version and may mention that an older 24-hour policy was superseded."
+            }
+          ],
+          "forbidden_claims": [
+            "Retaining the old 24-hour rule as applicable."
+          ]
+        },
+        {
+          "family": "conversation_turn",
+          "question": "Separate topic: what fictional amount is listed for a skincare consultation?",
+          "expected_behavior": "answered",
+          "required_facts": [
+            "The fictional skincare consultation amount is $150, not a real EMER price."
+          ],
+          "expected_sources": [
+            "BIZ-501"
+          ],
+          "acceptable_source_alternatives": [],
+          "acceptable_additional_sources": [],
+          "support": [
+            {
+              "doc_id": "BIZ-501",
+              "quote": "Fictional training values only. These are not EMER Medical's real prices.\n\nNew-patient aesthetic consultation: $250.\nSkincare consultation: $150.\nDeposit rules and procedure pricing are intentionally omitted from the corpus.\n\nIf the user asks for a procedure price not listed here, the assistant should say the corpus does not contain that price rather than inventing one."
+            }
+          ],
+          "forbidden_claims": [
+            "Applying the previous July policy-date context to refuse this independent pricing lookup.",
+            "Calling $150 a procedure price."
+          ]
+        }
+      ]
+    }
+  ]
+}

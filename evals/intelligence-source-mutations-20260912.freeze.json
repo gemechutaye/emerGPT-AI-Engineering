@@ -1,0 +1,11 @@
+{
+  "suite": "evals/intelligence-source-mutations-20260912.json",
+  "sha256": "269a1c838423b4ad8c057165195c4534d8752612dc9ab8fb9920e7a19fb2cec8",
+  "cases": 6,
+  "frozen_before_model_calls": true,
+  "model_calls_by_author": 0,
+  "base_bundle_index_id": "4bac79a1aaf46f400446aebb",
+  "base_bundle_sha256": "74ea709f0aa3949156664a760c12283a3173e24920b351cf61abb46d7dd39255",
+  "fixture_validation": "artifacts/verification/intelligence-20260912/source-mutations/fixture-validation.json",
+  "author_role": "retrieval-audit subagent, independently authored expectations without inspecting sealed confirmation cases"
+}
