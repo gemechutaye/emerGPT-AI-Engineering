@@ -37,3 +37,10 @@ Actual account and preparation results are recorded in [hosting status](HOSTING_
 
 References: [Vercel programmatic configuration](https://vercel.com/docs/project-configuration/vercel-ts)
 and [external rewrites and cache behavior](https://vercel.com/docs/routing/rewrites).
+
+The deployment configuration keeps the backend origin as an explicit routing
+reference to `EMER_BACKEND_ORIGIN`. `scripts/check-backend-origin.mjs` validates the
+real value during the build, after Vercel has loaded project environment variables.
+It rejects missing values, non-HTTPS URLs, credentials, paths and trailing slashes.
+The routing rules preserve security headers, uncached APIs and the share-page SPA.
+See [Vercel programmatic configuration](https://vercel.com/docs/project-configuration/vercel-ts).

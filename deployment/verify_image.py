@@ -32,6 +32,7 @@ def main():
     args.evidence.mkdir(parents=True, exist_ok=True)
     suffix = uuid.uuid4().hex[:10]
     network, database, application = (f"emer-check-{part}-{suffix}" for part in ("net", "db", "app"))
+    initializer = f"emer-check-init-{suffix}"
     with socket.socket() as probe:
         probe.bind(("127.0.0.1", 0))
         port = probe.getsockname()[1]
@@ -134,8 +135,11 @@ def main():
         # Initialization is a separate release operation. This isolated smoke
         # deliberately uses lexical retrieval, so no provider credentials or
         # invented embedding vectors are needed.
+        # Register the initializer before dispatch: a Docker client timeout does
+        # not guarantee that its container stopped. Cleanup must own it as well.
+        owned.append(("container", initializer))
         command(
-            "docker", "run", "--rm", "--network", network,
+            "docker", "run", "--name", initializer, "--network", network,
             "--platform", "linux/amd64",
             "-e", f"DATABASE_URL=postgresql+psycopg://postgres@{database}:5432/emer",
             "--entrypoint", "bash", args.image, "-c",

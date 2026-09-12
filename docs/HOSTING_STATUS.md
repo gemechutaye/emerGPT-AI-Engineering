@@ -4,9 +4,9 @@ September 12, 2026. Release preparation and hosted acceptance are separate.
 
 | Component | Verified | Remaining |
 | --- | --- | --- |
-| GitHub | Clean source snapshot integrated; personal Git identity configured for the requested private repository. | Remote CI and deployment result after the initial push. |
+| GitHub | Clean source snapshot integrated; personal Git identity configured for the requested private repository. | `main` pushed as `220fcc9`; remote CI corrections are being verified. |
 | Vercel | `emergpt-ai-engineering` exists and is connected to the requested GitHub repo on `main`; Vite, `apps/web`, Node 22 and build settings are configured. Local Vercel build, generated types, 196 frontend tests and production build pass. | Real Modal origin and hosted integration. |
-| Modal | Personal CLI profile authenticated; persistent Server and separate initialization App import under Modal 1.5.5. | Runtime Secret, image, initialization and hosted acceptance. |
+| Modal | Personal CLI profile authenticated; persistent Server and separate initialization App import under Modal 1.5.5. | Runtime Secret, managed database initialization and hosted acceptance. Image `im-iBdusowEsCNtOH7PKm38Xn` built successfully on Modal. |
 | Database | Actual EMER history is in local Postgres `emer` at port 55432: 224 conversations and 263 runs at the pre-release checkpoint. A private application backup succeeded. | Move preserved history and index bundles into an authorized managed database and verify the connection from Modal. |
 | Packaging | Nine startup/index checks, shell syntax and offline tokenizer cache pass. Existing local Postgres is reused without creating another cluster. | Final container and hosted checks. |
 
@@ -43,3 +43,18 @@ Physical microphone/listening acceptance remains separate from synthetic fixture
 
 See [deployment instructions](../deployment/README.md) and
 [Vercel setup](VERCEL_SETUP.md) for configuration and lifecycle requirements.
+
+Initial GitHub CI passed all 196 frontend tests and failed one of 1,496 backend
+tests because its backend job had not built the frontend needed by the real
+share-page HTTP test. The workflow now builds those assets before API tests.
+Vercel detected the GitHub push automatically but rejected the initial dynamic
+proxy expression during configuration parsing. Routing now uses an explicit
+deployment environment reference; origin validation runs inside the build.
+The corrected local Vercel build and seven origin-validation cases pass. A real
+`EMER_BACKEND_ORIGIN` is still required; no placeholder origin is deployed.
+
+The local amd64 image built successfully (258,068,855 bytes). Two smoke attempts
+on Docker Desktop timed out during initialization; their temporary databases and
+networks were removed. The smoke runner now names and tracks its initializer so
+a client timeout cannot leave an untracked container. An isolated Docker context
+is being used for the repeat; the timeout is not reported as a pass.

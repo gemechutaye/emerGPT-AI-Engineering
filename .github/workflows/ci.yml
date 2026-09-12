@@ -56,6 +56,14 @@ jobs:
           python-version: '3.13'
       - run: sudo apt-get update && sudo apt-get install -y postgresql-client-16
       - run: uv sync --frozen
+      # The real HTTP share-page checks require the actual compiled frontend.
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: apps/web/package-lock.json
+      - run: npm ci && npm run build
+        working-directory: apps/web
       - run: mkdir -p .local
       - run: uv run ruff check apps/api
       - run: uv run pytest -q apps/api/tests tests/workstream_qa
