@@ -54,3 +54,13 @@ The `/api/v1/evaluations` endpoint labels retained results as historical and add
 the actual runtime configuration. Earlier 60-trial results are regression evidence,
 not independent acceptance of this release. Hosted and physical Live checks remain
 separate gates. No perfect-coverage or production-readiness claim is made.
+
+## Supplied evaluator questions
+
+[evaluator-sample-20260912.json](evaluator-sample-20260912.json) preserves the later
+user-supplied prompts and pre-dispatch source expectations. Question 15 is instantiated
+as a request for the unavailable emergency telephone number. The
+[deployed evaluation report](../docs/EVALUATOR_SAMPLE_RESULTS.md) includes every
+observed answer or failure and answers the six suggested evaluator checks.
+The supplied suite was tested over HTTP once per case; physical voice acceptance
+remains separate. The 10/15 result is not a full factual-completeness score.

@@ -33,9 +33,18 @@ fictional patient records. Each record includes `doc_id`, `title`, `category`,
 `version`, `effective_date`, `authority` and `text`. Ingestion preserves these
 fields and exact passage locations for citations.
 
-The data README names `EMER_AI_TakeHome_Evaluation_Questions.txt`, but that file
-was not supplied. The source-derived questions in [evals/](evals/) were created
-for this project. Evaluation inputs and generated answers are never ingested.
+The original data README names `EMER_AI_TakeHome_Evaluation_Questions.txt`; that
+file was not in the initial archive. The evaluator later supplied 15 prompts in
+chat, now preserved in [the evaluator suite](evals/evaluator-sample-20260912.json).
+The [observed results and six evaluator-check answers](docs/EVALUATOR_SAMPLE_RESULTS.md)
+record 10 successful answers and five validation failures, with voice acceptance
+still requiring a physical test. Additional source-derived suites live in
+[evals/](evals/). Evaluation inputs and generated answers are never ingested.
+
+Open **Dataset → Engineering presentation** in the app for seven slides covering
+the implementation, experiments, results, limits and demo steps. Expand presenter
+notes or any of the 15 prepared talking answers; copying a question does not submit
+it to a model. The presentation reports a dated evaluation snapshot, not live metrics.
 
 ## Deployment
 

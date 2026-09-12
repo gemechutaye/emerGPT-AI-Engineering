@@ -24,7 +24,11 @@ def save(path, value):
 
 class AuditedClient(OpenRouterClient):
     def __init__(self, model, directory, reasoning_effort=None):
-        super().__init__(settings.openrouter_api_key, model, reasoning_effort=reasoning_effort)
+        reasoning_effort = reasoning_effort or (settings.openrouter_reasoning_effort if model == settings.openrouter_model else None)
+        super().__init__(settings.openrouter_api_key, model, reasoning_effort=reasoning_effort,
+                         reasoning_token_reserve=settings.openrouter_reasoning_token_reserve if model == settings.openrouter_model else 0,
+                         max_input_tokens=settings.model_input_token_budget,
+                         operation_reasoning=settings.generator_operation_reasoning if model == settings.openrouter_model else {})
         self.directory = directory
         self.calls = []
 
@@ -90,7 +94,12 @@ async def main(args):
         "suite": args.suite, "suite_sha256": sha256(raw).hexdigest(), "case_ids": [c["id"] for c in cases],
         "index_id": bundle.id, "index_checksum": bundle.checksum,
         "generator": selected.openrouter_model, "verifier": selected.verifier_model,
+        "generator_reasoning_effort": selected.openrouter_reasoning_effort,
+        "generator_operation_reasoning": selected.generator_operation_reasoning,
+        "generator_reasoning_token_reserve": selected.openrouter_reasoning_token_reserve,
         "verifier_reasoning_effort": selected.verifier_reasoning_effort,
+        "model_input_token_budget": selected.model_input_token_budget,
+        "run_timeout_seconds": selected.run_timeout_seconds,
         "retrieval": {field: getattr(selected, field) for field in ["retrieval_mode", "retrieval_top_k", "retrieval_candidate_k", "context_token_budget", "reranking_enabled"]},
         "code": {str(path): sha256(path.read_bytes()).hexdigest() for path in code},
         "assessment": "Contract/provenance checks only; required-fact semantic review remains separate.",

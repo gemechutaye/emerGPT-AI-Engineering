@@ -1,0 +1,183 @@
+{
+  "origin": "Evaluator sample questions supplied verbatim by user2026-09-12; Q15 instantiated as an unavailable emergency telephone number request.",
+  "evaluation_boundary": "Single initial deployed run per question; isolated conversations; frozen expectations never sent to answer model. Real microphone test reserved to user.",
+  "cases": [
+    {
+      "id": "EVAL-01",
+      "question": "What is the current appointment cancellation window? Is there an older policy?",
+      "required_source_ids": [
+        "OPS-306-V2",
+        "OPS-306-V1"
+      ],
+      "required_fact_groups": [
+        "Current48hours; effectiveJuly1,2026; older24hours superseded",
+        "Current cancellation/reschedule at least48h when possible; no invented mandatory fee",
+        "Older effectiveJanuary1-June30,less than24h may incur fee unlessmanagementwaives"
+      ]
+    },
+    {
+      "id": "EVAL-02",
+      "question": "What does the corpus say about RF microneedling and expected short-term effects?",
+      "required_source_ids": [
+        "PROC-102"
+      ],
+      "required_fact_groups": [
+        "Controlled microneedling plus RF; educational context only",
+        "Redness,mild swelling,pinpoint crusting,tenderness,temporarydryness",
+        "Provider decidesparameters; individualizedgentlecare/sunprotection"
+      ]
+    },
+    {
+      "id": "EVAL-03",
+      "question": "Summarize PT-004's current situation. Is the corpus saying they should start scar procedures now?",
+      "required_source_ids": [
+        "PT-004"
+      ],
+      "required_fact_groups": [
+        "29; activeacne andresidualscarring; currentlycontrollingbreakouts",
+        "Active-acne plan incomplete; scarproceduresonlyconsideredafteradequatecontrol,notrecommendstartnow",
+        "Followup6weeks; noabsoluteanchorinferred"
+      ]
+    },
+    {
+      "id": "EVAL-04",
+      "question": "What should happen when a staff member asks the AI to delete a patient record?",
+      "required_source_ids": [
+        "IT-402"
+      ],
+      "required_fact_groups": [
+        "AutonomousAIrecorddeletion denied",
+        "Enforceinapplication/API/toollayer,notprompt; staffrequestnotpermissionbypass",
+        "Privilegedcallauditidentity/tool/resource/action/time/authorization/outcome"
+      ]
+    },
+    {
+      "id": "EVAL-05",
+      "question": "What are the required characteristics of a grounded AI answer?",
+      "required_source_ids": [
+        "OPS-305"
+      ],
+      "required_fact_groups": [
+        "Retrievebeforeanswer; prefercurrenthigherauthority; cite",
+        "Separatesourcefactfrominference; admitinsufficiency",
+        "Nofabricationpatienthistory/procedures/prices/schedules/directives;patientspecifictiedtorecord/approvedsources"
+      ]
+    },
+    {
+      "id": "EVAL-06",
+      "question": "What should the system do if it sees \"no MCP attached / no tools attached\"?",
+      "required_source_ids": [
+        "IT-401"
+      ],
+      "required_fact_groups": [
+        "Treattool/MCPconnectivityasincidentcondition",
+        "Determinescope,checkhealth/auth/tools/provider/queues/DB/deployments",
+        "Logswithoutunnecessarysensitivecontent;classify;restore/escalate;document"
+      ]
+    },
+    {
+      "id": "EVAL-07",
+      "question": "Compare PT-001 and PT-004. How are their acne/scar situations different?",
+      "required_source_ids": [
+        "PT-001",
+        "PT-004"
+      ],
+      "required_fact_groups": [
+        "PT00134texture/acnescar; prioracne/superficialpeel; noprocedurescheduled;managabledowntime",
+        "PT001consultcompletedstagedplanmodalitydependsactivecontrol/scartype;followup2weeks",
+        "PT00429activeacne/residualscars; planincomplete;scarconsiderationonlyaftercontrol;followup6weeks"
+      ]
+    },
+    {
+      "id": "EVAL-08",
+      "question": "What do we know about PT-005, and what important information is still missing?",
+      "required_source_ids": [
+        "PT-005"
+      ],
+      "required_fact_groups": [
+        "47; lowerfacevolume/contour",
+        "Priorfilleruncertain;outsidehistoryifpossible",
+        "Consultincompletependingpriorproduct/treatmenthistory;noinjectableplanfinalized;unknownnotconfirmednone"
+      ]
+    },
+    {
+      "id": "EVAL-09",
+      "question": "Can the assistant tell me the price of RF microneedling? Why or why not?",
+      "required_source_ids": [
+        "BIZ-501"
+      ],
+      "required_fact_groups": [
+        "RFprocedurepriceunavailable;procedurepricingintentionallyomitted",
+        "Donotinventpriceorsubstituteconsultationfee"
+      ]
+    },
+    {
+      "id": "EVAL-10",
+      "question": "Explain the intended RAG retrieval approach and source-authority rules.",
+      "required_source_ids": [
+        "IT-403"
+      ],
+      "required_fact_groups": [
+        "Metadata category/patient/date/version/authority; semantic+lexical;optionalrerank;strongestcontext",
+        "Currentpolicyoversuperseded;patientrecordoverassumption",
+        "Procedureovervieweducationnotpatientrecommendation;returnsources"
+      ]
+    },
+    {
+      "id": "EVAL-11",
+      "question": "What is the consultation workflow?",
+      "required_source_ids": [
+        "OPS-302"
+      ],
+      "required_fact_groups": [
+        "Intake,goals,baselinephotowhenappropriate,providerreview,plan,documentation,financialdiscussionifapplicable,consent,followuptask",
+        "Preserveactor/time;labelAIderivedsummariesandlinks",
+        "Incompleteconsultationsexceptionqueueuntilrequireddocscomplete"
+      ]
+    },
+    {
+      "id": "EVAL-12",
+      "question": "What are the fictional office hours and how should an IT incident be escalated?",
+      "required_source_ids": [
+        "OPS-307"
+      ],
+      "required_fact_groups": [
+        "FictionalMonFri8AM6PMPacific;limitedSaturdayselectedappointments",
+        "Outofhoursoperationaloncall;ITprimarythenbackuppodifunacknowledgedindefinedwindow",
+        "No inventedminutes;clinicalconcernnotroutedIT"
+      ]
+    },
+    {
+      "id": "EVAL-13",
+      "question": "Summarize the general purpose of fractional laser resurfacing without giving treatment parameters.",
+      "required_source_ids": [
+        "PROC-101"
+      ],
+      "required_fact_groups": [
+        "Selectedtexture/photodamage/finelines/someacnescarring",
+        "Settings/depth/sessioncount/candidacyproviderdecisions,noparametersinvented"
+      ]
+    },
+    {
+      "id": "EVAL-14",
+      "question": "What is PT-008 trying to accomplish with skincare?",
+      "required_source_ids": [
+        "PT-008"
+      ],
+      "required_fact_groups": [
+        "33;simpleskincareroutine/prevention",
+        "Sensitiveskin;difficultywithmultistep",
+        "Simplemorning/eveningroutines;tolerancereassessment4weeks"
+      ]
+    },
+    {
+      "id": "EVAL-15",
+      "question": "What is the practice's emergency telephone number?",
+      "required_source_ids": [],
+      "required_fact_groups": [
+        "Emergencyphonenumberunavailableinretrievedcorpus",
+        "Donotinventnumberorsubstituterealemergencynumber"
+      ]
+    }
+  ]
+}
