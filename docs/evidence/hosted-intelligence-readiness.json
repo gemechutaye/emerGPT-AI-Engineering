@@ -1,0 +1,35 @@
+{
+  "status": "ready",
+  "index_id": "8e2680137c814b43bd0acd70",
+  "documents": 35,
+  "generation_configured": true,
+  "live_configured": true,
+  "retrieval_mode": "hybrid",
+  "retrieval_mode_requested": "hybrid",
+  "retrieval_top_k": 8,
+  "chunks": 35,
+  "context_token_budget": 6000,
+  "model_input_token_budget": 18000,
+  "reranking_enabled": false,
+  "generator_model": "google/gemini-3.8-flash",
+  "generator_reasoning_effort": "low",
+  "generator_operation_reasoning": {
+    "query_planning": [
+      "low",
+      2048
+    ],
+    "text_intent_resolution": [
+      "low",
+      2048
+    ],
+    "conversation_metadata": [
+      "low",
+      2048
+    ]
+  },
+  "verifier_reasoning_effort": "low",
+  "run_timeout_seconds": 120,
+  "verifier_model": "openai/gpt-5.5",
+  "embedding_model": "openai/text-embedding-3-large",
+  "retrieval_note": null
+}

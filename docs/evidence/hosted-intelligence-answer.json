@@ -1,0 +1,14 @@
+{
+  "id": "H11.T1",
+  "run_id": "55ff7c7b-c0d8-4285-b3dc-03d972e5d27a",
+  "run_status": "completed",
+  "answer_status": "answered",
+  "citations_checked": 3,
+  "citation_errors": [],
+  "http_latency_ms": 21745.246,
+  "statements": [
+    "The overview specifies that biostimulatory injectables are used to support gradual tissue remodeling or collagen-related goals, with results generally being progressive rather than immediate.",
+    "The practice highlights realistic expectations and staged follow-up, noting that biostimulatory treatments should be distinguished from immediate-volume fillers when addressing educational questions."
+  ],
+  "strict_fact_review": "Progressive collagen goals and staged follow-up represented; provider suitability qualification remains omitted. Exact citations valid; this is not complete H11 fact coverage."
+}
